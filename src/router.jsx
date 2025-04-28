@@ -5,6 +5,8 @@
 
 import {createHashRouter} from 'react-router-dom'
 import App from '@/App'
+import SensorReadingsPage from '@/pages/views/SensorReadingsPage';
+
 
 // Router configuration for OpenPokeDex application.
 // Uses HashRouter to support GitHub Pages deployments.
@@ -20,8 +22,11 @@ const router = createHashRouter([{
     path: '/',
     element: <App/>,
     children: [
-        // TODO
-    ]
+        {
+         path: 'sensor-readings',  
+            element: <SensorReadingsPage />
+    }
+]
 }])
 
 export default router

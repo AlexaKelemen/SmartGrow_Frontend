@@ -8,7 +8,7 @@ import {Link, useNavigate} from 'react-router-dom';
 /**
  * Header component for site navigation.
  *
- * @author Taggerkov
+ * @author Taggerkov,AlexaKelemen
  * @returns {JSX.Element} The Header component with navigation links and search input.
  */
 function Header() {
@@ -21,6 +21,7 @@ function Header() {
                 <nav className="nav-links">
                     <Link to="/">X</Link>
                     <Link to="/about">Y</Link>
+                     <Link to="/sensor-readings">Sensor Readings</Link>
                     // TODO
                 </nav>
                 // TODO
