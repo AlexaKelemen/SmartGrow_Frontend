@@ -1,13 +1,13 @@
 # SmartGrow Frontend
 
-SmartGrow is a smart home solution for your greenhouse.
+SmartGrow is a smart home solution for a personal greenhouse.
 
 # 📁 Project Structure
 
 ```
 src/
  ├── api/                            # Core API (handles REST API calls using Axios)
- │    └── restApi.js                 # Centralized REST API module (SensorAPI, ModelAPI, ControlAPI)
+ │    └── restApi.js                 # Centralized REST API modules
  ├── hooks/                          # Custom React hooks for frontend data management
  │    ├── useSensorReadings.js       # Hook for fetching sensor reading data
  │    ├── useModelPrediction.js      # Hook for interacting with the ML prediction service
@@ -17,24 +17,41 @@ src/
  │    ├── viewmodels/                # Intermediate logic layer for views
  │    └── views/                     # Pure presentation components
  ├── components/                     # Static or reusable UI components
+ ├── styles/                         # Styling folder for the frontend
+ │    ├── pages/                     # Specific styles for individual pages
+ │    ├── themes/                    # Theme-based styles
+ │    ├── anime.css                  # Animations used across the project
+ │    └── global.css                 # Global styling and both header/footer settings
  ├── App.jsx                         # Root component of the application
- ├── router.jsx                      # Defines the client-side routing of the application
+ ├── router.jsx                      # Defines the routing for the application
  └── main.jsx                        # React entry point and routing setup
 ```
 
 ---
 
-# 📚 Explanation
+## Explanation
 
 - **/api/**: Core Axios-based REST API client, grouping backend communications.
 - **/hooks/**: React custom hooks built on top of the API client, managing data and UI state.
 - **/pages/**: View components representing different pages of the frontend application.
 - **/components/**: Static or reusable UI elements like buttons, cards, forms.
+- **/styles/**: Contains all the .css for the application, including global styles, page-specific styles, and animations.
 - **App.jsx**: Main wrapper and entry for the React application.
-- **router.jsx**: Handles which views render based on the current URL path.
+- **router.jsx**: Handles application's routing in a metadata-driven architecture.
 - **main.jsx**: Bootstraps React app and sets up routing if applicable.
 
 > ✅ This structure ensures clean separation of concerns, easy maintenance, and project scalability.
+
+# 🔀 **Routing**
+
+The routing system is built around metadata-driven navigation,
+where routes and their properties are stored as metadata.
+
+This allows for dynamic page registration and the automatic generation of navigation links based on the route definitions.
+The benefits of this approach include easy scalability, maintainability, and synchronization.
+
+The system can be extended to include other metadata for features like conditional rendering or feature toggles,
+making it flexible for future needs without heavy manual maintenance.
 
 # 🛠️ API Functionality Overview
 
@@ -118,5 +135,5 @@ npm run deploy
 
 ---
 
-- Last edited on: 28/04/25
+- Last edited on: 03/05/25
 - Last editor: Taggerkov

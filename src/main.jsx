@@ -8,6 +8,8 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import router from '@/router'
 import '@/styles/global.css'
+import '@/styles/anime.css'
+import '@/styles/themes/light.css'
 
 // Main entry point for the React application.
 // Attaches React to the root DOM node and sets up routing.
