@@ -1,43 +1,52 @@
 import React, { useEffect } from 'react';
 import { useSensorReadingsModel } from '@/pages/viewmodels/SensorReadingsModel';
+import GaugeChart from 'react-gauge-chart';
+import "@/styles/pages/dashboard.css";
 
 export default function SensorReadingsPage() {
-    const { readings, loading, error, loadReadings } = useSensorReadingsModel();
+  const { readings, loading, error, loadReadings } = useSensorReadingsModel();
 
-    useEffect(() => {
-        loadReadings(20); 
-    }, []);
+  useEffect(() => {
+    loadReadings(20); 
+  }, []);
 
-    return (
-        <div className="page-container">
-            <h1>Sensor Readings</h1>
+  // ✅ Define "latest" reading from array
+  const latest = readings?.[0];
 
-            {loading && <p>Loading...</p>}
-            {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-            {!loading && !error && readings && (
-                <table className="readings-table">
-                    <thead>
-                        <tr>
-                            <th>Timestamp</th>
-                            <th>Air Temp (°C)</th>
-                            <th>Air Humidity (%)</th>
-                            <th>Soil Humidity (%)</th>
-                            <th>Light Level (lux)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {readings.map((reading) => (
-                            <tr key={reading.id}>
-                                <td>{new Date(reading.timestamp).toLocaleString()}</td>
-                                <td>{reading.airTemperature}</td>
-                                <td>{reading.airHumidity}</td>
-                                <td>{reading.soilHumidity}</td>
-                                <td>{reading.lightLevel}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            )}
+  return (
+    <div className="sensor-dashboard">
+      <h1>Dashboard</h1>
+
+      {latest && (
+        <div className="gauges">
+          <div className="gauge-block">
+            <GaugeChart
+              id="air-humidity"
+              nrOfLevels={10}
+              percent={latest.airHumidity / 100}
+            />
+            <div className="label red">Air Humidity</div>
+          </div>
+
+          <div className="gauge-block">
+            <GaugeChart
+              id="soil-humidity"
+              nrOfLevels={10}
+              percent={latest.soilHumidity / 100}
+            />
+            <div className="label green">Soil Humidity</div>
+          </div>
+
+          <div className="gauge-block">
+            <GaugeChart
+              id="brightness"
+              nrOfLevels={10}
+              percent={Math.min(latest.lightLevel / 1000, 1)} 
+            />
+            <div className="label yellow">Brightness</div>
+          </div>
         </div>
-    );
+      )}
+    </div>
+  );
 }

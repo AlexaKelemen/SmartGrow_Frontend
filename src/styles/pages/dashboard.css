@@ -1,0 +1,43 @@
+.sensor-dashboard {
+    text-align: center;
+    padding: 2rem;
+}
+
+.sensor-dashboard h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+}
+
+.gauges {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.gauge-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    margin-top: 1rem;
+    padding: 0.4rem 1rem;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.label.red {
+    background-color: #c65d5d;
+}
+
+.label.green {
+    background-color: #2ecc71;
+}
+
+.label.yellow {
+    background-color: #d9c98b;}
