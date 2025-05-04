@@ -24,6 +24,8 @@ export default function SensorReadingsPage() {
         id="air-temperature"
         nrOfLevels={10}
         percent={Math.min(latest.airTemperature / 50, 1)} 
+        arcWidth={0.45}                           
+        colors={['#BA5959', '#D2D683', '#17DC24']} 
       />
       <div className="label orange">Air Temperature</div>
     </div>
@@ -32,6 +34,8 @@ export default function SensorReadingsPage() {
               id="air-humidity"
               nrOfLevels={10}
               percent={latest.airHumidity / 100}
+              arcWidth={0.45}                           
+              colors={['#BA5959', '#D2D683', '#17DC24']} 
             />
             <div className="label red">Air Humidity</div>
           </div>
@@ -41,6 +45,8 @@ export default function SensorReadingsPage() {
               id="soil-humidity"
               nrOfLevels={10}
               percent={latest.soilHumidity / 100}
+              arcWidth={0.45}                           
+              colors={['#BA5959', '#D2D683', '#17DC24']} 
             />
             <div className="label green">Soil Humidity</div>
           </div>
@@ -50,6 +56,8 @@ export default function SensorReadingsPage() {
               id="brightness"
               nrOfLevels={10}
               percent={Math.min(latest.lightLevel / 1000, 1)} 
+              arcWidth={0.45}                          
+              colors={['#BA5959', '#D2D683', '#17DC24']} 
             />
             <div className="label yellow">Brightness</div>
           </div>
