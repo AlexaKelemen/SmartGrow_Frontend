@@ -1,8 +1,26 @@
+/*
+ * @file SensorReadingsPage.jsx
+ * @description Dashboard page for displaying the latest sensor readings in gauge format.
+ * Dynamically visualizes air temperature, air humidity, soil humidity, and brightness using
+ * react-gauge-chart components. Labels are color-coded based on sensor thresholds.
+ *
+ * This page is part of the SmartGrow application.
+ *
+ * @author AlexaKelemen
+ * @since 1.0.0
+ */
+
 import React, { useEffect } from 'react';
 import { useSensorReadingsModel } from '@/pages/viewmodels/SensorReadingsModel';
 import GaugeChart from 'react-gauge-chart';
 import "@/styles/pages/dashboard.css";
 
+/**
+ * Renders a gauge-based dashboard view for the most recent sensor readings.
+ * Automatically loads the latest reading on mount.
+ *
+ * @returns {JSX.Element} Sensor dashboard with 4 gauges and color-coded labels.
+ */
 export default function SensorReadingsPage() {
   const { readings, loading, error, loadReadings } = useSensorReadingsModel();
 
@@ -12,19 +30,34 @@ export default function SensorReadingsPage() {
 
 
   const latest = readings?.[0];
+
+   /**
+   * Determines label color for air temperature.
+   * @param {number} temp - Temperature value in °C
+   * @returns {string} CSS class name
+   */
     function getTempColor(temp) {
     if (temp < 15) return 'blue';      
   if (temp < 22) return 'green';      
   if (temp < 28) return 'yellow';    
   return 'red';      
   }
+  /**
+   * Determines label color for humidity (air or soil).
+   * @param {number} humidity - Humidity percentage
+   * @returns {string} CSS class name
+   */
   function getHumidityColor(humidity) {
     if (humidity < 30) return 'red';         
   if (humidity < 50) return 'orange';      
   if (humidity < 75) return 'yellow';       
   return 'green';                           
 }
-
+ /**
+   * Determines label color for light level (lux).
+   * @param {number} lux - Brightness value in lux
+   * @returns {string} CSS class name
+   */
  function getBrightnessColor(lux) {
   if (lux < 200) return 'red';         
   if (lux < 500) return 'orange';       
