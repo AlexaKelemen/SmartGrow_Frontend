@@ -19,6 +19,14 @@ export default function SensorReadingsPage() {
 
       {latest && (
         <div className="gauges">
+             <div className="gauge-block">
+      <GaugeChart
+        id="air-temperature"
+        nrOfLevels={10}
+        percent={Math.min(latest.airTemperature / 50, 1)} 
+      />
+      <div className="label orange">Air Temperature</div>
+    </div>
           <div className="gauge-block">
             <GaugeChart
               id="air-humidity"
