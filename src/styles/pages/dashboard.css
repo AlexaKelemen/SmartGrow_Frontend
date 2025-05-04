@@ -20,11 +20,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 200px;
 }
 
 .label {
     margin-top: 1rem;
-    padding: 0.4rem 1rem;
+    padding: 0.5rem 1.2rem;
     color: white;
     border-radius: 8px;
     font-weight: 600;
@@ -32,16 +33,28 @@
 }
 
 .label.red {
-    background-color: #c65d5d;
+    background-color: #e74c3c;
+}
+
+.label.orange {
+    background-color: #f39c12;
+}
+
+.label.yellow {
+    background-color: #f1c40f;
 }
 
 .label.green {
     background-color: #2ecc71;
 }
 
-.label.yellow {
-    background-color: #d9c98b;}
-    
-.label.orange {
-    background-color: #f39c12;
+.label.blue {
+    background-color: #3498db;
+}
+.label::after {
+    content: attr(data-value);
+    display: block;
+    font-size: 0.8rem;
+    color: #fff;
+    margin-top: 0.2rem;
 }

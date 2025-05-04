@@ -10,8 +10,28 @@ export default function SensorReadingsPage() {
     loadReadings(20); 
   }, []);
 
-  // ✅ Define "latest" reading from array
+
   const latest = readings?.[0];
+    function getTempColor(temp) {
+    if (temp < 15) return 'blue';      
+  if (temp < 22) return 'green';      
+  if (temp < 28) return 'yellow';    
+  return 'red';      
+  }
+  function getHumidityColor(humidity) {
+    if (humidity < 30) return 'red';         
+  if (humidity < 50) return 'orange';      
+  if (humidity < 75) return 'yellow';       
+  return 'green';                           
+}
+
+ function getBrightnessColor(lux) {
+  if (lux < 200) return 'red';         
+  if (lux < 500) return 'orange';       
+  if (lux < 900) return 'yellow';       
+  return 'green'; 
+  }
+
 
   return (
     <div className="sensor-dashboard">
@@ -27,7 +47,7 @@ export default function SensorReadingsPage() {
         arcWidth={0.45}                           
         colors={['#BA5959', '#D2D683', '#17DC24']} 
       />
-      <div className="label orange">Air Temperature</div>
+      <div className={`label ${getTempColor(latest.airTemperature)}`}>Air Temperature</div>
     </div>
           <div className="gauge-block">
             <GaugeChart
@@ -37,7 +57,7 @@ export default function SensorReadingsPage() {
               arcWidth={0.45}                           
               colors={['#BA5959', '#D2D683', '#17DC24']} 
             />
-            <div className="label red">Air Humidity</div>
+            <div className={`label ${getHumidityColor(latest.airHumidity)}`}>Air Humidity</div>
           </div>
 
           <div className="gauge-block">
@@ -48,7 +68,7 @@ export default function SensorReadingsPage() {
               arcWidth={0.45}                           
               colors={['#BA5959', '#D2D683', '#17DC24']} 
             />
-            <div className="label green">Soil Humidity</div>
+            <div className={`label ${getHumidityColor(latest.soilHumidity)}`}>Soil Humidity</div>
           </div>
 
           <div className="gauge-block">
@@ -59,7 +79,7 @@ export default function SensorReadingsPage() {
               arcWidth={0.45}                          
               colors={['#BA5959', '#D2D683', '#17DC24']} 
             />
-            <div className="label yellow">Brightness</div>
+            <div className={`label ${getBrightnessColor(latest.lightLevel)}`}>Brightness</div>
           </div>
         </div>
       )}
