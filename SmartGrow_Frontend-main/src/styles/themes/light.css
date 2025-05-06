@@ -1,0 +1,18 @@
+/* LIGHT THEME (DEFAULT)
+   - Author: Taggerkov */
+
+:root {
+    /* Important */
+    --colorMain: #3d6031;
+    --colorPrimary: #007bff;
+    --colorSecondary: #6c757d;
+    --colorContrast: #ffffff;
+    --colorText: #000000;
+    --colorBackground: #ffffff;
+
+    /* Detail */
+    --colorHover: #59f1b7;
+    --colorActive: #00bcd4;
+    --colorSuccess: #28a745;
+    --colorError: #dc3545;
+}

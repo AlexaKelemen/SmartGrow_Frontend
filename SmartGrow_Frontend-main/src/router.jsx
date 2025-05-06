@@ -1,8 +1,6 @@
 import {createHashRouter} from 'react-router-dom'
 import App from '@/App'
 import SensorReadingsPage from '@/pages/views/SensorReadingsPage';
-import PresetsPage from '@/pages/views/PresetPage';
-import { element } from 'prop-types';
 
 // Router settings for the React application.
 // Defines the routes and the router configuration.
@@ -68,11 +66,6 @@ const routes = [
                 path: 'sensor-readings',
                 element: <SensorReadingsPage/>,
                 navLabel: 'Sensor Readings',
-            },
-            {
-                path: 'presets',
-                element: <PresetsPage/>,
-                navLabel: 'Presets',
             },
             {
                 path: 'hidden',
