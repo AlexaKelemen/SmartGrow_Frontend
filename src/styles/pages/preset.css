@@ -1,0 +1,48 @@
+/*
+ * @file preset.css
+ * @description Styles for the Preset page of the SmartGrow dashboard.
+ * Includes layout styling for preset cards and responsive page structure.
+ * Intended for use before backend logic is connected.
+ *
+ * @author SophiaJustin
+ * @since 1.0.0
+ */
+
+/* ========== Page Container ========== */
+
+/**
+ * Wrapper for the entire preset page.
+ * Adds padding and background color for visual separation.
+ */
+ .preset-container {
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+
+/* ========== Preset List Layout ========== */
+
+/**
+ * Flex container for displaying preset cards.
+ * Allows wrapping and spacing for responsiveness.
+ */
+.preset-list {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ========== Preset Cards ========== */
+
+/**
+ * Individual card for each preset mode.
+ * Includes border, padding, and styling for clean display.
+ */
+.preset-card {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+    background: white;
+    width: 200px;
+}
+
+  
