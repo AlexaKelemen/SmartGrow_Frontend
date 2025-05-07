@@ -17,22 +17,43 @@ import presets from '@/pages/viewmodels/Preset';
  * Maps over preset data and renders a card for each preset.
  */
 const PresetPage = () => {
+    
+  
     return (
-        <div className="preset-container">
-            <h1>Presets</h1>
-
-            <div className="preset-list">
-                {presets.map((preset, index) => (
-                    <div className="preset-card" key={index}>
-                        <h2>{preset.name}</h2>
-                        <p><strong>Light:</strong> {preset.light}</p>
-                        <p><strong>Water:</strong> {preset.water}</p>
-                        <p><strong>Humidity:</strong> {preset.humidity}</p>
-                    </div>
-                ))}
-            </div>
+      <div className="preset-page">
+        <div className="preset-header">
+          <button className="create-btn">Create Preset</button>
         </div>
+  
+        <div className="preset-cards">
+          {presets.map((preset) => (
+            <div key={preset.id} className="preset-card">
+              <div
+                className="preset-image"
+                style={{ backgroundImage: `url(${preset.image})` }}
+              >
+                <span className="delete-btn">Delete</span>
+                <h2>{preset.name}</h2>
+              </div>
+  
+              <div className="preset-info">
+                <p><strong>Name:</strong>{preset.name}</p>
+                <p><strong>Type:</strong> {preset.type}</p>
+                <p>
+                  <strong>Created / Updated dates:</strong><br />
+                  {preset.creationDate} - {preset.updateDate}
+                </p>
+  
+                <div className="preset-buttons">
+                  <button className="edit-btn">Edit</button>
+                  <button className="apply-btn">Apply</button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     );
-};
+  };
 
 export default PresetPage;
