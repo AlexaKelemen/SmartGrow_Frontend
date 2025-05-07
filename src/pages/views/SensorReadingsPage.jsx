@@ -11,7 +11,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { useSensorReadingsModel } from './SensorReadingsPage';
+//import { useSensorReadingsModel } from './SensorReadingsPage';
 import GaugeChart from 'react-gauge-chart';
 import "../../styles/pages/dashboard.css"
 
