@@ -1,7 +1,7 @@
 import {createHashRouter} from 'react-router-dom'
-import App from '@/App'
-import SensorReadingsPage from '@/pages/views/SensorReadingsPage';
-import PresetsPage from '@/pages/views/PresetPage';
+import App from './App'
+import SensorReadingsPage from './pages/views/SensorReadingsPage';
+import PresetsPage from './pages/views/PresetPage';
 import { element } from 'prop-types';
 
 // Router settings for the React application.
