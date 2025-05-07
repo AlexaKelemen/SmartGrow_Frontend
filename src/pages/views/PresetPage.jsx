@@ -9,8 +9,8 @@
  */
 
 import React from "react";
-import "@/styles/pages/preset.css"; 
-import presets from '@/pages/viewmodels/Preset';
+import "../../styles/pages/preset.css"; 
+import presets from '../../pages/viewmodels/Preset';
 
 /**
  * Functional React component to render the preset page UI.
