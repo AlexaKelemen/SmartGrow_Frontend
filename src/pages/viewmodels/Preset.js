@@ -12,23 +12,24 @@
 
 const presets = [
     {
-        name: "Tomatoes",
-        light: "High",
-        water: "Moderate",
-        humidity: "60%"
+        id: 1,
+        title: "Preset A",
+        name: "Tomato",
+        type: "Vegetable",
+        creationDate: "2025-05-01",
+        updateDate: "2025-05-06",
+        image: "/public/images/tomato.png"
     },
+
     {
-        name: "Lettuce",
-        light: "Medium",
-        water: "High",
-        humidity: "70%"
+        id: 2,
+        title: "Preset B",
+        name: "Strawberry",
+        type: "Fruit",
+        creationDate: "2025-04-20",
+        updateDate: "2025-05-05",
+        image: "/public/images/strawberry.png"
     },
-    {
-        name: "Strawberries",
-        light: "High",
-        water: "Medium",
-        humidity: "65%"
-    }
 ];
 
 export default presets;
