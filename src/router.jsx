@@ -2,6 +2,7 @@ import {createHashRouter} from 'react-router-dom'
 import App from '@/App'
 import SensorReadingsPage from '@/pages/views/SensorReadingsPage';
 import PresetsPage from '@/pages/views/PresetPage';
+import LoginPage from '@/pages/views/LoginPage';
 import { element } from 'prop-types';
 
 // Router settings for the React application.
@@ -73,6 +74,11 @@ const routes = [
                 path: 'presets',
                 element: <PresetsPage/>,
                 navLabel: 'Presets',
+            },
+            {
+                path: 'login',
+                element: <LoginPage />,
+                navLabel: 'Login',
             },
             {
                 path: 'hidden',
