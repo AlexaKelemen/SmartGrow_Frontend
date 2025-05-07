@@ -1,7 +1,8 @@
 import {createHashRouter} from 'react-router-dom'
-import App from './App'
-import SensorReadingsPage from './pages/views/SensorReadingsPage';
-import PresetsPage from './pages/views/PresetPage';
+import App from '@/App'
+import SensorReadingsPage from '@/pages/views/SensorReadingsPage';
+import PresetsPage from '@/pages/views/PresetPage';
+import GreenhousesPage from '@/pages/views/GreenhousePage';
 import { element } from 'prop-types';
 
 // Router settings for the React application.
@@ -73,6 +74,11 @@ const routes = [
                 path: 'presets',
                 element: <PresetsPage/>,
                 navLabel: 'Presets',
+            },
+            {
+                path: 'greenhouses',
+                element: <GreenhousesPage/>,
+                navLabel: 'Greenhouses',
             },
             {
                 path: 'hidden',
