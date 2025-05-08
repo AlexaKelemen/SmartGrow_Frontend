@@ -2,6 +2,7 @@ import {createHashRouter} from 'react-router-dom'
 import App from '@/App'
 import SensorReadingsPage from '@/pages/views/SensorReadingsPage';
 import PresetsPage from '@/pages/views/PresetPage';
+import LoginPage from '@/pages/views/LoginPage
 import GreenhousesPage from '@/pages/views/GreenhousePage';
 import { element } from 'prop-types';
 
@@ -75,10 +76,14 @@ const routes = [
                 element: <PresetsPage/>,
                 navLabel: 'Presets',
             },
-            {
+           
+                path: 'login',
+                element: <LoginPage />,
+                navLabel: 'Login',
                 path: 'greenhouses',
                 element: <GreenhousesPage/>,
                 navLabel: 'Greenhouses',
+
             },
             {
                 path: 'hidden',
