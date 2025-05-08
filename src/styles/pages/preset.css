@@ -74,12 +74,13 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    border-radius: 10px;
     background-color: #c0392b;
     color: white;
     padding: 0.4rem 0.7rem;
     border-radius: 6px;
     font-size: 0.8rem;
-    cursor: pointer;
+  
   }
   
   .preset-info {
@@ -102,13 +103,21 @@
   }
   
   .edit-btn {
-    background-color: #ddd;
+    background-color: white;
     color: #2c7a35;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border-color:#2c7a35 ;
+    font-size: 14px;
+    border: 2px solid #2c7a35;
+    transition: background-color 0.2s ease;
   }
   
   .apply-btn {
-    background-color: green;
+    background-color: #2c7a35;
     color: white;
+    font-size: 14px;
+    border-radius: 10px;
   }
 
     .preset-card:hover {
