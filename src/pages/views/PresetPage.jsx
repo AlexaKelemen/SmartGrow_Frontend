@@ -1,14 +1,16 @@
 /**
  * @file PresetPage.jsx
  * @description View component for the Preset Page in the SmartGrow dashboard.
- * Renders a list of plant presets using the PresetCard component.
- * This component is currently visual-only and will be integrated with backend logic in the future.
+ * Displays a list of plant presets with basic UI for future interaction.
+ * Currently visual-only; logic will be connected later via backend integration.
  * 
- * @author Sophia Justin, Alexa Kelemen
+ * @author SophiaJustin
  * @since 1.0.0
  */
 
 import React ,{ useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "@/styles/pages/preset.css"; 
 import presets from "@/pages/viewmodels/Preset";
 import PresetCard from "@/components/PresetCard";
@@ -23,49 +25,43 @@ import DeletePopUp from "@/components/DeletePopUp";
  * @returns {JSX.Element} The rendered preset page component.
  */
 const PresetPage = () => {
-  const [showPopUp, setShowPopUp] = useState(false);
-  const [selectedPreset, setSelectedPreset] = useState(null);
-
-  const handleDeleteClick = (preset) => {
-    setSelectedPreset(preset);
-    setShowPopUp(true);
-  };
-
-  const handleCancel = () => {
-    setShowPopUp(false);
-    setSelectedPreset(null);
-  };
-
-  const handleConfirm = () => {
-    console.log("Deleted preset:", selectedPreset.name);
-    // TODO: Add deletion logic here
-    setShowPopUp(false);
-    setSelectedPreset(null);
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="preset-page">
       <div className="preset-header">
-        <button className="create-btn">Create Preset</button>
+        <button className="create-btn" onClick={() => navigate("/presets/create")}>
+          Create Preset
+        </button>
       </div>
 
       <div className="preset-cards">
         {presets.map((preset) => (
-          <PresetCard
-            key={preset.id}
-            preset={preset}
-            onDelete={() => handleDeleteClick(preset)}
-          />
+          <div key={preset.id} className="preset-card">
+            <div
+              className="preset-image"
+              style={{ backgroundImage: `url(${preset.image})` }}
+            >
+              <span className="delete-btn">Delete</span>
+              <h2>{preset.name}</h2>
+            </div>
+
+            <div className="preset-info">
+              <p><strong>Name:</strong> {preset.name}</p>
+              <p><strong>Type:</strong> {preset.type}</p>
+              <p>
+                <strong>Created / Updated dates:</strong><br />
+                {preset.creationDate} - {preset.updateDate}
+              </p>
+
+              <div className="preset-buttons">
+                <button className="edit-btn">Edit</button>
+                <button className="apply-btn">Apply</button>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
-
-      {showPopUp && selectedPreset && (
-        <DeletePopUp
-          presetName={selectedPreset.name}
-          onCancel={handleCancel}
-          onConfirm={handleConfirm}
-        />
-      )}
     </div>
   );
 };

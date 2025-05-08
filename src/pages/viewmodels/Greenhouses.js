@@ -1,0 +1,29 @@
+const greenhouse = [
+    {
+      id: 1,
+      name: "Greenhouse 1",
+      lighting: "40%",
+      temperature: "24°C",
+      humidity: "60%",
+      imageUrl: "/public/images/greenhouse.png", 
+    },
+    {
+      id: 2,
+      name: "Greenhouse 2",
+      lighting: "40%",
+      temperature: "24°C",
+      humidity: "60%",
+      imageUrl: "/public/images/greenhouse.png",
+    },
+    {
+      id: 3,
+      name: "Greenhouse 3",
+      lighting: "40%",
+      temperature: "24°C",
+      humidity: "60%",
+      imageUrl: "/public/images/greenhouse.png",
+    },
+  ];
+  
+
+export default greenhouse;
