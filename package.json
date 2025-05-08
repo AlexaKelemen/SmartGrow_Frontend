@@ -9,7 +9,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist -b pages",
-    "docs": "jsdoc -c jsdoc.json"
+    "docs": "jsdoc -c jsdoc.json",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "axios": "^1.9.0",
@@ -20,12 +23,19 @@
     "react-router-dom": "^7.5.2"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
     "@vitejs/plugin-react": "^4.4.1",
     "docdash": "^2.0.2",
     "eslint": "^9.25.1",
     "gh-pages": "^6.3.0",
     "jsdoc": "^4.0.4",
+    "jsdom": "^26.1.0",
     "prettier": "^3.5.3",
-    "vite": "^6.3.3"
+    "vite": "^6.3.3",
+    "vitest": "^3.1.3"
   }
 }
