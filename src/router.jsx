@@ -4,7 +4,7 @@ import SensorReadingsPage from '@/pages/views/SensorReadingsPage';
 import PresetsPage from '@/pages/views/PresetPage';
 import LoginPage from '@/pages/views/LoginPage';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
-
+import PairGreenhousePage from "@/pages/views/PairGreenhousePage";
 const routes = [
     {
         path: '/',
@@ -40,6 +40,12 @@ const routes = [
                 element: <div>Hidden Page</div>,
                 navLabel: 'Hidden',
             },
+            {
+                path: 'pair-greenhouse',
+                element: <PairGreenhousePage />,
+                navLabel: 'Pair Greenhouse', // optional
+            },
+
         ],
     },
 ];
