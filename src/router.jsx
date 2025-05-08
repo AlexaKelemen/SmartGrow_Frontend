@@ -4,6 +4,7 @@ import SensorReadingsPage from '@/pages/views/SensorReadingsPage';
 import PresetsPage from '@/pages/views/PresetPage';
 import LoginPage from '@/pages/views/LoginPage';
 import { element } from 'prop-types';
+import CreatePresetForm from '@/pages/views/CreatePresetForm'; 
 
 // Router settings for the React application.
 // Defines the routes and the router configuration.
@@ -75,6 +76,11 @@ const routes = [
                 element: <PresetsPage/>,
                 navLabel: 'Presets',
             },
+            {
+                path: 'presets/create',
+                element: <CreatePresetForm />,
+            },
+
             {
                 path: 'login',
                 element: <LoginPage />,

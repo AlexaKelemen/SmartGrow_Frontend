@@ -9,6 +9,7 @@
  */
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "@/styles/pages/preset.css"; 
 import presets from '@/pages/viewmodels/Preset';
 
@@ -17,12 +18,16 @@ import presets from '@/pages/viewmodels/Preset';
  * Maps over preset data and renders a card for each preset.
  */
 const PresetPage = () => {
+   const navigate = useNavigate();
     
   
     return (
       <div className="preset-page">
         <div className="preset-header">
-          <button className="create-btn">Create Preset</button>
+          <button className="create-btn" onClick={() => navigate("/presets/create")}>
+            Create Preset
+          </button>
+
         </div>
   
         <div className="preset-cards">
