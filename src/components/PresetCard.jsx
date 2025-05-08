@@ -12,11 +12,22 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "@/styles/pages/preset.css"; 
 
-const PresetCard = ({ preset }) => {
+const PresetCard = ({ preset,onDelete }) => {
   const [hovered, setHovered] = useState(false);
+    const handleMouseEnter = (e) => {
+    if (!e.target.closest(".delete-btn-wrapper")) {
+      setHovered(true);
+    }
+  };
+
+  const handleMouseLeave = (e) => {
+    if (!e.target.closest(".delete-btn-wrapper")) {
+      setHovered(false);
+    }
+  };
+  
   return (
-    <div className="preset-card">
-     <div
+    <div
       className="preset-card"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -25,8 +36,10 @@ const PresetCard = ({ preset }) => {
         className="preset-image"
         style={{ backgroundImage: `url(${preset.image})` }}
       >
-        <span className="delete-btn">Delete</span>
-         <h2 className="preset-title">{preset.title}</h2>
+          <div className="delete-btn-wrapper">
+          <button className="delete-btn" onClick={onDelete}>Delete</button>
+        </div>
+        <h2 className="preset-title">{preset.title}</h2>
       </div>
 
       <div className="preset-info">
@@ -37,21 +50,21 @@ const PresetCard = ({ preset }) => {
           {preset.creationDate} - {preset.updateDate}
         </p>
 
-         <div className="hover-details">
-          <p>Air humidity: {preset.airHumidity}</p>
-          <p>Soil Humidity: {preset.soilHumidity}</p>
-          <p>CO₂: {preset.co2}</p>
-          <p>Temperature: {preset.temperature}</p>
-          <p>Brightness: {preset.brightness}</p>
-        </div>
-
+        {hovered && (
+          <div className="hover-details">
+            <p>Air humidity: {preset.airHumidity}</p>
+            <p>Soil Humidity: {preset.soilHumidity}</p>
+            <p>CO₂: {preset.co2}</p>
+            <p>Temperature: {preset.temperature}</p>
+            <p>Brightness: {preset.brightness}</p>
+          </div>
+        )}
 
         <div className="preset-buttons">
           <button className="edit-btn">Edit</button>
           <button className="apply-btn">Apply</button>
         </div>
       </div>
-     </div>
     </div>
   );
 };
