@@ -11,9 +11,9 @@
  */
 
 import React, { useEffect } from 'react';
-import { useSensorReadingsModel } from '@/pages/viewmodels/SensorReadingsModel';
+//import { useSensorReadingsModel } from './SensorReadingsPage';
 import GaugeChart from 'react-gauge-chart';
-import "@/styles/pages/dashboard.css";
+import "../../styles/pages/dashboard.css"
 
 /**
  * Renders a gauge-based dashboard view for the most recent sensor readings.
