@@ -1,20 +1,27 @@
 import React, { useState } from "react";
-import "./register.css"; // Create this CSS file for styling
 
 const RegisterForm = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
   const handleRegister = (e) => {
     e.preventDefault();
+
+    if (!validateEmail(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
+
     console.log("Registering:", { email, password });
-    // Add API call or logic here
-    onClose();
+    // Add API call
   };
 
   return (
