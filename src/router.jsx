@@ -3,6 +3,7 @@ import App from './App';
 import SensorReadingsPage from '@/pages/views/SensorReadingsPage';
 import PresetsPage from '@/pages/views/PresetPage';
 import LoginPage from '@/pages/views/LoginPage';
+import CreatePresetForm from '@/pages/views/CreatePresetForm';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
 
 const routes = [
@@ -24,6 +25,10 @@ const routes = [
                 path: 'presets',
                 element: <PresetsPage />,
                 navLabel: 'Presets',
+            },
+            {
+                path: 'presets/create',
+                element: <CreatePresetForm />,
             },
             {
                 path: 'login',
