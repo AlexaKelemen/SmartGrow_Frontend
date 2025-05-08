@@ -4,7 +4,7 @@
  * Includes layout styling for preset cards and responsive page structure.
  * Intended for use before backend logic is connected.
  *
- * @author SophiaJustin
+ * @author SophiaJustin,AlexaKelemen
  * @since 1.0.0
  */
 
@@ -54,6 +54,10 @@
     background-color: white;
     color: black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: transform 0.2s ease;
+    border-radius: 1rem;
+    overflow: hidden;
   }
   
   .preset-image {
@@ -107,7 +111,28 @@
     background-color: green;
     color: white;
   }
+
+    .preset-card:hover {
+      transform: scale(1.02);
+    }
+    .hover-details {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.3s ease;
+    }
   
+    .preset-card:hover .hover-details {
+      opacity: 1;
+      max-height: 300px;
+    
+    }
+  
+    /* Prevent hover effect when interacting with buttons */
+    .preset-buttons button {
+      z-index: 2;
+      position: relative;
+    }
   
 
   

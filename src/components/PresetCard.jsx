@@ -31,6 +31,15 @@ const PresetCard = ({ preset }) => {
           {preset.creationDate} - {preset.updateDate}
         </p>
 
+         <div className="hover-details">
+          <p>Air humidity: {preset.airHumidity}</p>
+          <p>Soil Humidity: {preset.soilHumidity}</p>
+          <p>CO₂: {preset.co2}</p>
+          <p>Temperature: {preset.temperature}</p>
+          <p>Brightness: {preset.brightness}</p>
+        </div>
+
+
         <div className="preset-buttons">
           <button className="edit-btn">Edit</button>
           <button className="apply-btn">Apply</button>
@@ -48,6 +57,11 @@ PresetCard.propTypes = {
     creationDate: PropTypes.string.isRequired,
     updateDate: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    airHumidity: PropTypes.string,
+    soilHumidity: PropTypes.string,
+    co2: PropTypes.string,
+    temperature: PropTypes.string,
+    brightness: PropTypes.string,
   }).isRequired,
 };
 
