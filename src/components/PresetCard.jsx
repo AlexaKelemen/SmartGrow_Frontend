@@ -26,7 +26,7 @@ const PresetCard = ({ preset }) => {
         style={{ backgroundImage: `url(${preset.image})` }}
       >
         <span className="delete-btn">Delete</span>
-        <h2>{preset.name}</h2>
+         <h2 className="preset-title">{preset.title}</h2>
       </div>
 
       <div className="preset-info">

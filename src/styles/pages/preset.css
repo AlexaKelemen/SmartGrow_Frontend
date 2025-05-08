@@ -58,7 +58,15 @@
     border-radius: 1rem;
     overflow: hidden;
   }
-  
+    .preset-title {
+      position: relative;
+      z-index: 2;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      padding: 0 1rem;
+      text-align: center;
+    }
   .preset-image {
     height: 150px;
     background-size: cover;
@@ -68,7 +76,16 @@
     align-items: flex-end;
     padding: 1rem;
     color: white;
+    justify-content: center;
+    align-items: center;
   }
+    .preset-image::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.4), transparent);
+      z-index: 1;
+    }
   
   .delete-btn {
     position: absolute;

@@ -13,7 +13,7 @@
 const presets = [
     {
         id: 1,
-        title: "Preset A",
+        title: "Tomato",
         name: "Tomato",
         type: "Vegetable",
         creationDate: "2025-05-01",
@@ -23,7 +23,7 @@ const presets = [
 
     {
         id: 2,
-        title: "Preset B",
+        title: "Strawberry",
         name: "Strawberry",
         type: "Fruit",
         creationDate: "2025-04-20",
