@@ -8,13 +8,19 @@
  * @author Alexa Kelemen
  * @since 1.0.0
  */
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import "@/styles/pages/preset.css"; // optional if you want to extract specific styles
+import "@/styles/pages/preset.css"; 
 
 const PresetCard = ({ preset }) => {
+  const [hovered, setHovered] = useState(false);
   return (
     <div className="preset-card">
+     <div
+      className="preset-card"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <div
         className="preset-image"
         style={{ backgroundImage: `url(${preset.image})` }}
@@ -45,6 +51,7 @@ const PresetCard = ({ preset }) => {
           <button className="apply-btn">Apply</button>
         </div>
       </div>
+     </div>
     </div>
   );
 };

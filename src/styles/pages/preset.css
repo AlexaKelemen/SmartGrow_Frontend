@@ -50,7 +50,6 @@
   .preset-card {
     width: 280px;
     border-radius: 12px;
-    overflow: hidden;
     background-color: white;
     color: black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -120,11 +119,15 @@
       max-height: 0;
       overflow: hidden;
       transition: opacity 0.3s ease, max-height 0.3s ease;
+      pointer-events: none;
+      visibility: hidden;
     }
   
     .preset-card:hover .hover-details {
       opacity: 1;
       max-height: 300px;
+      visibility: visible;
+      pointer-events: auto;
     
     }
   
