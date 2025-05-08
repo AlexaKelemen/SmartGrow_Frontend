@@ -23,7 +23,8 @@ const GreenhouseCard = ({ greenhouse }) => {
 };
 
 const GreenhousePage = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
+
   return (
     <main>
       <div className="action-buttons">
