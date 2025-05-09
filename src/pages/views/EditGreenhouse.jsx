@@ -17,7 +17,7 @@ const EditGreenhouse = () => {
   };
 
   return (
-    <main className="pair-greenhouse-page"> {/* ✅ reuse same structure */}
+    <main className="pair-greenhouse-page"> 
       <h2>Edit greenhouse</h2>
 
       <form className="pair-form" onSubmit={handleSubmit}>
@@ -36,7 +36,7 @@ const EditGreenhouse = () => {
           <input type="text" name="something2" />
         </label>
 
-        <div className="pair-buttons"> {/* ✅ same button wrapper as Pair page */}
+        <div className="pair-buttons">
           <button className="cancel-button" onClick={handleCancel}>Cancel</button>
           <button type="submit" className="save-button">Save changes</button>
         </div>
