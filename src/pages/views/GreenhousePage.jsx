@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import greenhouse from '@/pages/viewmodels/Greenhouses.js';
 
 const GreenhouseCard = ({ greenhouse }) => {
+   const navigate = useNavigate();
   return (
     <div className="greenhouse-card">
       <div className="image-container">
