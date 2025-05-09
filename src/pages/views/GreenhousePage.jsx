@@ -13,11 +13,18 @@ const GreenhouseCard = ({ greenhouse }) => {
           <button className="unpair-button">Unpair Greenhouse</button>
         </div>
       </div>
+      
       <div className="info-cards">
         <div className="info-box">🌞<br />Lighting<br />{greenhouse.lighting}</div>
         <div className="info-box">🌡️<br />Temperature<br />{greenhouse.temperature}</div>
         <div className="info-box">💧<br />Humidity<br />{greenhouse.humidity}</div>
       </div>
+      <button
+        className="edit-button"
+        onClick={() => navigate(`/edit-greenhouse/${greenhouse.id}`)}
+      >
+        Edit
+      </button>
     </div>
   );
 };
@@ -27,8 +34,14 @@ const GreenhousePage = () => {
   return (
     <main>
       <div className="action-buttons">
-        <button onClick={() => navigate('/pair-greenhouse')}>Pair Greenhouse</button>
-        <button>Edit Greenhouse</button>
+       <button
+  className="pair-button"
+  onClick={() => navigate('/pair-greenhouse')}
+>
+  Pair Greenhouse
+</button>
+
+        
       </div>
 
       <div className="greenhouse-grid">
