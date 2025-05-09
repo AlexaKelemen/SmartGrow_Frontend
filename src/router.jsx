@@ -7,6 +7,7 @@ import CreatePresetForm from '@/pages/views/CreatePresetForm';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
 import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
+import FertilizationPage from './pages/views/FertilizationPage';
 
 const routes = [
     {
@@ -46,6 +47,11 @@ const routes = [
                 path: 'lighting',
                 element: <LightingPage />,
                 navLabel: 'Lighting',
+            },
+            {
+                path: 'fertilization',
+                element: <FertilizationPage />,
+                navLabel: 'Fertilization',
             },
             {
                 path: 'hidden',
