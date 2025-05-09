@@ -4,7 +4,7 @@
  * Displays a list of plant presets with basic UI for future interaction.
  * Currently visual-only; logic will be connected later via backend integration.
  * 
- * @author SophiaJustin
+ * @author SophiaJustin,Alexa Kelemen
  * @since 1.0.0
  */
 
