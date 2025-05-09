@@ -1,5 +1,6 @@
 import React from "react";
 import "@/styles/pages/greenhouse.css"; 
+import { useNavigate } from "react-router-dom";
 import greenhouse from '@/pages/viewmodels/Greenhouses.js';
 
 const GreenhouseCard = ({ greenhouse }) => {
@@ -22,10 +23,12 @@ const GreenhouseCard = ({ greenhouse }) => {
 };
 
 const GreenhousePage = () => {
+  const navigate = useNavigate();
+
   return (
     <main>
       <div className="action-buttons">
-        <button>Pair Greenhouse</button>
+        <button onClick={() => navigate('/pair-greenhouse')}>Pair Greenhouse</button>
         <button>Edit Greenhouse</button>
       </div>
 
