@@ -8,14 +8,21 @@
  * @since 1.0.0
  */
 
+import React ,{ useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "@/styles/pages/preset.css"; 
-import presets from '@/pages/viewmodels/Preset';
+import presets from "@/pages/viewmodels/Preset";
+import PresetCard from "@/components/PresetCard";
+import DeletePopUp from "@/components/DeletePopUp";
+
 
 /**
- * Functional React component to render the preset page UI.
- * Maps over preset data and renders a card for each preset.
+ * Renders the Preset Page UI.
+ * Includes a button for creating new presets and dynamically displays
+ * a list of preset cards using the static data from the view model.
+ *
+ * @returns {JSX.Element} The rendered preset page component.
  */
 const PresetPage = () => {
   const navigate = useNavigate();
