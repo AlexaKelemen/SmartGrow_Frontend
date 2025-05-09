@@ -1,8 +1,16 @@
+/**
+ * @file GreenhousePage.jsx
+ * @description Displays a dashboard of paired greenhouses and their environmental conditions.
+ * Includes navigation to pair/edit greenhouses 
+ * @author: SophiaJustin
+ */
+
 import React from "react";
-import "@/styles/pages/greenhouse.css"; 
+import "@/styles/pages/greenhouse.css";
 import { useNavigate } from "react-router-dom";
 import greenhouse from '@/pages/viewmodels/Greenhouses.js';
 
+// Component to display a single greenhouse card with info and image
 const GreenhouseCard = ({ greenhouse }) => {
   return (
     <div className="greenhouse-card">
@@ -13,6 +21,7 @@ const GreenhouseCard = ({ greenhouse }) => {
           <button className="unpair-button">Unpair Greenhouse</button>
         </div>
       </div>
+
       <div className="info-cards">
         <div className="info-box">🌞<br />Lighting<br />{greenhouse.lighting}</div>
         <div className="info-box">🌡️<br />Temperature<br />{greenhouse.temperature}</div>
@@ -22,6 +31,7 @@ const GreenhouseCard = ({ greenhouse }) => {
   );
 };
 
+// Main greenhouse dashboard page
 const GreenhousePage = () => {
   const navigate = useNavigate();
 
@@ -33,6 +43,7 @@ const GreenhousePage = () => {
       </div>
 
       <div className="greenhouse-grid">
+        {/* Render greenhouse cards from mock data */}
         {greenhouse.map((gh) => (
           <GreenhouseCard key={gh.id} greenhouse={gh} />
         ))}
