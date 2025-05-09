@@ -5,7 +5,7 @@ import PresetsPage from '@/pages/views/PresetPage';
 import LoginPage from '@/pages/views/LoginPage';
 import CreatePresetForm from '@/pages/views/CreatePresetForm';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
-
+import EditPresetPage from "@/pages/views/EditPresetPage"; 
 const routes = [
     {
         path: '/',
@@ -30,6 +30,11 @@ const routes = [
                 path: 'presets/create',
                 element: <CreatePresetForm />,
             },
+              {
+                
+                path: 'presets/edit',
+                element: <EditPresetPage/>,
+              },
             {
                 path: 'login',
                 element: <LoginPage />,
