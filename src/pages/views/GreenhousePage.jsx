@@ -7,8 +7,10 @@
 
 import React from "react";
 import "@/styles/pages/greenhouse.css";
+import GreenhouseCard from "@/components/GreenhouseCard";
+import greenhouse from "@/pages/viewmodels/Greenhouses.js";
+
 import { useNavigate } from "react-router-dom";
-import greenhouse from '@/pages/viewmodels/Greenhouses.js';
 
 // Component to display a single greenhouse card with info and image
 const GreenhouseCard = ({ greenhouse }) => {
@@ -28,27 +30,6 @@ const GreenhouseCard = ({ greenhouse }) => {
         <div className="info-box">💧<br />Humidity<br />{greenhouse.humidity}</div>
       </div>
     </div>
-  );
-};
-
-// Main greenhouse dashboard page
-const GreenhousePage = () => {
-  const navigate = useNavigate();
-
-  return (
-    <main>
-      <div className="action-buttons">
-        <button onClick={() => navigate('/pair-greenhouse')}>Pair Greenhouse</button>
-        <button>Edit Greenhouse</button>
-      </div>
-
-      <div className="greenhouse-grid">
-        {/* Render greenhouse cards from mock data */}
-        {greenhouse.map((gh) => (
-          <GreenhouseCard key={gh.id} greenhouse={gh} />
-        ))}
-      </div>
-    </main>
   );
 };
 
