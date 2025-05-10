@@ -8,10 +8,10 @@
 import React from "react";
 import "@/styles/pages/greenhouse.css";
 import { useNavigate } from "react-router-dom";
-import GreenhouseCard from "@/components/GreenhouseCard"; // ✅ the reusable component
+import GreenhouseCard from "@/components/GreenhouseCard"; 
 import greenhouse from "@/pages/viewmodels/Greenhouses.js";
 
-// ✅ Main greenhouse dashboard page
+
 const GreenhousePage = () => {
   const navigate = useNavigate();
 
