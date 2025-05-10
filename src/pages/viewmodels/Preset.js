@@ -13,22 +13,32 @@
 const presets = [
     {
         id: 1,
-        title: "Preset A",
+        title: "Tomato",
         name: "Tomato",
         type: "Vegetable",
         creationDate: "2025-05-01",
         updateDate: "2025-05-06",
-        image: "/public/images/tomato.png"
+        image: "/public/images/tomato.png",
+        airHumidity: "40-60%",
+        soilHumidity: "30-50%",
+        co2: "300-400 ppm",
+        temperature: "22-28°C",
+        brightness: "2000-3000 lux"
     },
 
     {
         id: 2,
-        title: "Preset B",
-        name: "Strawberry",
+        title: "Strawberry",
+        name: "Etelka",
         type: "Fruit",
         creationDate: "2025-04-20",
         updateDate: "2025-05-05",
-        image: "/public/images/strawberry.png"
+        image: "/public/images/strawberry.png",
+        airHumidity: "40-60%",
+        soilHumidity: "30-50%",
+        co2: "300-400 ppm",
+        temperature: "22-28°C",
+        brightness: "2000-3000 lux"
     },
 ];
 
