@@ -1,23 +1,22 @@
-.preset-edit-form-page {
+.edit-preset-page {
     padding: 4rem 2rem;
     max-width: 1000px;
     margin: 0 auto;
     font-family: Arial, sans-serif;
 }
 
-.preset-edit-form-page h2 {
+.edit-preset-page h2 {
     font-size: 1.8rem;
     margin-bottom: 2rem;
 }
 
 label {
     display: block;
-    margin-top: 1.5rem;
+    margin: 2rem 0 1rem 0;
     font-weight: 700;
     font-size: 1rem;
 }
 
-input[type="text"],
 input[type="number"] {
     padding: 0.5rem;
     font-size: 1rem;
@@ -26,35 +25,16 @@ input[type="number"] {
     width: 100%;
 }
 
-.input-row {
-    display: flex;
-    gap: 4rem;
-    margin-top: 2rem;
-}
 
-.input-row div {
-    flex: 1;
-}
-
-.input-pair {
-    display: flex;
-    gap: 1rem;
-    margin-top: 0.5rem;
-}
-
-.input-pair input {
-    flex: 1;
-}
-
-.edit-form-buttons {
+.button-group {
     display: flex;
     justify-content: center;
     gap: 2.5rem;
     margin-top: 3rem;
 }
 
-.cancel-btn,
-.edit-btn {
+.button-cancel,
+.button-submit {
     padding: 0.8rem 2rem;
     font-size: 1rem;
     font-weight: bold;
@@ -63,12 +43,12 @@ input[type="number"] {
     cursor: pointer;
 }
 
-.cancel-btn {
+.button-cancel {
     background-color: #d66;
     color: white;
 }
 
-.edit-btn {
+.button-submit {
     background-color: #2e7d32;
     color: white;
 }

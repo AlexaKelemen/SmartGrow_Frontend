@@ -40,7 +40,7 @@ const PresetCard = ({ preset,onDelete }) => {
         style={{ backgroundImage: `url(${preset.image})` }}
       >
           <div className="delete-btn-wrapper">
-          <button className="delete-btn" onClick={onDelete}>Delete</button>
+          <button className="preset-delete-btn" onClick={onDelete}>Delete</button>
         </div>
         <h2 className="preset-title">{preset.title}</h2>
       </div>
@@ -64,10 +64,10 @@ const PresetCard = ({ preset,onDelete }) => {
         )}
 
         <div className="preset-buttons">
-         <button className="edit-btn" onClick={() => navigate(`/presets/edit`)}>
+         <button className="preset-edit-btn" onClick={() => navigate(`/presets/edit`)}>
            Edit
          </button>
-          <button className="apply-btn">Apply</button>
+          <button className="preset-apply-btn">Apply</button>
         </div>
       </div>
     </div>
