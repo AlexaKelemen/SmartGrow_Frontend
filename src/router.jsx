@@ -8,6 +8,7 @@ import GreenhousesPage from '@/pages/views/GreenhousePage';
 import EditPresetPage from "@/pages/views/EditPresetPage"; 
 import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
+import PairGreenhousePage from "./pages/views/PairGreenhousePage";
 
 import SoilHumidityPage from './pages/views/SoilHumidityPage';
 
@@ -54,6 +55,12 @@ const routes = [
                 element: <GreenhousesPage />,
                 navLabel: 'Greenhouses',
             },
+            {
+                path: 'pair-greenhouse',
+                element: <PairGreenhousePage />,
+                navLabel: 'Pair Greenhouse'
+              },
+              
             {
                 path: 'lighting',
                 element: <LightingPage />,
