@@ -8,7 +8,13 @@ import GreenhousesPage from '@/pages/views/GreenhousePage';
 import EditPresetPage from "@/pages/views/EditPresetPage"; 
 import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
+
 import SoilHumidityPage from './pages/views/SoilHumidityPage';
+
+import FertilizationPage from './pages/views/FertilizationPage';
+import WateringPage from './pages/views/WateringPage';
+
+
 const routes = [
     {
         path: '/',
@@ -54,9 +60,20 @@ const routes = [
                 navLabel: 'Lighting',
             },
             {
+
                 path: 'soilhumidity',
                 element: <SoilHumidityPage />,
                 navLabel: 'Soil Humidity Levels'
+
+                path: 'fertilization',
+                element: <FertilizationPage />,
+                navLabel: 'Fertilization',
+            },
+            {
+                path: 'watering',
+                element: <WateringPage />,
+                navLabel: 'Watering',
+
             },
             {
                 path: 'hidden',
