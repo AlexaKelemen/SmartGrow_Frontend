@@ -11,9 +11,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "@/styles/pages/preset.css"; 
+import { useNavigate } from "react-router-dom";
 
 const PresetCard = ({ preset,onDelete }) => {
   const [hovered, setHovered] = useState(false);
+  const navigate = useNavigate();
+
     const handleMouseEnter = (e) => {
     if (!e.target.closest(".delete-btn-wrapper")) {
       setHovered(true);
@@ -61,7 +64,9 @@ const PresetCard = ({ preset,onDelete }) => {
         )}
 
         <div className="preset-buttons">
-          <button className="edit-btn">Edit</button>
+         <button className="edit-btn" onClick={() => navigate(`/presets/edit`)}>
+           Edit
+         </button>
           <button className="apply-btn">Apply</button>
         </div>
       </div>

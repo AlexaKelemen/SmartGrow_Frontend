@@ -5,10 +5,15 @@ import PresetsPage from '@/pages/views/PresetPage';
 import LoginPage from '@/pages/views/LoginPage';
 import CreatePresetForm from '@/pages/views/CreatePresetForm';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
+import EditPresetPage from "@/pages/views/EditPresetPage"; 
 import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
+
+import SoilHumidityPage from './pages/views/SoilHumidityPage';
+
 import FertilizationPage from './pages/views/FertilizationPage';
 import WateringPage from './pages/views/WateringPage';
+
 
 const routes = [
     {
@@ -34,6 +39,11 @@ const routes = [
                 path: 'presets/create',
                 element: <CreatePresetForm />,
             },
+              {
+                
+                path: 'presets/edit',
+                element: <EditPresetPage/>,
+              },
             {
                 path: 'login',
                 element: <LoginPage />,
@@ -50,6 +60,11 @@ const routes = [
                 navLabel: 'Lighting',
             },
             {
+
+                path: 'soilhumidity',
+                element: <SoilHumidityPage />,
+                navLabel: 'Soil Humidity Levels'
+
                 path: 'fertilization',
                 element: <FertilizationPage />,
                 navLabel: 'Fertilization',
@@ -58,6 +73,7 @@ const routes = [
                 path: 'watering',
                 element: <WateringPage />,
                 navLabel: 'Watering',
+
             },
             {
                 path: 'hidden',
