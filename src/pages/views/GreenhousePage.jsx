@@ -1,3 +1,10 @@
+/**
+ * @file GreenhousePage.jsx
+ * @description Displays a dashboard of paired greenhouses and their environmental conditions.
+ * Includes navigation to pair/edit greenhouses 
+ * @author: SophiaJustin
+ */
+
 import React from "react";
 import "@/styles/pages/greenhouse.css";
 import GreenhouseCard from "@/components/GreenhouseCard";
