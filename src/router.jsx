@@ -3,9 +3,14 @@ import App from './App';
 import SensorReadingsPage from '@/pages/views/SensorReadingsPage';
 import PresetsPage from '@/pages/views/PresetPage';
 import LoginPage from '@/pages/views/LoginPage';
+import CreatePresetForm from '@/pages/views/CreatePresetForm';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
 import PairGreenhousePage from "@/pages/views/PairGreenhousePage";
 import EditGreenhousePage from "@/pages/views/EditGreenhouse";
+import EditPresetPage from "@/pages/views/EditPresetPage"; 
+import { element } from 'prop-types';
+import LightingPage from './pages/views/LightingPage';
+
 const routes = [
     {
         path: '/',
@@ -27,6 +32,15 @@ const routes = [
                 navLabel: 'Presets',
             },
             {
+                path: 'presets/create',
+                element: <CreatePresetForm />,
+            },
+              {
+                
+                path: 'presets/edit',
+                element: <EditPresetPage/>,
+              },
+            {
                 path: 'login',
                 element: <LoginPage />,
                 navLabel: 'Login',
@@ -35,6 +49,11 @@ const routes = [
                 path: 'greenhouses',
                 element: <GreenhousesPage />,
                 navLabel: 'Greenhouses',
+            },
+            {
+                path: 'lighting',
+                element: <LightingPage />,
+                navLabel: 'Lighting',
             },
             {
                 path: 'hidden',

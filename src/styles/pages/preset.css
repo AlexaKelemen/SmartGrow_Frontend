@@ -4,7 +4,7 @@
  * Includes layout styling for preset cards and responsive page structure.
  * Intended for use before backend logic is connected.
  *
- * @author SophiaJustin
+ * @author SophiaJustin,AlexaKelemen
  * @since 1.0.0
  */
 
@@ -50,12 +50,23 @@
   .preset-card {
     width: 280px;
     border-radius: 12px;
-    overflow: hidden;
     background-color: white;
     color: black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: transform 0.2s ease;
+    border-radius: 1rem;
+    overflow: hidden;
   }
-  
+    .preset-title {
+      position: relative;
+      z-index: 2;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      padding: 0 1rem;
+      text-align: center;
+    }
   .preset-image {
     height: 150px;
     background-size: cover;
@@ -65,19 +76,35 @@
     align-items: flex-end;
     padding: 1rem;
     color: white;
+    justify-content: center;
+    align-items: center;
   }
+    .preset-image::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.4), transparent);
+      z-index: 1;
+    }
   
   .delete-btn {
-    position: absolute;
+   
     top: 10px;
     right: 10px;
+    border-radius: 10px;
     background-color: #c0392b;
     color: white;
     padding: 0.4rem 0.7rem;
     border-radius: 6px;
     font-size: 0.8rem;
-    cursor: pointer;
+  
   }
+    .delete-btn-wrapper {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+    }
   
   .preset-info {
     padding: 1rem;
@@ -99,15 +126,48 @@
   }
   
   .edit-btn {
-    background-color: #ddd;
+    background-color: white;
     color: #2c7a35;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border-color:#2c7a35 ;
+    font-size: 14px;
+    border: 2px solid #2c7a35;
+    transition: background-color 0.2s ease;
   }
   
   .apply-btn {
-    background-color: green;
+    background-color: #2c7a35;
     color: white;
+    font-size: 14px;
+    border-radius: 10px;
   }
+
+    .preset-card:hover {
+      transform: scale(1.02);
+    }
+    .hover-details {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.3s ease;
+      pointer-events: none;
+      visibility: hidden;
+    }
   
+    .preset-card:hover .hover-details {
+      opacity: 1;
+      max-height: 300px;
+      visibility: visible;
+      pointer-events: auto;
+    
+    }
+  
+    /* Prevent hover effect when interacting with buttons */
+    .preset-buttons button {
+      z-index: 2;
+      position: relative;
+    }
   
 
   
