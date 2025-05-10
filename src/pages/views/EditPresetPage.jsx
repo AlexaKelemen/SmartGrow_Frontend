@@ -1,43 +1,59 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "@/styles/pages/editPresetPage.css"; 
+import "@/styles/pages/editPresetPage.css";
 
-const PresetEditPage = () => {
+const EditPresetPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   return (
-    <div className="preset-edit-container">
-      <h2>Edit preset</h2>
+    <div className="edit-preset-page">
+      <h2>Edit Preset</h2>
 
-      <div className="preset-form">
-        <div className="column">
+      <div className="input-row">
+        <div>
           <label>Air humidity</label>
-          <input type="number" placeholder="10" />
-          <input type="number" placeholder="99" />
-
-          <label>Soil humidity</label>
-          <input type="number" placeholder="10" />
-          <input type="number" placeholder="99" />
+          <div className="input-pair">
+            <input type="text" placeholder="Min" />
+            <input type="text" placeholder="Max" />
+          </div>
         </div>
 
-        <div className="column">
+        <div>
           <label>Temperature humidity</label>
-          <input type="number" placeholder="10" />
-          <input type="number" placeholder="92" />
-
-          <label>Brightness</label>
-          <input type="number" placeholder="10" />
-          <input type="number" placeholder="99" />
+          <div className="input-pair">
+            <input type="text" placeholder="Min" />
+            <input type="text" placeholder="Max" />
+          </div>
         </div>
       </div>
 
-      <div className="preset-edit-buttons">
-        <button className="cancel-btn" onClick={() => navigate("/presets")}>Cancel</button>
-        <button className="edit-btn">Edit</button>
+      <div className="input-row">
+        <div>
+          <label>Soil humidity</label>
+          <div className="input-pair">
+            <input type="text" placeholder="Min" />
+            <input type="text" placeholder="Max" />
+          </div>
+        </div>
+
+        <div>
+          <label>Brightness</label>
+          <div className="input-pair">
+            <input type="text" placeholder="Min" />
+            <input type="text" placeholder="Max" />
+          </div>
+        </div>
+      </div>
+
+      <div className="button-group">
+        <button className="button-cancel" onClick={() => navigate("/presets")}>
+          Cancel
+        </button>
+        <button className="button-submit">Edit</button>
       </div>
     </div>
   );
 };
 
-export default PresetEditPage;
+export default EditPresetPage;
