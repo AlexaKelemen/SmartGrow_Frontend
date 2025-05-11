@@ -38,9 +38,10 @@
 .greenhouse-grid {
   display: flex;
   gap: 40px;
-  flex-wrap: wrap;
+  display: flex;
   justify-content: center;
   padding-bottom: 40px;
+  
 }
 
 /* Greenhouse Card */
