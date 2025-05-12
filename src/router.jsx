@@ -10,7 +10,6 @@ import PairGreenhousePage from "@/pages/views/PairGreenhousePage";
 import EditGreenhousePage from "@/pages/views/EditGreenhouse";
 import GreenhouseLogs from "@/pages/views/GreenhouseLogs";
 import EditPresetPage from "@/pages/views/EditPresetPage"; 
-import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
 import HomePage from './pages/views/HomePage';
 import SoilHumidityPage from './pages/views/SoilHumidityPage';
