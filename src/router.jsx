@@ -9,6 +9,7 @@ import EditPresetPage from "@/pages/views/EditPresetPage";
 import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
 import HomePage from './pages/views/HomePage';
+// eeeyegg
 import PairGreenhousePage from "./pages/views/PairGreenhousePage";
 import SoilHumidityPage from './pages/views/SoilHumidityPage';
 import FertilizationPage from './pages/views/FertilizationPage';
