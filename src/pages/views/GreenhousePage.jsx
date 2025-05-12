@@ -11,17 +11,28 @@ import { useNavigate } from "react-router-dom";
 import GreenhouseCard from "@/components/GreenhouseCard"; 
 import greenhouse from "@/pages/viewmodels/Greenhouses.js";
 
-
 const GreenhousePage = () => {
-  const navigate = useNavigate();
 
+   const navigate = useNavigate();
   return (
     <div className="greenhouse-page">
       <h2 className="section-title">Greenhouses:</h2>
       <div className="action-buttons">
-        <button onClick={() => navigate('/pair-greenhouse')}>Pair Greenhouse</button>
-        <button>Edit Greenhouse</button>
+        <button
+          className="pair-button"
+          onClick={() => navigate('/pair-greenhouse')}
+        >
+          Pair Greenhouse
+        </button>
+
+        <button
+          className="edit-page-button"
+          onClick={() => navigate('/edit-greenhouse')}
+        >
+          Edit Greenhouse
+        </button>
       </div>
+   
 
       <div className="greenhouse-grid">
         {greenhouse.map((gh) => (
