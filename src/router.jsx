@@ -6,7 +6,6 @@ import LoginPage from '@/pages/views/LoginPage';
 import CreatePresetForm from '@/pages/views/CreatePresetForm';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
 import EditPresetPage from "@/pages/views/EditPresetPage"; 
-import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
 import HomePage from './pages/views/HomePage';
 import PairGreenhousePage from "./pages/views/PairGreenhousePage";
