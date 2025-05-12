@@ -18,13 +18,16 @@
  */
 
 import { createHashRouter } from 'react-router-dom';
+import { element } from 'prop-types';
 import App from '@/App';
 import LoginPage from '@/pages/views/LoginPage';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
+import PairGreenhousePage from "@/pages/views/PairGreenhousePage";
+import EditGreenhousePage from "@/pages/views/EditGreenhouse";
 import DashboardPage from '@/pages/views/DashboardPage';
 import PresetsPage from '@/pages/views/PresetPage';
 import CreatePresetForm from '@/pages/views/CreatePresetForm';
-import EditPresetPage from "@/pages/views/EditPresetPage";
+import EditPresetPage from "@/pages/views/EditPresetPage"; 
 import LightingPage from '@/pages/views/LightingPage';
 import SoilHumidityPage from '@/pages/views/SoilHumidityPage';
 import FertilizationPage from '@/pages/views/FertilizationPage';
@@ -130,6 +133,17 @@ const routes = [
                 element: <WateringPage />,
                 navLabel: 'Watering',
             },
+            {
+                path: 'pair-greenhouse',
+                element: <PairGreenhousePage />,
+                navLabel: 'Pair Greenhouse', // optional
+            },
+            {
+                path: 'edit-greenhouse/:id',
+                element: <EditGreenhousePage />,
+                navLabel: 'Edit Greenhouse', 
+            },
+
         ],
     },
 ];

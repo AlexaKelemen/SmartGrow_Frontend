@@ -12,6 +12,7 @@ import greenhouse from '@/pages/viewmodels/Greenhouses.js';
 
 // Component to display a single greenhouse card with info and image
 const GreenhouseCard = ({ greenhouse }) => {
+   const navigate = useNavigate();
   return (
     <div className="greenhouse-card">
       <div className="image-container">
@@ -27,20 +28,39 @@ const GreenhouseCard = ({ greenhouse }) => {
         <div className="info-box">🌡️<br />Temperature<br />{greenhouse.temperature}</div>
         <div className="info-box">💧<br />Humidity<br />{greenhouse.humidity}</div>
       </div>
+
+      <button
+        className="edit-button"
+        onClick={() => navigate(`/edit-greenhouse/${greenhouse.id}`)}
+      >
+        Edit
+      </button>
     </div>
   );
 };
 
 // Main greenhouse dashboard page
 const GreenhousePage = () => {
-  const navigate = useNavigate();
 
+   const navigate = useNavigate();
   return (
-    <main>
+      <main>
       <div className="action-buttons">
-        <button onClick={() => navigate('/pair-greenhouse')}>Pair Greenhouse</button>
-        <button>Edit Greenhouse</button>
+        <button
+          className="pair-button"
+          onClick={() => navigate('/pair-greenhouse')}
+        >
+          Pair Greenhouse
+        </button>
+
+        <button
+          className="edit-page-button"
+          onClick={() => navigate('/edit-greenhouse')}
+        >
+          Edit Greenhouse
+        </button>
       </div>
+   
 
       <div className="greenhouse-grid">
         {/* Render greenhouse cards from mock data */}
