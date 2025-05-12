@@ -25,7 +25,7 @@ const PairGreenhousePage = () => {
       <input type="text" name="something2" />
     </label>
 
-    <button type="submit" className="submit-button" onClick={() => navigate("/greenhouses")}>Pair greenhouse</button>
+    <button className="submit-button" onClick={() => navigate("/greenhouses/pair")}>Pair greenhouse</button>
   </form>
 </main>
 
