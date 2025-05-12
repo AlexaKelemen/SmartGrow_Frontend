@@ -5,15 +5,18 @@ import PresetsPage from '@/pages/views/PresetPage';
 import LoginPage from '@/pages/views/LoginPage';
 import CreatePresetForm from '@/pages/views/CreatePresetForm';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
+// eslint-disable-next-line no-redeclare
+import PairGreenhousePage from "@/pages/views/PairGreenhousePage";
+import EditGreenhousePage from "@/pages/views/EditGreenhouse";
+import GreenhouseLogs from "@/pages/views/GreenhouseLogs";
 import EditPresetPage from "@/pages/views/EditPresetPage"; 
 import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
-// eslint-disable-next-line no-redeclare
-import PairGreenhousePage from "./pages/views/PairGreenhousePage";
+import HomePage from './pages/views/HomePage';
 import SoilHumidityPage from './pages/views/SoilHumidityPage';
 import FertilizationPage from './pages/views/FertilizationPage';
 import WateringPage from './pages/views/WateringPage';
-
+import AboutPage from './pages/views/AboutPage';
 
 const routes = [
     {
@@ -21,8 +24,8 @@ const routes = [
         element: <App />,
         children: [
             {
-                path: '',
-                element: <p>Home</p>,
+                path: 'home-page',
+                element: <HomePage />,
                 navLabel: 'Home',
             },
             {
@@ -55,9 +58,8 @@ const routes = [
                 navLabel: 'Greenhouses',
             },
             {
-                path: 'pair-greenhouse',
+                path: 'greenhouses/pair',
                 element: <PairGreenhousePage />,
-                navLabel: 'Pair Greenhouse'
               },
               
             {
@@ -83,10 +85,26 @@ const routes = [
 
             },
             {
-                path: 'hidden',
-                element: <div>Hidden Page</div>,
-                navLabel: 'Hidden',
+                path: 'about',
+                element: <AboutPage />,
+                navLabel: 'About',
             },
+            {
+                path: 'pair-greenhouse',
+                element: <PairGreenhousePage />,
+                navLabel: 'Pair Greenhouse', // optional
+            },
+            {
+                path: 'edit-greenhouse/:id',
+                element: <EditGreenhousePage />,
+                navLabel: 'Edit Greenhouse', 
+            },
+            {
+                path: 'greenhouse-logs/:id',
+                element: <GreenhouseLogs />,
+                navLabel: 'Greenhouse logs',
+            },
+
         ],
     },
 ];
