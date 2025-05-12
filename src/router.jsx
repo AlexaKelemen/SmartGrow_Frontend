@@ -11,20 +11,21 @@ import GreenhouseLogs from "@/pages/views/GreenhouseLogs";
 import EditPresetPage from "@/pages/views/EditPresetPage"; 
 import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
-
-
+import HomePage from './pages/views/HomePage';
+import PairGreenhousePage from "./pages/views/PairGreenhousePage";
 import SoilHumidityPage from './pages/views/SoilHumidityPage';
-
 import FertilizationPage from './pages/views/FertilizationPage';
 import WateringPage from './pages/views/WateringPage';
+import AboutPage from './pages/views/AboutPage';
+
 const routes = [
     {
         path: '/',
         element: <App />,
         children: [
             {
-                path: '',
-                element: <p>Home</p>,
+                path: 'home-page',
+                element: <HomePage />,
                 navLabel: 'Home',
             },
             {
@@ -57,6 +58,11 @@ const routes = [
                 navLabel: 'Greenhouses',
             },
             {
+                path: 'greenhouses/pair',
+                element: <PairGreenhousePage />,
+              },
+              
+            {
                 path: 'lighting',
                 element: <LightingPage />,
                 navLabel: 'Lighting',
@@ -65,7 +71,7 @@ const routes = [
 
                 path: 'soilhumidity',
                 element: <SoilHumidityPage />,
-                navLabel: 'Soil Humidity Levels'
+                navLabel: 'Soil Humidity Levels',
             },
             {
                 path: 'fertilization',
@@ -79,9 +85,9 @@ const routes = [
 
             },
             {
-                path: 'hidden',
-                element: <div>Hidden Page</div>,
-                navLabel: 'Hidden',
+                path: 'about',
+                element: <AboutPage />,
+                navLabel: 'About',
             },
             {
                 path: 'pair-greenhouse',

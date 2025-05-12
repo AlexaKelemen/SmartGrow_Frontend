@@ -30,12 +30,12 @@
     margin-bottom: 2rem;
   }
   
-  .create-btn {
+  .preset-create-btn {
     background-color: #2c7a35;
     color: white;
     padding: 0.7rem 1.5rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
   }
@@ -87,16 +87,16 @@
       z-index: 1;
     }
   
-  .delete-btn {
+  .preset-delete-btn {
    
     top: 10px;
     right: 10px;
-    border-radius: 10px;
-    background-color: #c0392b;
+    background: #b04343;
     color: white;
-    padding: 0.4rem 0.7rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
   
   }
     .delete-btn-wrapper {
@@ -116,33 +116,28 @@
     margin-top: 1rem;
   }
   
-  .edit-btn,
-  .apply-btn {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-  }
+    .preset-edit-btn,
+    .preset-apply-btn {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
   
-  .edit-btn {
-    background-color: white;
-    color: #2c7a35;
-    padding: 8px 16px;
-    border-radius: 10px;
-    border-color:#2c7a35 ;
-    font-size: 14px;
-    border: 2px solid #2c7a35;
-    transition: background-color 0.2s ease;
-  }
+    .preset-edit-btn {
+      background-color: white;
+      border: 2px solid #2c7a35;
+      color: #2c7a35;
+      
+    }
   
-  .apply-btn {
-    background-color: #2c7a35;
-    color: white;
-    font-size: 14px;
-    border-radius: 10px;
-  }
-
+    .preset-apply-btn {
+      background-color: #2c7a35;
+      color: white;
+  
+    }
     .preset-card:hover {
       transform: scale(1.02);
     }
