@@ -1,0 +1,85 @@
+/* Author: Sophia
+   Description: Styling for SoilHumidityPage including chart layout and watering reminder.
+*/
+
+.humidity-page {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.humidity-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Placeholder graph container */
+.chart-container {
+  flex: 2;
+  min-width: 400px;
+}
+
+.placeholder-graph {
+  position: relative;
+  background: repeating-linear-gradient(
+    45deg,
+    #f0f0f0,
+    #f0f0f0 10px,
+    #ffffff 10px,
+    #ffffff 20px
+  );
+  height: 300px;
+  border: 1px solid #ccc;
+  border-right: 2px dashed #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  color: #666;
+}
+
+.label {
+  position: absolute;
+  font-weight: bold;
+  background-color: white;
+  padding: 0 0.5rem;
+}
+
+.past-label {
+  top: 10px;
+  left: 10px;
+}
+
+.predicted-label {
+  top: 10px;
+  right: 10px;
+}
+
+/* Right panel - reminder card */
+.reminder-card {
+  flex: 1;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background-color: #fcfcfc;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  min-width: 250px;
+}
+
+.reminder-card h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.reminder-card p {
+  font-size: 0.95rem;
+  color: #666;
+}
