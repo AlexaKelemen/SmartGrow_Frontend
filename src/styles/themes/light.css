@@ -15,4 +15,29 @@
     --colorActive: #00bcd4;
     --colorSuccess: #28a745;
     --colorError: #dc3545;
+
+    /*| Gauge |*/
+    /* Temp Gauge */
+    --colorTempFreeze: #3b82f6;
+    --colorTempCold: #60a5fa;
+    --colorTempOk: #22c55e;
+    --colorTempWarm: #facc15;
+    --colorTempHot: #ef4444;
+
+    /* Bright Gauge */
+    --colorBrightDark: #333333;
+    --colorBrightDim: #666666;
+    --colorBrightNormal: #999999;
+    --colorBrightBright: #cccccc;
+    --colorBrightOverload: #ffffff;
+
+    /* Gauge Pointer */
+    --gaugePointerColor: #345243;
+    --gaugePointerWidth: 15;
+    --gaugePointerLength: 0.8;
+    --gaugeAnimationDelay: 1;
+
+    /* Gauge Labels */
+    --gaugeValueFontSize: 14;
+    --gaugeTickFontSize: 10;
 }
