@@ -1,7 +1,10 @@
 import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "@/styles/pages/pairgreenhouse.css"; 
 
 const PairGreenhousePage = () => {
+  const navigate = useNavigate();
+
   return (
     <main className="pair-greenhouse-page">
   <h2>Pair greenhouse</h2>
@@ -22,7 +25,7 @@ const PairGreenhousePage = () => {
       <input type="text" name="something2" />
     </label>
 
-    <button type="submit" className="submit-button">Pair greenhouse</button>
+    <button type="submit" className="submit-button" onClick={() => navigate("/greenhouses")}>Pair greenhouse</button>
   </form>
 </main>
 
