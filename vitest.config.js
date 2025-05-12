@@ -10,6 +10,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  optimizeDeps: {
+    exclude: ['react-gauge-chart']
   test: {
     globals: true,
     environment: 'jsdom',
