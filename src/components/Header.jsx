@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import {routes} from "@/router"
+import { useState } from 'react';
 
 /**
  * Header component for site navigation.
@@ -10,24 +11,41 @@ import {routes} from "@/router"
  * @returns {JSX.Element} The Header component with navigation links.
  */
 function Header() {
-    const flattenedRoutes = routes.flatMap(route => [
-        {path: route.path, navLabel: route.navLabel},
-        ...(route.children ? route.children.map(child => ({
-            path: child.path,
-            navLabel: child.navLabel,
-        })) : []),
-    ]).filter(link => link.navLabel);
+    const [openDropdown, setOpenDropdown] = useState(null);
+
+    const toggleDropdown = (label) => {
+        setOpenDropdown(prev => (prev === label ? null : label));
+    };
+
+    const methodsLabels = ['Lighting', 'Soil Humidity Levels', 'Fertilization', 'Watering'];
+
+    const flattenedRoutes = routes.flatMap(route => route.children || []).filter(r => r.navLabel);
+
+    const mainLinks = flattenedRoutes.filter(link => !methodsLabels.includes(link.navLabel));
+    const methodLinks = flattenedRoutes.filter(link => methodsLabels.includes(link.navLabel));
 
     return (
         <header className="header">
             <div className="nav-main">
                 <Link to="/" className="site-title">SmartGrow</Link>
                 <nav className="nav-links">
-                    {flattenedRoutes.map((link, index) => (
-                        <Link key={index} to={link.path}>
-                            {link.navLabel}
-                        </Link>
+                    {mainLinks.map((link, i) => (
+                        <Link key={i} to={`/${link.path}`}>{link.navLabel}</Link>
                     ))}
+
+                    {/* METHODS DROPDOWN */}
+                    <div className="dropdown">
+                        <span className="dropdown-toggle" onClick={() => toggleDropdown('Methods')}>
+                            Methods
+                        </span>
+                        {openDropdown === 'Methods' && (
+                            <div className="dropdown-menu">
+                                {methodLinks.map((link, i) => (
+                                    <Link key={i} to={`/${link.path}`}>{link.navLabel}</Link>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </nav>
             </div>
         </header>

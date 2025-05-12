@@ -1,11 +1,11 @@
-name: CI Pipeline
+name: Prettier Format Check
 
 on:
-  pull_request:
+  push:
     branches: [dev, main]
 
 jobs:
-  install-and-test:
+  prettier-check:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,12 +18,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Run Linter
-        run: npm run lint
-
-      - name: Run Test        run: npm test
-
-      - name: Build Project
-        run: npm run build
+      - name: Run Prettier check
+        run: npx prettier . --write

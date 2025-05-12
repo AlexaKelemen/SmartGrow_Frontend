@@ -21,9 +21,11 @@ import { createHashRouter } from 'react-router-dom';
 import { element } from 'prop-types';
 import App from '@/App';
 import LoginPage from '@/pages/views/LoginPage';
+import HomePage from '@/pages/views/HomePage';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
 import PairGreenhousePage from "@/pages/views/PairGreenhousePage";
 import EditGreenhousePage from "@/pages/views/EditGreenhouse";
+import GreenhouseLogs from "@/pages/views/GreenhouseLogs";
 import DashboardPage from '@/pages/views/DashboardPage';
 import PresetsPage from '@/pages/views/PresetPage';
 import CreatePresetForm from '@/pages/views/CreatePresetForm';
@@ -32,6 +34,8 @@ import LightingPage from '@/pages/views/LightingPage';
 import SoilHumidityPage from '@/pages/views/SoilHumidityPage';
 import FertilizationPage from '@/pages/views/FertilizationPage';
 import WateringPage from '@/pages/views/WateringPage';
+import AboutPage from '@/pages/views/AboutPage';
+
 
 /**
  * Defines all the routes for the SmartGrow application.
@@ -88,12 +92,29 @@ const routes = [
             {
                 path: '',
                 element: <LoginPage />,
-                navLabel: 'Login',
+            },
+            {
+                path: 'home',
+                element: <HomePage />,
+                navLabel: 'Home',
             },
             {
                 path: 'greenhouses',
                 element: <GreenhousesPage />,
                 navLabel: 'Greenhouses',
+            },
+            {
+                path: 'greenhouses/pair',
+                element: <PairGreenhousePage />,
+            },
+            {
+                path: 'greenhouses/edit:id',
+                element: <EditGreenhousePage />,
+            },
+            {
+                path: 'greenhouses/logs:id',
+                element: <GreenhouseLogs />,
+                navLabel: 'Greenhouse logs',
             },
             {
                 path: 'dashboard',
@@ -109,10 +130,10 @@ const routes = [
                 path: 'presets/create',
                 element: <CreatePresetForm />,
             },
-              {
+            {
                 path: 'presets/edit',
                 element: <EditPresetPage/>,
-              },
+            }, 
             {
                 path: 'lighting',
                 element: <LightingPage />,
@@ -121,7 +142,7 @@ const routes = [
             {
                 path: 'soil-humidity',
                 element: <SoilHumidityPage />,
-                navLabel: 'Soil Humidity Levels'
+                navLabel: 'Soil Humidity Levels',
             },
             {
                 path: 'fertilization',
@@ -134,16 +155,10 @@ const routes = [
                 navLabel: 'Watering',
             },
             {
-                path: 'pair-greenhouse',
-                element: <PairGreenhousePage />,
-                navLabel: 'Pair Greenhouse', // optional
+                path: 'about',
+                element: <AboutPage />,
+                navLabel: 'About',
             },
-            {
-                path: 'edit-greenhouse/:id',
-                element: <EditGreenhousePage />,
-                navLabel: 'Edit Greenhouse', 
-            },
-
         ],
     },
 ];
