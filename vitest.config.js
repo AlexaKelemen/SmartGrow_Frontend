@@ -11,7 +11,8 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ['react-gauge-chart']
+    exclude: ['react-gauge-chart'],
+  },
   test: {
     globals: true,
     environment: 'jsdom',
