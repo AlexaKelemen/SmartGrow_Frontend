@@ -8,6 +8,7 @@ import GreenhousesPage from '@/pages/views/GreenhousePage';
 import EditPresetPage from "@/pages/views/EditPresetPage"; 
 import LightingPage from './pages/views/LightingPage';
 import HomePage from './pages/views/HomePage';
+// eslint-disable-next-line no-redeclare
 import PairGreenhousePage from "./pages/views/PairGreenhousePage";
 import SoilHumidityPage from './pages/views/SoilHumidityPage';
 import FertilizationPage from './pages/views/FertilizationPage';
