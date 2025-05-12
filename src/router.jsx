@@ -70,7 +70,7 @@ const routes = [
 
                 path: 'soilhumidity',
                 element: <SoilHumidityPage />,
-                navLabel: 'Soil Humidity Levels'
+                navLabel: 'Soil Humidity Levels',
             },
             {
                 path: 'fertilization',
