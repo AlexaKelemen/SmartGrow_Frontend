@@ -2,7 +2,7 @@ import { createHashRouter } from 'react-router-dom';
 import App from '@/App';
 import LoginPage from '@/pages/views/LoginPage';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
-import SensorReadingsPage from '@/pages/views/SensorReadingsPage';
+import DashboardPage from '@/pages/views/DashboardPage';
 import PresetsPage from '@/pages/views/PresetPage';
 import CreatePresetForm from '@/pages/views/CreatePresetForm';
 import EditPresetPage from "@/pages/views/EditPresetPage";
@@ -32,7 +32,7 @@ import WateringPage from '@/pages/views/WateringPage';
  * ```js
  * {
  *   path: '/sensor-readings',
- *   element: <SensorReadingsPage />,
+ *   element: <DashboardPage />,
  *   navLabel: 'Sensor Readings', // This is used to display the link in the navigation
  * }
  * ```
@@ -77,9 +77,9 @@ const routes = [
                 navLabel: 'Greenhouses',
             },
             {
-                path: 'sensor-readings',
-                element: <SensorReadingsPage />,
-                navLabel: 'Sensor Readings',
+                path: 'dashboard',
+                element: <DashboardPage />,
+                navLabel: 'Dashboard',
             },
             {
                 path: 'presets',

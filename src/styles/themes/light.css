@@ -17,6 +17,16 @@
     --colorError: #dc3545;
 
     /*| Gauge |*/
+    /* Gauge Pointer */
+    --gaugePointerColor: #345243;
+    --gaugePointerWidth: 15;
+    --gaugePointerLength: 0.8;
+    --gaugeAnimationDelay: 1;
+
+    /* Gauge Labels */
+    --gaugeValueFontSize: 14;
+    --gaugeTickFontSize: 10;
+
     /* Temp Gauge */
     --colorTempFreeze: #3b82f6;
     --colorTempCold: #60a5fa;
@@ -31,13 +41,10 @@
     --colorBrightBright: #cccccc;
     --colorBrightOverload: #ffffff;
 
-    /* Gauge Pointer */
-    --gaugePointerColor: #345243;
-    --gaugePointerWidth: 15;
-    --gaugePointerLength: 0.8;
-    --gaugeAnimationDelay: 1;
-
-    /* Gauge Labels */
-    --gaugeValueFontSize: 14;
-    --gaugeTickFontSize: 10;
+    /* Humidity Gauge */
+    --colorHumidityDry: #0ea5e9;
+    --colorHumidityLow: #38bdf8;
+    --colorHumidityIdeal: #22c55e;
+    --colorHumidityHigh: #a3e635;
+    --colorHumiditySaturated: #f87171;
 }

@@ -1,5 +1,5 @@
 /*
- * @file SensorReadingsPage.jsx
+ * @file DashboardPage.jsx
  * @description Dashboard page for displaying the latest sensor readings in gauge format.
  * Dynamically visualizes air temperature, air humidity, soil humidity, and brightness using
  * react-gauge-chart components. Labels are color-coded based on sensor thresholds.
@@ -11,8 +11,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { useSensorReadingsModel } from '@/pages/viewmodels/SensorReadingsModel';
-import GaugeChart from 'react-gauge-chart';
+import { useSensorReadingsModel } from '@/pages/viewmodels/DashboardModel';
 import "@/styles/pages/dashboard.css";
 
 /**
@@ -21,7 +20,7 @@ import "@/styles/pages/dashboard.css";
  *
  * @returns {JSX.Element} Sensor dashboard with 4 gauges and color-coded labels.
  */
-export default function SensorReadingsPage() {
+export default function DashboardPage() {
   const { readings, loading, error, loadReadings } = useSensorReadingsModel();
 
   useEffect(() => {
