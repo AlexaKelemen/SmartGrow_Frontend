@@ -53,7 +53,7 @@ const WateringPage = () => {
         <div className="card">
           <h3>Automated Watering</h3>
           <p>
-            After pressing the 'Water' button, the system waters the plant until
+            After pressing the  &apos;Water&apos; button, the system waters the plant until
             it reaches max soil humidity based on the preset.
           </p>
           <label className="switch">
