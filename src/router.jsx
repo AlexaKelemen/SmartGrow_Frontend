@@ -12,7 +12,6 @@ import EditPresetPage from "@/pages/views/EditPresetPage";
 import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
 import HomePage from './pages/views/HomePage';
-import PairGreenhousePage from "./pages/views/PairGreenhousePage";
 import SoilHumidityPage from './pages/views/SoilHumidityPage';
 import FertilizationPage from './pages/views/FertilizationPage';
 import WateringPage from './pages/views/WateringPage';
