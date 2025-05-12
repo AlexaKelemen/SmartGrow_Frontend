@@ -6,6 +6,7 @@ import LoginPage from '@/pages/views/LoginPage';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
 import PairGreenhousePage from "@/pages/views/PairGreenhousePage";
 import EditGreenhousePage from "@/pages/views/EditGreenhouse";
+import GreenhouseLogs from "@/pages/views/GreenhouseLogs";
 const routes = [
     {
         path: '/',
@@ -50,6 +51,11 @@ const routes = [
                 path: 'edit-greenhouse/:id',
                 element: <EditGreenhousePage />,
                 navLabel: 'Edit Greenhouse', 
+            },
+            {
+                path: 'greenhouse-logs/:id',
+                element: <GreenhouseLogs />,
+                navLabel: 'Greenhouse logs',
             },
 
         ],
