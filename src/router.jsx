@@ -5,17 +5,16 @@ import PresetsPage from '@/pages/views/PresetPage';
 import LoginPage from '@/pages/views/LoginPage';
 import CreatePresetForm from '@/pages/views/CreatePresetForm';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
+import EditGreenhousePage from "@/pages/views/EditGreenhouse";
+import GreenhouseLogs from "@/pages/views/GreenhouseLogs";
 import EditPresetPage from "@/pages/views/EditPresetPage"; 
-import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
 import HomePage from './pages/views/HomePage';
-// eeeyegg
 import PairGreenhousePage from "./pages/views/PairGreenhousePage";
 import SoilHumidityPage from './pages/views/SoilHumidityPage';
 import FertilizationPage from './pages/views/FertilizationPage';
 import WateringPage from './pages/views/WateringPage';
 import AboutPage from './pages/views/AboutPage';
-
 
 const routes = [
     {
@@ -88,6 +87,22 @@ const routes = [
                 element: <AboutPage />,
                 navLabel: 'About',
             },
+            {
+                path: 'pair-greenhouse',
+                element: <PairGreenhousePage />,
+                navLabel: 'Pair Greenhouse', // optional
+            },
+            {
+                path: 'edit-greenhouse/:id',
+                element: <EditGreenhousePage />,
+                navLabel: 'Edit Greenhouse', 
+            },
+            {
+                path: 'greenhouse-logs/:id',
+                element: <GreenhouseLogs />,
+                navLabel: 'Greenhouse logs',
+            },
+
         ],
     },
 ];
