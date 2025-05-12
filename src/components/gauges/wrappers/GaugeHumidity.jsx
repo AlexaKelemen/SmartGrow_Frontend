@@ -5,13 +5,13 @@
  * Wraps `GaugeIdealBand` with styling and label logic tailored for humidity control.
  * Uses `%` as the unit and provides meaningful labels for greenhouse environments.
  *
- * @see GaugeIdealBand
+ * @see GaugeIdealRadial
  * @author Taggerkov
  * @version 1.0.0
  * @since 0.4.7
  */
 
-import {GaugeIdealBand} from '../GaugeIdealBand';
+import {GaugeIdealRadial} from '../GaugeIdealRadial';
 import {useCSSVar} from '../useCommonGaugeTheme';
 
 /**
@@ -33,7 +33,7 @@ import {useCSSVar} from '../useCommonGaugeTheme';
  */
 export function GaugeHumidity(props) {
     return (
-        <GaugeIdealBand
+        <GaugeIdealRadial
             {...props}
             formatValue={v => `${v}%`}
             colors={{

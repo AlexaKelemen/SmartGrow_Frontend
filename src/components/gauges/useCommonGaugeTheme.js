@@ -7,7 +7,7 @@
  *
  * These hooks allow all gauge components to adapt to runtime theme changes.
  *
- * @see GaugeIdealBand
+ * @see GaugeIdealRadial
  * @see GaugeMultiZoneRadial
  * @author Taggerkov
  * @version 1.0.0

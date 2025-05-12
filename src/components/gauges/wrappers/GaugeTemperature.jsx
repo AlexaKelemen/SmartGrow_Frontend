@@ -5,13 +5,13 @@
  * This wrapper binds temperature-specific CSS variables and labels to the generic `GaugeIdealBand`
  * component, configuring it with standard degrees Celsius display and ideal thermal ranges.
  *
- * @see GaugeIdealBand
+ * @see GaugeIdealRadial
  * @author Taggerkov
  * @version 1.0.0
  * @since 0.4.7
  */
 
-import {GaugeIdealBand} from '../GaugeIdealBand';
+import {GaugeIdealRadial} from '../GaugeIdealRadial';
 import {useCSSVar} from '../useCommonGaugeTheme';
 
 /**
@@ -33,7 +33,7 @@ import {useCSSVar} from '../useCommonGaugeTheme';
  */
 export function GaugeTemperature(props) {
     return (
-        <GaugeIdealBand
+        <GaugeIdealRadial
             {...props}
             formatValue={v => `${v}ºC`}
             colors={{

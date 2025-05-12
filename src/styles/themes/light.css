@@ -6,9 +6,9 @@
     --colorMain: #3d6031;
     --colorPrimary: #007bff;
     --colorSecondary: #6c757d;
-    --colorContrast: #ffffff;
-    --colorText: #000000;
     --colorBackground: #ffffff;
+    --colorText: #000000;
+    --colorContrast: var(--colorBackground);
 
     /* Detail */
     --colorHover: #59f1b7;
@@ -18,10 +18,10 @@
 
     /*| Gauge |*/
     /* Gauge Pointer */
-    --gaugePointerColor: #345243;
+    --gaugePointerColor: var(--colorSecondary);
     --gaugePointerWidth: 15;
     --gaugePointerLength: 0.8;
-    --gaugeAnimationDelay: 1;
+    --gaugeAnimationDelay: 1s;
 
     /* Gauge Labels */
     --gaugeValueFontSize: 14;

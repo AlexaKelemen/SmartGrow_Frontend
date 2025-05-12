@@ -1,5 +1,5 @@
 /**
- * @file GaugeIdealBand.jsx
+ * @file GaugeIdealRadial.jsx
  * @description Generic React component for rendering gauges with an ideal value band.
  *
  * This component visualizes a value on a semicircular or radial gauge,
@@ -85,10 +85,10 @@ function resolveOffset(offset, min, max, minIdeal, maxIdeal) {
  *   labels={{ low: 'Too Low', preIdeal: 'Below Ideal', ideal: 'Perfect', postIdeal: 'Slightly High', high: 'Too High' }}
  * />
  */
-export function GaugeIdealBand({
+export function GaugeIdealRadial({
                             value, min, max, minIdeal, maxIdeal, offset = null,
-                            formatValue = v => `${v}`, colors, labels, type = 'semicircle',
-                            tickStep = null, arcWidth = 0.2, arcPadding = 0.005
+                            formatValue = v => `${v}`, colors, labels, type = 'radial',
+                            tickStep = null, arcWidth = 0.2, arcPadding = 0.01
                         }) {
     const {
         colorText, pointerColor, pointerWidth, pointerLength,
@@ -115,7 +115,7 @@ export function GaugeIdealBand({
             arc={{
                 width: arcWidth,
                 padding: arcPadding,
-                cornerRadius: 1,
+                cornerRadius: 4,
                 subArcs
             }}
             pointer={{

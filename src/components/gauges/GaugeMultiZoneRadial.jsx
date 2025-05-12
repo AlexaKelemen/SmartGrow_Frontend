@@ -8,7 +8,7 @@
  * Zones are defined by `limit`, `color`, and `label`, and rendered in a radial layout.
  * If no custom tick list is provided, it auto-generates ticks from the zone limits.
  *
- * @see GaugeIdealBand
+ * @see GaugeIdealRadial
  * @author Taggerkov
  * @version 1.0.0
  * @since 0.4.7

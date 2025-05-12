@@ -1,3 +1,22 @@
+/**
+ * @file router.jsx
+ * @description Central routing configuration for the SmartGrow application.
+ *
+ * Defines all client-side routes using `createHashRouter` from React Router.
+ * Each route may include custom metadata like `navLabel`, which can be used by other
+ * components (e.g., navigation headers) for dynamic UI generation.
+ *
+ * This file exports both:
+ * - `router`: The configured router for `RouterProvider`
+ * - `routes`: The raw route configuration array, useful for sidebar or breadcrumb logic
+ *
+ * @see Header.jsx for usage of `navLabel`
+ * @see https://reactrouter.com/en/main/routers/create-hash-router
+ * @author Taggerkov
+ * @version 1.0.0
+ * @since 0.0.1
+ */
+
 import { createHashRouter } from 'react-router-dom';
 import App from '@/App';
 import LoginPage from '@/pages/views/LoginPage';
@@ -10,9 +29,6 @@ import LightingPage from '@/pages/views/LightingPage';
 import SoilHumidityPage from '@/pages/views/SoilHumidityPage';
 import FertilizationPage from '@/pages/views/FertilizationPage';
 import WateringPage from '@/pages/views/WateringPage';
-
-// Router settings for the React application.
-// Defines the routes and the router configuration.
 
 /**
  * Defines all the routes for the SmartGrow application.

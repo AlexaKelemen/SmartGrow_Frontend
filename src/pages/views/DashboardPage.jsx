@@ -1,120 +1,100 @@
-/*
- * @file DashboardPage.jsx
- * @description Dashboard page for displaying the latest sensor readings in gauge format.
- * Dynamically visualizes air temperature, air humidity, soil humidity, and brightness using
- * react-gauge-chart components. Labels are color-coded based on sensor thresholds.
+/**
+ * @file Dashboard.jsx
+ * @description SmartGrow dashboard view displaying sensor gauge data.
  *
- * This page is part of the SmartGrow application.
+ * Renders temperature, humidity, and brightness gauges in a consistent layout using the
+ * `dashboardModel` to provide live values.
+ * Gracefully handles loading and error states.
  *
- * @author AlexaKelemen
- * @since 1.0.0
+ * The view delegates business logic to the ViewModel and displays a clean, reactive UI.
+ *
+ * @see dashboardModel
+ * @see GaugeTemperature
+ * @see GaugeHumidity
+ * @see GaugeBrightness
+ * @author Taggerkov
+ * @version 1.0.0
+ * @since 0.5.0
  */
 
-import React, { useEffect } from 'react';
-import { useSensorReadingsModel } from '@/pages/viewmodels/DashboardModel';
-import "@/styles/pages/dashboard.css";
+import '@/styles/pages/dashboard.css';
+import {dashboardModel} from '@/pages/viewmodels/dashboardModel';
+import {GaugeHumidity, GaugeBrightness, GaugeTemperature} from '@/components/gauges/wrappers';
 
 /**
- * Renders a gauge-based dashboard view for the most recent sensor readings.
- * Automatically loads the latest reading on mount.
+ * GaugeCard
  *
- * @returns {JSX.Element} Sensor dashboard with 4 gauges and color-coded labels.
+ * Wraps a gauge component with a label and background color.
+ * Used to standardize layout across multiple sensor widgets.
+ *
+ * @param {Object} props
+ * @param {string} props.label - Human-readable sensor label
+ * @param {string} props.color - Background color for the label badge
+ * @param {JSX.Element} props.children - Gauge content to render
+ * @returns {JSX.Element}
  */
-export default function DashboardPage() {
-  const { readings, loading, error, loadReadings } = useSensorReadingsModel();
-
-  useEffect(() => {
-    loadReadings(20); 
-  }, []);
-
-
-  const latest = readings?.[0];
-
-   /**
-   * Determines label color for air temperature.
-   * @param {number} temp - Temperature value in °C
-   * @returns {string} CSS class name
-   */
-    function getTempColor(temp) {
-    if (temp < 15) return 'blue';      
-  if (temp < 22) return 'green';      
-  if (temp < 28) return 'yellow';    
-  return 'red';      
-  }
-  /**
-   * Determines label color for humidity (air or soil).
-   * @param {number} humidity - Humidity percentage
-   * @returns {string} CSS class name
-   */
-  function getHumidityColor(humidity) {
-    if (humidity < 30) return 'red';         
-  if (humidity < 50) return 'orange';      
-  if (humidity < 75) return 'yellow';       
-  return 'green';                           
-}
- /**
-   * Determines label color for light level (lux).
-   * @param {number} lux - Brightness value in lux
-   * @returns {string} CSS class name
-   */
- function getBrightnessColor(lux) {
-  if (lux < 200) return 'red';         
-  if (lux < 500) return 'orange';       
-  if (lux < 900) return 'yellow';       
-  return 'green'; 
-  }
-
-
-  return (
-    <div className="sensor-dashboard">
-      <h1>Dashboard</h1>
-
-      {latest && (
-        <div className="gauges">
-             <div className="gauge-block">
-      <GaugeChart
-        id="air-temperature"
-        nrOfLevels={10}
-        percent={Math.min(latest.airTemperature / 50, 1)} 
-        arcWidth={0.45}                           
-        colors={['#BA5959', '#D2D683', '#17DC24']} 
-      />
-      <div className={`label ${getTempColor(latest.airTemperature)}`}>Air Temperature</div>
-    </div>
-          <div className="gauge-block">
-            <GaugeChart
-              id="air-humidity"
-              nrOfLevels={10}
-              percent={latest.airHumidity / 100}
-              arcWidth={0.45}                           
-              colors={['#BA5959', '#D2D683', '#17DC24']} 
-            />
-            <div className={`label ${getHumidityColor(latest.airHumidity)}`}>Air Humidity</div>
-          </div>
-
-          <div className="gauge-block">
-            <GaugeChart
-              id="soil-humidity"
-              nrOfLevels={10}
-              percent={latest.soilHumidity / 100}
-              arcWidth={0.45}                           
-              colors={['#BA5959', '#D2D683', '#17DC24']} 
-            />
-            <div className={`label ${getHumidityColor(latest.soilHumidity)}`}>Soil Humidity</div>
-          </div>
-
-          <div className="gauge-block">
-            <GaugeChart
-              id="brightness"
-              nrOfLevels={10}
-              percent={Math.min(latest.lightLevel / 1000, 1)} 
-              arcWidth={0.45}                          
-              colors={['#BA5959', '#D2D683', '#17DC24']} 
-            />
-            <div className={`label ${getBrightnessColor(latest.lightLevel)}`}>Brightness</div>
-          </div>
+function GaugeCard({label, color, children}) {
+    return (
+        <div className="gauge-card">
+            {children}
+            <div className="gauge-label" style={{backgroundColor: color}}>
+                {label}
+            </div>
         </div>
-      )}
-    </div>
-  );
+    );
+}
+
+/**
+ * Dashboard
+ *
+ * Main SmartGrow dashboard view displaying all sensor gauges.
+ * Reactively handles data loading and errors via `dashboardModel()`.
+ *
+ * @returns {JSX.Element}
+ */
+export default function Dashboard() {
+    const {
+        getTemperatureReading,
+        getHumidityReading,
+        getBrightnessReading,
+        isLoading,
+        isError
+    } = dashboardModel();
+
+    if (isLoading) {
+        return (
+            <div className="dashboard">
+                <h1>Dashboard</h1>
+                <div className="gauge-row">
+                    <GaugeCard label="Temperature" color="var(--colorTempHot)">
+                        <p>Loading...</p>
+                    </GaugeCard>
+                    <GaugeCard label="Soil humidity" color="var(--colorHumidityIdeal)">
+                        <p>Loading...</p>
+                    </GaugeCard>
+                    <GaugeCard label="Brightness" color="var(--colorBrightBright)">
+                        <p>Loading...</p>
+                    </GaugeCard>
+                </div>
+            </div>
+        );
+    }
+    if (isError) return <div className="dashboard">Error loading sensor data.</div>;
+
+    return (
+        <div className="dashboard">
+            <h1>Dashboard</h1>
+            <div className="gauge-row">
+                <GaugeCard label="Temperature" color="var(--colorTempHot)">
+                    <GaugeTemperature {...getTemperatureReading()} />
+                </GaugeCard>
+                <GaugeCard label="Soil humidity" color="var(--colorHumidityIdeal)">
+                    <GaugeHumidity {...getHumidityReading()} />
+                </GaugeCard>
+                <GaugeCard label="Brightness" color="var(--colorBrightBright)">
+                    <GaugeBrightness {...getBrightnessReading()} />
+                </GaugeCard>
+            </div>
+        </div>
+    );
 }
