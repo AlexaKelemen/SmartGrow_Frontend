@@ -8,12 +8,12 @@ import GreenhousesPage from '@/pages/views/GreenhousePage';
 import EditPresetPage from "@/pages/views/EditPresetPage"; 
 import { element } from 'prop-types';
 import LightingPage from './pages/views/LightingPage';
+import HomePage from './pages/views/HomePage';
 import PairGreenhousePage from "./pages/views/PairGreenhousePage";
-
 import SoilHumidityPage from './pages/views/SoilHumidityPage';
-
 import FertilizationPage from './pages/views/FertilizationPage';
 import WateringPage from './pages/views/WateringPage';
+import AboutPage from './pages/views/AboutPage';
 
 
 const routes = [
@@ -22,8 +22,8 @@ const routes = [
         element: <App />,
         children: [
             {
-                path: '',
-                element: <p>Home</p>,
+                path: 'home-page',
+                element: <HomePage />,
                 navLabel: 'Home',
             },
             {
@@ -56,9 +56,8 @@ const routes = [
                 navLabel: 'Greenhouses',
             },
             {
-                path: 'pair-greenhouse',
+                path: 'greenhouses/pair',
                 element: <PairGreenhousePage />,
-                navLabel: 'Pair Greenhouse'
               },
               
             {
@@ -84,9 +83,9 @@ const routes = [
 
             },
             {
-                path: 'hidden',
-                element: <div>Hidden Page</div>,
-                navLabel: 'Hidden',
+                path: 'about',
+                element: <AboutPage />,
+                navLabel: 'About',
             },
         ],
     },
