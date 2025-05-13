@@ -1,0 +1,53 @@
+.permission-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.permission-modal {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.permission-modal h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.permission-modal p {
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.permission-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.permission-actions button {
+    padding: 0.5rem 1.25rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.permission-actions button:first-child {
+    background-color: #ccc;
+}
+
+.permission-actions button:last-child {
+    background-color: #28a745;
+    color: white;
+}

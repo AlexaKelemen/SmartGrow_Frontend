@@ -119,3 +119,7 @@ export const ControlAPI = {
         return response.data;
     }
 };
+
+export const saveSubscription = async (subscription) => {
+    return API.post('/subscribe', subscription);
+};

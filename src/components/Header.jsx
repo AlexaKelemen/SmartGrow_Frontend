@@ -12,14 +12,12 @@ import { useState } from 'react';
  */
 function Header() {
     const [openDropdown, setOpenDropdown] = useState(null);
-
     const toggleDropdown = (label) => {
         setOpenDropdown(prev => (prev === label ? null : label));
     };
 
-    const methodsLabels = ['Lighting', 'Soil Humidity Levels', 'Fertilization', 'Watering'];
-
     const flattenedRoutes = routes.flatMap(route => route.children || []).filter(r => r.navLabel);
+    const methodsLabels = ['Lighting', 'Soil Humidity Levels', 'Fertilization', 'Watering'];
 
     const mainLinks = flattenedRoutes.filter(link => !methodsLabels.includes(link.navLabel));
     const methodLinks = flattenedRoutes.filter(link => methodsLabels.includes(link.navLabel));
@@ -32,7 +30,6 @@ function Header() {
                     {mainLinks.map((link, i) => (
                         <Link key={i} to={`/${link.path}`}>{link.navLabel}</Link>
                     ))}
-
                     {/* METHODS DROPDOWN */}
                     <div className="dropdown">
                         <span className="dropdown-toggle" onClick={() => toggleDropdown('Methods')}>
