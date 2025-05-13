@@ -1,59 +1,101 @@
-/* DASHBOARD PAGE
-   - Author: Taggerkov */
+/*
+ * @file dashboard.css
+ * @description Styles for the SmartGrow sensor dashboard page.
+ * Includes layout and design for sensor gauge blocks, color-coded labels,
+ * and responsive visual organization of the dashboard view.
+ *
+ * @author AlexaKelemen
+ * @since 1.0.0
+ */
 
-/* Main Layout */
-.dashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3rem 2rem;
-    width: 100%;
-    animation: dashboardEntrance 0.6s ease-out both;
+/* ========== Layout Wrappers ========== */
+
+/**
+ * Main dashboard container for sensor readings.
+ * Centers the content and applies spacing for clarity.
+ */
+.sensor-dashboard {
+    text-align: center;
+    padding: 2rem;
 }
 
-/* Title */
-.dashboard h1 {
-    font-size: 3rem;
-    margin: 0;
-    padding-bottom: 1rem;
-    color: var(--colorMain);
+/**
+ * Dashboard page title.
+ */
+.sensor-dashboard h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
 }
 
-/* Gauge Layout */
-.gauge-row {
+/**
+ * Wrapper for all gauge components, aligned in a responsive grid.
+ */
+.gauges {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    gap: 4rem;
+    gap: 2rem;
     flex-wrap: wrap;
-    margin-top: 2rem;
 }
 
-.gauge-card {
-    transform: scale(110%);
-    display: inherit;
+/**
+ * Each individual gauge block with label.
+ */
+.gauge-block {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     min-width: 200px;
-    min-height: 250px;
-    background: var(--colorContrast);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    transition: transform 0.3s ease;
 }
 
-.gauge-card:hover {
-    transform: translateY(-4px);
+/* ========== Gauge Labels ========== */
+
+/**
+ * Base label style for sensor category titles (e.g. "Air Temperature").
+ * Colors are applied dynamically via additional classes.
+ */
+.label {
+    margin-top: 1rem;
+    padding: 0.5rem 1.2rem;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
-/* Label */
-.gauge-label {
-    padding: 0.4rem 1.2rem;
-    border-radius: 12px;
-    color: var(--colorContrast);
-    font-size: 1rem;
-    text-transform: capitalize;
-    min-height: 32px;
+/* ========== Color Utility Classes ========== */
+
+/**
+ * Green label: Optimal range.
+ */
+.label.green {
+    background-color: #2ecc71;
+}
+
+/**
+ * Yellow label: Acceptable range.
+ */
+.label.yellow {
+    background-color: #f1c40f;
+}
+
+/**
+ * Orange label: Warning or elevated.
+ */
+.label.orange {
+    background-color: #f39c12;
+}
+
+/**
+ * Red label: Critical or too low/high.
+ */
+.label.red {
+    background-color: #e74c3c;
+}
+
+/**
+ * Blue label: Cold or under threshold.
+ */
+.label.blue {
+    background-color: #3498db;
 }
