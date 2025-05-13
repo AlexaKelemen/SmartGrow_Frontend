@@ -1,5 +1,6 @@
 import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import GreenhouseCard from '@/components/GreenhouseCard'; 
 import React from 'react';
 
@@ -15,7 +16,7 @@ const mockGreenhouse = {
 describe('GreenhouseCard', () => {
   test('renders greenhouse image with alt text', () => {
     // Render the component with mock data
-    render(<GreenhouseCard greenhouse={mockGreenhouse} />);
+    render(<MemoryRouter><GreenhouseCard greenhouse={mockGreenhouse} /></MemoryRouter>);
 
     // Check that the image is displayed with the correct alt text
     const image = screen.getByAltText('Tomato House');
@@ -24,7 +25,7 @@ describe('GreenhouseCard', () => {
   });
 
   test('displays the greenhouse name and unpair button', () => {
-    render(<GreenhouseCard greenhouse={mockGreenhouse} />);
+    render(<MemoryRouter><GreenhouseCard greenhouse={mockGreenhouse} /></MemoryRouter>);
 
     // Check for greenhouse name
     expect(screen.getByText('Tomato House')).toBeInTheDocument();
@@ -34,7 +35,7 @@ describe('GreenhouseCard', () => {
   });
 
   test('displays lighting, temperature, and humidity values', () => {
-    render(<GreenhouseCard greenhouse={mockGreenhouse} />);
+    render(<MemoryRouter><GreenhouseCard greenhouse={mockGreenhouse} /></MemoryRouter>);
 
     // Check that each environmental value is displayed correctly
     expect(screen.getByText('Lighting')).toBeInTheDocument();
