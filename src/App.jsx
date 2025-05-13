@@ -3,12 +3,26 @@
  * Licensed under the MIT License. See LICENSE file in: https://github.com/Taggerkov/openpokedex, for full license information.
  */
 
-import { Outlet } from 'react-router-dom'
-import Header from "./components/Header"
-import Footer from "./components/Footer";
+/**
+ * @file App.jsx
+ * @description Root layout component for the SmartGrow application.
+ *
+ * This file defines the top-level structure of the app, including the header,
+ * footer, and main content area (which is populated via React Router's <Outlet>).
+ *
+ * All routed views are rendered inside this layout.
+ *
+ * @see router.jsx for route definitions
+ * @see Header.jsx
+ * @see Footer.jsx
+ * @version 1.0.0
+ * @since 0.0.1
+ * @author Taggerkov
+ */
 
-// Main application layout.
-// Renders Header and switches pages via React Router's Outlet.
+import { Outlet } from 'react-router-dom'
+import Header from "@/components/Header"
+import Footer from "@/components/Footer";
 
 /**
  * Application layout component.
