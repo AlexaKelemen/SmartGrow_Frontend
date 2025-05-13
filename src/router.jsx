@@ -104,11 +104,11 @@ const routes = [
                 navLabel: 'Greenhouses',
             },
             {
-                path: 'greenhouses/pair',
+                path: 'pair-greenhouse',
                 element: <PairGreenhousePage />,
             },
             {
-                path: 'greenhouses/edit:id',
+                path: 'edit-greenhouse/:id',
                 element: <EditGreenhousePage />,
             },
             {
