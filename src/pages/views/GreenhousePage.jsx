@@ -16,20 +16,13 @@ const GreenhousePage = () => {
    const navigate = useNavigate();
   return (
     <div className="greenhouse-page">
-      <h2 className="section-title">Greenhouses:</h2>
+      <h2 className="section-title">Greenhouses</h2>
       <div className="action-buttons">
         <button
           className="pair-button"
           onClick={() => navigate('/pair-greenhouse')}
         >
           Pair Greenhouse
-        </button>
-
-        <button
-          className="edit-page-button"
-          onClick={() => navigate('/edit-greenhouse')}
-        >
-          Edit Greenhouse
         </button>
       </div>
    

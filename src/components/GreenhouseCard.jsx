@@ -1,7 +1,9 @@
 import React from "react";
 import "@/styles/pages/greenhouse.css";
+import { useNavigate } from "react-router-dom";
 
 const GreenhouseCard = ({ greenhouse }) => {
+  const navigate = useNavigate();
   return (
     <div className="greenhouse-card">
       <div className="image-container">
@@ -28,6 +30,12 @@ const GreenhouseCard = ({ greenhouse }) => {
           <span>{greenhouse.humidity}</span>
         </div>
       </div>
+      <button
+        className="edit-button"
+        onClick={() => navigate(`/edit-greenhouse/${greenhouse.id}`)}
+      >
+        Edit
+      </button>
     </div>
   );
 };
