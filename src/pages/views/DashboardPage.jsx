@@ -94,6 +94,8 @@ export default function Dashboard() {
                 <GaugeCard label="Brightness" color="var(--colorBrightBright)">
                     <GaugeBrightness {...getBrightnessReading()} />
                 </GaugeCard>
+                <GaugeCard label="Air humidity" color="var(--colorHumidityIdeal)"> <GaugeHumidity {...getHumidityReading()} />
+                </GaugeCard>
             </div>
         </div>
     );
