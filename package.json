@@ -13,9 +13,11 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "jest --coverage",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "start": "react-scripts start"
   },
   "dependencies": {
+    "20": "^3.1.9",
     "axios": "^1.9.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
