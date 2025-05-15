@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
@@ -23,8 +23,15 @@ jobs:
       - name: Run Linter
         run: npm run lint
 
-      - name: Run Test   
+      - name: Run Test
         run: npm test
 
       - name: Build Project
         run: npm run build
+
+      - name: Run Cypress Tests (headless)
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          wait-on: http://localhost:3000
+          wait-on-timeout: 60 # seconds
