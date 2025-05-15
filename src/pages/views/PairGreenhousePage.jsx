@@ -5,6 +5,10 @@ import "@/styles/pages/pairgreenhouse.css";
 const PairGreenhousePage = () => {
   const navigate = useNavigate();
 
+  const handleCancel = (e) => {
+    e.preventDefault();
+    navigate("/greenhouses");
+  };
   return (
     <main className="pair-greenhouse-page">
   <h2>Pair greenhouse</h2>
@@ -25,7 +29,10 @@ const PairGreenhousePage = () => {
       <input type="text" name="something2" />
     </label>
 
-    <button type="submit" className="submit-button" onClick={() => navigate("/greenhouses")}>Pair greenhouse</button>
+  <div className="pair-buttons">
+   <button className="cancel-button" onClick={handleCancel}>Cancel</button>
+    <button type="submit" className="submit-button">Pair greenhouse</button>
+    </div>
   </form>
 </main>
 

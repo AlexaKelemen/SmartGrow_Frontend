@@ -1,5 +1,5 @@
 /**
- * @file index.js
+ * @file hooks/index.js
  * @description Centralized export file for all custom React hooks in the application.
  * Provides a single point of access for importing hooks, improving code maintainability and scalability.
  *

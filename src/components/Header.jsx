@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {routes} from "../router.jsx"
+import {routes} from "@/router"
 import { useState } from 'react';
 
 /**
