@@ -1,5 +1,11 @@
+// Mock ResizeObserver
+global.ResizeObserver = class {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};
 import { render, screen } from '@testing-library/react';
-import Dashboard from '@/pages/Dashboard';
+import Dashboard from '@/pages/views/DashboardPage';
 import { vi } from 'vitest';
 
 
