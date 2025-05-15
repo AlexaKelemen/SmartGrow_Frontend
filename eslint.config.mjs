@@ -3,6 +3,7 @@ import globals from "globals";
 import pluginReact from "eslint-plugin-react";
 import pluginJest from "eslint-plugin-jest";
 import { defineConfig } from "eslint/config";
+import pluginCypress from "eslint-plugin-cypress"; 
 
 export default defineConfig([
   {
@@ -45,5 +46,26 @@ export default defineConfig([
       "js/recommended",
       pluginReact.configs.flat.recommended
     ],
+  },
+
+  {
+    files: ["cypress/e2e/**/*.cy.{js,jsx}"],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.jest,
+        ...globals.mocha, 
+        ...globals.cy,    
+        cy: true,       
+        Cypress: true,
+      },
+    },
+    plugins: {
+      cypress: pluginCypress,
+    },
+    rules: {
+      "cypress/no-unnecessary-waiting": "warn",
+    },
   },
 ]);
