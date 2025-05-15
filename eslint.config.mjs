@@ -57,13 +57,15 @@ export default defineConfig([
         ...globals.jest,
         ...globals.mocha, 
         ...globals.cy,    
+        cy: true,       
+        Cypress: true,
       },
     },
     plugins: {
       cypress: pluginCypress,
     },
     rules: {
-      // Optional: you can add Cypress-specific rules here
+      "cypress/no-unnecessary-waiting": "warn",
     },
   },
 ]);
