@@ -16,7 +16,7 @@
 
 /* Modal container */
 .permission-modal {
-    background: #fff;
+    background: var(--colorBackground);
     border-radius: 10px;
     padding: 2rem;
     max-width: 420px;
@@ -32,14 +32,14 @@
 .permission-modal h2 {
     margin: 0;
     font-size: 1.5rem;
-    color: #222;
+    color: var(--colorText);
 }
 
 /* Message */
 .permission-modal p {
     margin: 1rem 0 1.5rem;
     font-size: 1rem;
-    color: #444;
+    color: var(--colorSecondary);
 }
 
 /* Action buttons */
@@ -59,11 +59,15 @@
 }
 
 .permission-actions button:first-child {
-    background-color: #ccc;
-    color: #000;
+    background-color: var(#898c93);
+    color: var(--colorText);
 }
 
 .permission-actions button:last-child {
-    background-color: #28a745;
-    color: #fff;
+    background-color: var(--colorMain);
+    color: var(--colorContrast);
+}
+
+.permission-actions button:last-child:hover {
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.5);
 }
