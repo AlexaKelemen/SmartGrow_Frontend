@@ -1,7 +1,7 @@
 import { vi } from 'vitest';
 import React from "react";
 import { render, screen, fireEvent } from '@testing-library/react';
-import DeletePopUp from '../components/DeletePopUp';
+import DeletePopUp from '../../components/DeletePopUp';
 
 describe('DeletePopUp component', () => {
     const nameLabel = 'Vegetable Preset';
