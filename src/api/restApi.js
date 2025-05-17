@@ -6,7 +6,7 @@
  * <br>Uses Axios for network requests with JSON handling.
  *
  * @author Taggerkov
- * @version 1.0.0
+ * @version 1.1.0
  * @since 0.0.1
  */
 
@@ -19,11 +19,13 @@ import axios from 'axios';
  * @since 1.0.0
  */
 const API = axios.create({
-    baseURL: '/api',
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://myapp.com/api/' : 'http://localhost:5000/api/',
     headers: {
         'Content-Type': 'application/json'
     }
 });
+
+let sensorPath = 'SensorReading/';
 
 /**
  * API functions related to sensor readings.
@@ -32,6 +34,7 @@ const API = axios.create({
  * @since 1.0.0
  */
 export const SensorAPI = {
+
     /**
      * Fetch a list of sensor readings.
      * @param {number} [limit=20] - Number of readings to retrieve.
@@ -41,7 +44,7 @@ export const SensorAPI = {
      * @see SensorAPI.getLatestReading
      */
     async getReadings(limit = 20) {
-        const response = await API.get('/SensorReadings', {params: {limit}});
+        const response = await API.get(sensorPath + '/', {params: {limit}});
         return response.data;
     },
 
@@ -117,5 +120,30 @@ export const ControlAPI = {
     async getHistory(limit = 20) {
         const response = await API.get('/Control/history', {params: {limit}});
         return response.data;
+    }
+};
+
+/**
+ * API functions related to push notification setup.
+ * @namespace PushAPI
+ * @since 1.1.0
+ */
+export const PushAPI = {
+    /**
+     * Retrieves the VAPID public key used for client-side push subscription.
+     * @returns {Promise<string>} Base64-encoded VAPID public key.
+     */
+    async getVapidKey() {
+        const response = await API.get('/vapidPublicKey');
+        return response.data;
+    },
+
+    /**
+     * Sends the client-side push subscription to the backend to store it.
+     * @param {PushSubscription} subscription - The push subscription object.
+     * @returns {Promise<void>}
+     */
+    async saveSubscription(subscription) {
+        await API.post('/subscribe', subscription);
     }
 };

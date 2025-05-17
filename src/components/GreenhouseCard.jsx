@@ -1,6 +1,7 @@
 import React from "react";
 import "@/styles/pages/greenhouse.css";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/Button"; 
 
 const GreenhouseCard = ({ greenhouse }) => {
   const navigate = useNavigate();
@@ -10,7 +11,9 @@ const GreenhouseCard = ({ greenhouse }) => {
         <img src={greenhouse.imageUrl} alt={greenhouse.name} />
         <div className="top-labels">
           <span className="green-label">{greenhouse.name}</span>
-          <button className="unpair-button">Unpair Greenhouse</button>
+          <Button variant="cancel" size="sm">
+            Unpair Greenhouse
+          </Button>
         </div>
       </div>
       <div className="info-cards">
@@ -30,12 +33,13 @@ const GreenhouseCard = ({ greenhouse }) => {
           <span>{greenhouse.humidity}</span>
         </div>
       </div>
-      <button
-        className="edit-button"
+      <Button
+        variant="edit"
+        size="sm"
         onClick={() => navigate(`/edit-greenhouse/${greenhouse.id}`)}
       >
         Edit
-      </button>
+      </Button>
     </div>
   );
 };

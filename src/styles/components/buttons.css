@@ -1,0 +1,66 @@
+/* Base button */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease-in-out;
+    padding: 10px 16px;
+}
+
+/* DEFAULT – Create / Save / Pair */
+.btn--default {
+    background-color:#1A5D1A ;
+    color: white;
+}
+
+/* CANCEL */
+.btn--cancel {
+    background-color: #BA5959;
+    color: white;
+}
+
+/* DELETE */
+.btn--destructive {
+    background-color: #BA5959;
+    color: white;
+}
+
+/* EDIT */
+.btn--edit {
+    background-color: #1A5D1A;
+    color: white;
+}
+/* Special cancel button for popups */
+.btn--cancel-light {
+    background-color: rgba(168, 173, 179, 0.637);
+    color: #000;
+    border: none; }
+
+/* Sizes */
+.btn--sm {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+}
+
+.btn--default {
+    font-size: 1rem;
+}
+
+.btn--lg {
+    padding: 14px 20px;
+    font-size: 1.125rem;
+}
+
+/* Optional icons */
+.btn-icon {
+    margin-right: 8px;
+}
+
+.btn-spinner {
+    margin-right: 8px;
+}
