@@ -1,59 +1,17 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import "@/styles/pages/editPresetPage.css";
-import { Button } from '@/components/ui/Button';
+import { useParams } from "react-router-dom";
+import PresetForm from "@/components/forms/PresetForm"; 
+
 
 const EditPresetPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
 
-  return (
-    <div className="edit-preset-page">
-      <h2>Edit Preset</h2>
+  const handleSubmit = () => {
+    console.log(`Editing preset with id ${id}...`);
+    // TODO: Backend update logic
+  };
 
-      <div className="input-row">
-        <div>
-          <label>Air humidity</label>
-          <div className="input-pair">
-            <input type="text" placeholder="Min" />
-            <input type="text" placeholder="Max" />
-          </div>
-        </div>
-
-        <div>
-          <label>Temperature humidity</label>
-          <div className="input-pair">
-            <input type="text" placeholder="Min" />
-            <input type="text" placeholder="Max" />
-          </div>
-        </div>
-      </div>
-
-      <div className="input-row">
-        <div>
-          <label>Soil humidity</label>
-          <div className="input-pair">
-            <input type="text" placeholder="Min" />
-            <input type="text" placeholder="Max" />
-          </div>
-        </div>
-
-        <div>
-          <label>Brightness</label>
-          <div className="input-pair">
-            <input type="text" placeholder="Min" />
-            <input type="text" placeholder="Max" />
-          </div>
-        </div>
-      </div>
-
-      <div className="button-group">
-        
-   <Button variant="cancel" onClick={() => navigate("/presets")}>Cancel</Button>
-   <Button>Edit</Button>
-      </div>
-    </div>
-  );
+  return <PresetForm mode="edit" onSubmit={handleSubmit} />;
 };
 
 export default EditPresetPage;
