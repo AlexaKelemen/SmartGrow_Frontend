@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "@/styles/pages/editPresetPage.css";
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 
 const EditPresetPage = () => {
   const { id } = useParams();
