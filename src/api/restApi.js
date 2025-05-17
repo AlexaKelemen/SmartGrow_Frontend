@@ -19,11 +19,13 @@ import axios from 'axios';
  * @since 1.0.0
  */
 const API = axios.create({
-    baseURL: '/api',
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://myapp.com/api/' : 'http://localhost:5000/api/',
     headers: {
         'Content-Type': 'application/json'
     }
 });
+
+let sensorPath = 'SensorReading/';
 
 /**
  * API functions related to sensor readings.
@@ -32,6 +34,7 @@ const API = axios.create({
  * @since 1.0.0
  */
 export const SensorAPI = {
+
     /**
      * Fetch a list of sensor readings.
      * @param {number} [limit=20] - Number of readings to retrieve.
@@ -41,7 +44,7 @@ export const SensorAPI = {
      * @see SensorAPI.getLatestReading
      */
     async getReadings(limit = 20) {
-        const response = await API.get('/SensorReadings', {params: {limit}});
+        const response = await API.get(sensorPath + '/', {params: {limit}});
         return response.data;
     },
 

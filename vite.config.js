@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
-
 export default defineConfig(({ mode }) => ({
   base: mode === 'production'
     ? '/SmartGrow_Frontend/'
@@ -26,6 +25,6 @@ export default defineConfig(({ mode }) => ({
   test: {
     globals: true,
     environment: 'jsdom',
-    include: ['src/**/*.test.{js,jsx}'], // ensures your test files are picked up
+    include: ['src/**/*.test.{js,jsx}'],
   },
 }))

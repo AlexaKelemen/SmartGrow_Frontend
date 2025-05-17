@@ -14,7 +14,7 @@
 
 import {createPortal} from 'react-dom';
 import {useCallback, useEffect, useId, useRef} from 'react';
-import '@/styles/components/PermissionPrompt.css';
+import '@/styles/components/permissionPrompt.css';
 
 /**
  * PermissionPrompt component
@@ -59,7 +59,6 @@ export default function PermissionPrompt({visible, onConfirm, title = 'Allow Per
     useEffect(() => {
         const handleKey = (e) => {
             if (e.key === 'Escape') close(false);
-            if (e.key === 'Enter') close(true);
             const buttons = modalRef.current?.querySelectorAll('button');
             if (!buttons?.length || e.key !== 'Tab') return;
             const [first, last] = [buttons[0], buttons[buttons.length - 1]];

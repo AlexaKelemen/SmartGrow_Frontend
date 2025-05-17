@@ -9,6 +9,7 @@ import "@/styles/pages/home.css";
 import logo from "../../../assets/smartgrow-logo.png";
 
 const HomePage = () => {
+
     return (
         <div className="home-container">
             <div className="info-section">

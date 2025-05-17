@@ -12,12 +12,12 @@
  * logic, while defaulting to session-cached state hydrated from browser-persistent data.
  *
  * @author Taggerkov
- * @version 1.0.0
+ * @version 1.5.0
  * @since 0.5.5
  */
 
 import {useEffect, useState} from 'react';
-import {isPushSupported, getPermissionStatus, urlBase64ToUint8Array, getBrowserSubscription} from '@/utils/pushUtils';
+import {getPermissionStatus, urlBase64ToUint8Array, getBrowserSubscription, isPushSupported} from '@/utils/pushUtils';
 import {PushAPI} from "@/api/restApi";
 import {showPushPermissionPrompt} from "@/components/permissions/showPushPermissionPrompt";
 
@@ -37,15 +37,24 @@ import {showPushPermissionPrompt} from "@/components/permissions/showPushPermiss
 export function usePushNotifications() {
     const [registration, setRegistration] = useState(null);
     const [permission, setPermission] = useState(getPermissionStatus());
-    const [promptVisible, setPromptVisible] = useState(false);
-    const [resolvePrompt, setResolvePrompt] = useState(null);
+    const [promptVisible] = useState(false);
     const [subscription, setSubscription] = useState(null);
 
-    // Registers the service worker on mount if the environment supports push notifications.
     useEffect(() => {
-        if (!isPushSupported()) return;
-        navigator.serviceWorker.register('/sw.js').then(setRegistration).catch(err => console.error('Service worker registration failed', err));
+        const registerServiceWorker = async () => {
+            if (isPushSupported() && 'serviceWorker' in navigator) await navigator.serviceWorker.register('/pushWorker.js').then(reg => setRegistration(reg)).catch(error => console.error('Service Worker registration failed', error))
+        };
+        registerServiceWorker();
     }, []);
+
+    useEffect(() => {
+        if (registration) {
+            registration.pushManager.getSubscription().then((existingSubscription) => {
+                if (existingSubscription) setSubscription(existingSubscription);
+            });
+            prepareSubscription()
+        }
+    }, [registration]);
 
     /**
      * Internally subscribes the user to push notifications using the given VAPID public key.
@@ -56,21 +65,30 @@ export function usePushNotifications() {
      */
     async function subscribeToPush(vapidPublicKeyBase64) {
         const sub = await registration.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array(vapidPublicKeyBase64),
+            userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(vapidPublicKeyBase64),
         });
         setSubscription(sub);
         return sub;
     }
 
     /**
-     * Prepares push notifications by verifying existing permissions and subscription.
+     * Prepares the push subscription for the user.
      *
-     * If permission is granted and a subscription already exists, hydration occurs.
-     * Otherwise, it prompts the user with a custom UI, then requests browser permission
-     * and subscribes them to push notifications if accepted.
+     * This function checks if the service worker registration exists and if the user
+     * already has a push subscription.
+     * If no subscription exists, it proceeds to check if the browser's notification permission is granted.
      *
-     * @returns {Promise<void>} Resolves once the process completes or is canceled.
+     * If the permission is granted, it checks for an existing subscription.
+     * If there is no subscription, it proceeds to request the user to subscribe, using
+     * a custom UI for requesting permission and then saving the subscription if granted.
+     *
+     * The function does not ask for permission again if the user has already granted it.
+     * If permission is denied, the subscription process will not proceed.
+     *
+     * @async
+     * @returns {void} This function does not return any value.
+     * It updates the state
+     * (`subscription`, `permission`) and handles subscription logic internally.
      */
     async function prepareSubscription() {
         if (!registration || subscription) return;
@@ -80,13 +98,36 @@ export function usePushNotifications() {
                 setSubscription(existing);
                 return;
             }
+        } else {
+            const userAccepted = await showPushPermissionPrompt();
+            if (!userAccepted) {
+                console.log('User accepted permission?', userAccepted);
+                return;
+            }
+            const permissionResult = await Notification.requestPermission();
+            setPermission(permissionResult);
+            if (permissionResult !== 'granted') {
+                console.log('User denied permission, maybe on Always Block?');
+                return;
+            }
+            console.log('User accepted permission?', userAccepted);
         }
-        const userAccepted = await showPushPermissionPrompt();
-        if (!userAccepted) return;
-        const permissionResult = await Notification.requestPermission();
-        setPermission(permissionResult);
-        if (permissionResult !== 'granted') return;
         await PushAPI.saveSubscription(await subscribeToPush(await PushAPI.getVapidKey()));
+    }
+
+    /**
+     * A helper function to trigger `useState` updates in the component.
+     * This function serves as a hack to force React's state updates synchronously.
+     * It does not perform any actions on its own and is used to activate state transitions.
+     *
+     * This approach is necessary due to React's asynchronous state updates,
+     * where certain actions need to be triggered immediately after state changes.
+     *
+     * @returns {void} This function does not return any value. Its only purpose is to force
+     * state transitions by activating `useState` updates in the component.
+     */
+    async function runPush() {
+        // This function intentionally left empty. It triggers the state updates.
     }
 
     /**
@@ -119,7 +160,7 @@ export function usePushNotifications() {
     }
 
     return {
-        prepareSubscription, rotateSubscription, getSubscription,
-        promptVisible, permission
+        rotateSubscription, getSubscription,
+        promptVisible, permission, runPush
     };
 }

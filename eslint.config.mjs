@@ -24,16 +24,12 @@ export default defineConfig([
       "react/prop-types": "off",
       "no-unused-vars": "warn",
       "react/no-unescaped-entities": "off",
-      'no-unused-vars': 'off',
       'no-undef': 'error',
-      // 👇 Apply important Jest rules manually
       "jest/no-disabled-tests": "warn",
       "jest/no-focused-tests": "error",
       "jest/no-identical-title": "error",
       "jest/prefer-to-have-length": "warn",
       "jest/valid-expect": "error",
-
-
     },
     settings: {
       react: {

@@ -49,8 +49,8 @@ export function urlBase64ToUint8Array(base64String) {
 /**
  * Retrieves the current push subscription stored in the browser (if any).
  *
- * @param {ServiceWorkerRegistration|null} registration - The service worker registration to query.
- * @returns {Promise<PushSubscription|null>} The existing PushSubscription or null.
+ * @param {ServiceWorkerRegistration} registration - The service worker registration to query.
+ * @returns {Promise<PushSubscription>} The existing PushSubscription or null.
  */
 export async function getBrowserSubscription(registration) {
     if (!registration) return null;
@@ -60,7 +60,7 @@ export async function getBrowserSubscription(registration) {
 /**
  * Extracts a simplified, backend-friendly version of a PushSubscription object.
  *
- * @param {PushSubscription|null} subscription - The push subscription to normalize.
+ * @param {PushSubscription} subscription - The push subscription to normalize.
  * @returns {{
  *   endpoint: string,
  *   keys: {
