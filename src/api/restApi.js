@@ -6,7 +6,7 @@
  * <br>Uses Axios for network requests with JSON handling.
  *
  * @author Taggerkov
- * @version 1.0.0
+ * @version 1.1.0
  * @since 0.0.1
  */
 
@@ -120,6 +120,27 @@ export const ControlAPI = {
     }
 };
 
-export const saveSubscription = async (subscription) => {
-    return API.post('/subscribe', subscription);
+/**
+ * API functions related to push notification setup.
+ * @namespace PushAPI
+ * @since 1.1.0
+ */
+export const PushAPI = {
+    /**
+     * Retrieves the VAPID public key used for client-side push subscription.
+     * @returns {Promise<string>} Base64-encoded VAPID public key.
+     */
+    async getVapidKey() {
+        const response = await API.get('/vapidPublicKey');
+        return response.data;
+    },
+
+    /**
+     * Sends the client-side push subscription to the backend to store it.
+     * @param {PushSubscription} subscription - The push subscription object.
+     * @returns {Promise<void>}
+     */
+    async saveSubscription(subscription) {
+        await API.post('/subscribe', subscription);
+    }
 };

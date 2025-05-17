@@ -15,7 +15,6 @@
  * @since 0.5.5
  */
 
-
 /**
  * Checks if the current browser supports push notifications.
  *

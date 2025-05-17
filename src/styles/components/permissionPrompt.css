@@ -1,53 +1,69 @@
+/* CUSTOM PERMISSION POP-UP
+   - Author: Taggerkov */
+
+/* Overlay: full-screen darkened background */
 .permission-overlay {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    pointer-events: all;
+    animation: fadeIn 200ms ease-in;
 }
 
+/* Modal container */
 .permission-modal {
     background: #fff;
-    border-radius: 8px;
-    padding: 1.5rem;
-    max-width: 400px;
+    border-radius: 10px;
+    padding: 2rem;
+    max-width: 420px;
     width: 90%;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     text-align: center;
+    position: relative;
+    z-index: 10000;
+    animation: dashboardEntrance 300ms ease-out;
 }
 
+/* Title */
 .permission-modal h2 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    color: #222;
 }
 
+/* Message */
 .permission-modal p {
-    margin: 1rem 0;
-    font-size: 0.95rem;
-    color: #333;
+    margin: 1rem 0 1.5rem;
+    font-size: 1rem;
+    color: #444;
 }
 
+/* Action buttons */
 .permission-actions {
     display: flex;
-    justify-content: space-around;
-    margin-top: 1rem;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .permission-actions button {
-    padding: 0.5rem 1.25rem;
-    font-weight: bold;
-    border: none;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
     border-radius: 6px;
+    border: none;
     cursor: pointer;
+    font-size: 0.95rem;
 }
 
 .permission-actions button:first-child {
     background-color: #ccc;
+    color: #000;
 }
 
 .permission-actions button:last-child {
     background-color: #28a745;
-    color: white;
+    color: #fff;
 }

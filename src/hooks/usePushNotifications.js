@@ -18,6 +18,8 @@
 
 import {useEffect, useState} from 'react';
 import {isPushSupported, getPermissionStatus, urlBase64ToUint8Array, getBrowserSubscription} from '@/utils/pushUtils';
+import {PushAPI} from "@/api/restApi";
+import {showPushPermissionPrompt} from "@/components/permissions/showPushPermissionPrompt";
 
 /**
  * Hook that manages the full client-side logic for Web Push Notifications.
@@ -68,10 +70,9 @@ export function usePushNotifications() {
      * Otherwise, it prompts the user with a custom UI, then requests browser permission
      * and subscribes them to push notifications if accepted.
      *
-     * @param {string} vapidPublicKeyBase64 - The base64-encoded VAPID public key.
      * @returns {Promise<void>} Resolves once the process completes or is canceled.
      */
-    async function prepareSubscription(vapidPublicKeyBase64) {
+    async function prepareSubscription() {
         if (!registration || subscription) return;
         if (getPermissionStatus() === 'granted') {
             const existing = await getBrowserSubscription(registration);
@@ -80,15 +81,12 @@ export function usePushNotifications() {
                 return;
             }
         }
-        const userAccepted = await new Promise(resolve => {
-            setResolvePrompt(() => resolve);
-            setPromptVisible(true);
-        });
+        const userAccepted = await showPushPermissionPrompt();
         if (!userAccepted) return;
         const permissionResult = await Notification.requestPermission();
         setPermission(permissionResult);
         if (permissionResult !== 'granted') return;
-        await subscribeToPush(vapidPublicKeyBase64);
+        await PushAPI.saveSubscription(await subscribeToPush(await PushAPI.getVapidKey()));
     }
 
     /**
@@ -120,20 +118,8 @@ export function usePushNotifications() {
         return existing;
     }
 
-    /**
-     * Called by the PermissionPrompt component to resolve the UI's user response.
-     * Closes the prompt and invokes the stored resolver to continue the flow.
-     *
-     * @param {boolean} choice - True if user accepted notification request, false otherwise.
-     */
-    function confirmPrompt(choice) {
-        setPromptVisible(false);
-        if (resolvePrompt) resolvePrompt(choice);
-        setResolvePrompt(null);
-    }
-
     return {
         prepareSubscription, rotateSubscription, getSubscription,
-        confirmPrompt, promptVisible, permission
+        promptVisible, permission
     };
 }
