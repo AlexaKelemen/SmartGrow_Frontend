@@ -26,6 +26,6 @@ export default defineConfig(({ mode }) => ({
   test: {
     globals: true,
     environment: 'jsdom',
-    include: ['src/**/*.test.{js,jsx}'],
+    include:  ['src/**/*.test.{js,jsx}', 'src_test/**/*.test.{js,jsx}'], // ensures your test files are picked up
   },
 }))
