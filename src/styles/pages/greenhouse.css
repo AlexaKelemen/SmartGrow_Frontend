@@ -64,15 +64,6 @@
     font-size: 12px;
   }
   
-  .unpair-button {
-    background: #d34d4d;
-    color: white;
-    border: none;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 12px;
-  }
-  
   .info-cards {
     display: flex;
     justify-content: space-around;
@@ -88,60 +79,12 @@
     font-size: 12px;
   }
 
-    .pair-button {
-      background-color: #3a5d1f;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-  
-    .pair-button:hover {
-      background-color: #2f4c19;
-    }
     /* Add more space between the image and the info cards */
 .greenhouse-card .image-container {
   margin-bottom: 16px;
 }
 
-/* Style for the Edit button */
-.edit-button {
-  background-color: #3a5d1f;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.edit-button:hover {
-  background-color: #2f4c19;
-}
-
-
-
 .greenhouse-card .image-container {
   margin-bottom: 16px;
 }
 
-.edit-button {
-  background-color: #3a5d1f;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.edit-button:hover {
-  background-color: #2f4c19;
-}

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "@/styles/pages/pairgreenhouse.css"; 
+import { Button } from '@/components/ui/button';
 
 const EditGreenhouse = () => {
   const navigate = useNavigate();
@@ -37,8 +38,8 @@ const EditGreenhouse = () => {
         </label>
 
         <div className="pair-buttons">
-          <button className="cancel-button" onClick={handleCancel}>Cancel</button>
-          <button type="submit" className="save-button">Save changes</button>
+        <Button variant="cancel" onClick={handleCancel}>Cancel</Button>
+        <Button variant="default">Save changes</Button>
         </div>
       </form>
     </main>

@@ -51,23 +51,3 @@ input[type="text"] {
     gap: 2.5rem;
     margin-top: 3rem;
 }
-
-.cancel-btn,
-.create-btn {
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
-.cancel-btn {
-    background-color: #d66;
-    color: white;
-}
-
-.create-btn {
-    background-color: #2e7d32;
-    color: white;
-}

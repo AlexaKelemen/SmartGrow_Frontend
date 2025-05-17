@@ -33,22 +33,3 @@ input[type="number"] {
     margin-top: 3rem;
 }
 
-.button-cancel,
-.button-submit {
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
-.button-cancel {
-    background-color: #d66;
-    color: white;
-}
-
-.button-submit {
-    background-color: #2e7d32;
-    color: white;
-}

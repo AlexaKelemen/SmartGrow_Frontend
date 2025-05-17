@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "@/styles/pages/createPresetForm.css"; 
+import { Button } from '@/components/ui/button';
 
 const CreatePresetForm = () => {
   const navigate = useNavigate();
@@ -54,12 +55,8 @@ const CreatePresetForm = () => {
 
       {/* Buttons */}
       <div className="form-buttons">
-        <button className="cancel-btn" onClick={() => navigate("/presets")}>
-          Cancel
-        </button>
-        <button className="create-btn">
-          Create
-        </button>
+      <Button variant="cancel" onClick={() => navigate("/presets")}>Cancel</Button>
+      <Button>Create</Button>
       </div>
     </div>
   );

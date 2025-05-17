@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "@/styles/pages/pairgreenhouse.css"; 
+import { Button } from "@/components/ui/Button";
 
 const PairGreenhousePage = () => {
   const navigate = useNavigate();
@@ -30,8 +31,12 @@ const PairGreenhousePage = () => {
     </label>
 
   <div className="pair-buttons">
-   <button className="cancel-button" onClick={handleCancel}>Cancel</button>
-    <button type="submit" className="submit-button">Pair greenhouse</button>
+  <Button variant="cancel" onClick={handleCancel}>
+            Cancel
+          </Button>
+          <Button type="submit" variant="default">
+            Pair greenhouse
+          </Button>
     </div>
   </form>
 </main>

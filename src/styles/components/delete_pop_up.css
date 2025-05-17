@@ -32,23 +32,3 @@
     justify-content: space-between;
     margin-top: 20px;
 }
-.pop-cancel-btn,
-.pop-delete-btn {
-    font-weight: bold;
-    font-size: 16px;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-}
-.pop-cancel-btn {
-    background: #e0e0e0;
-    color:#4A4A4A;
-    
-}
-
-.pop-delete-btn {
-    background: #b04343;
-    color: white;
-  
-}

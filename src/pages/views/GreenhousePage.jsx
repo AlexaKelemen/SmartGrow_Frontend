@@ -10,6 +10,7 @@ import "@/styles/pages/greenhouse.css";
 import { useNavigate } from "react-router-dom";
 import GreenhouseCard from "@/components/GreenhouseCard"; 
 import greenhouse from "@/pages/viewmodels/Greenhouses.js";
+import { Button } from "@/components/ui/Button";
 
 const GreenhousePage = () => {
 
@@ -18,12 +19,12 @@ const GreenhousePage = () => {
     <div className="greenhouse-page">
       <h2 className="section-title">Greenhouses</h2>
       <div className="action-buttons">
-        <button
-          className="pair-button"
+        <Button
+          variant="default" 
           onClick={() => navigate('/pair-greenhouse')}
         >
           Pair Greenhouse
-        </button>
+        </Button>
       </div>
    
 

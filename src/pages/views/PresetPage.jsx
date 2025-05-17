@@ -16,6 +16,7 @@ import "@/styles/pages/preset.css";
 import presets from "@/pages/viewmodels/Preset";
 import PresetCard from "@/components/PresetCard";
 import DeletePopUp from "@/components/DeletePopUp";
+import { Button } from "@/components/ui/Button";
 
 
 /**
@@ -50,9 +51,9 @@ const PresetPage = () => {
   return (
     <div className="preset-page">
       <div className="preset-header">
-        <button className="create-btn" onClick={() => navigate("/presets/create")}>
+      <Button variant="default" onClick={() => navigate("/presets/create")}>
           Create Preset
-        </button>
+        </Button>
       </div>
 
       <div className="preset-cards">

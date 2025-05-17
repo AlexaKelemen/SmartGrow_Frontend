@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "@/styles/pages/editPresetPage.css";
+import { Button } from '@/components/ui/button';
 
 const EditPresetPage = () => {
   const { id } = useParams();
@@ -47,10 +48,9 @@ const EditPresetPage = () => {
       </div>
 
       <div className="button-group">
-        <button className="button-cancel" onClick={() => navigate("/presets")}>
-          Cancel
-        </button>
-        <button className="button-submit">Edit</button>
+        
+   <Button variant="cancel" onClick={() => navigate("/presets")}>Cancel</Button>
+   <Button>Edit</Button>
       </div>
     </div>
   );
