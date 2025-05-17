@@ -1,6 +1,6 @@
 {
   "name": "smartgrow-frontend",
-  "version": "0.5.0",
+  "version": "0.6.5",
   "description": "SmartGrow is a smart home solution for your greenhouse.",
   "author": "SmartGrow Frontend Team",
   "license": "N/A",
@@ -44,7 +44,6 @@
     "eslint-plugin-react": "^7.37.5",
     "gh-pages": "^6.3.0",
     "globals": "^16.1.0",
-    "jest": "^29.7.0",
     "jsdoc": "^4.0.4",
     "jsdom": "^26.1.0",
     "prettier": "^3.5.3",

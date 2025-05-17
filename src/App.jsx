@@ -15,30 +15,40 @@
  * @see router.jsx for route definitions
  * @see Header.jsx
  * @see Footer.jsx
- * @version 1.0.0
+ * @version 1.2.0
  * @since 0.0.1
  * @author Taggerkov
  */
 
-import { Outlet } from 'react-router-dom'
+import {Outlet} from 'react-router-dom'
 import Header from "@/components/Header"
 import Footer from "@/components/Footer";
+import {usePushNotifications} from "@/hooks/usePushNotifications";
+import {useEffect} from "react";
 
 /**
  * Application layout component.
  * Renders the header, the current page content based on the route, and a global footer.
  *
+ * Also loads available ServiceWorkers if compatible.
+ *
  * @author Taggerkov
  * @returns {JSX.Element} The full application layout.
  */
 function App() {
+    const { runPush } = usePushNotifications();
+    useEffect(() => {
+        const setupPush = async () => await runPush();
+        setupPush();
+    }, []);
+
     return (
         <div className="app">
-            <Header />
+            <Header/>
             <main className="main">
-                <Outlet />
+                <Outlet/>
             </main>
-            <Footer />
+            <Footer/>
         </div>
     );
 }
