@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "@/styles/pages/preset.css"; 
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/Button";
 
 const PresetCard = ({ preset,onDelete }) => {
   const [hovered, setHovered] = useState(false);
@@ -40,7 +41,9 @@ const PresetCard = ({ preset,onDelete }) => {
         style={{ backgroundImage: `url(${preset.image})` }}
       >
           <div className="delete-btn-wrapper">
-          <button className="preset-delete-btn" onClick={onDelete}>Delete</button>
+          <Button variant="destructive" size="sm" onClick={onDelete}>
+            Delete
+          </Button>
         </div>
         <h2 className="preset-title">{preset.title}</h2>
       </div>
@@ -64,10 +67,10 @@ const PresetCard = ({ preset,onDelete }) => {
         )}
 
         <div className="preset-buttons">
-         <button className="preset-edit-btn" onClick={() => navigate(`/presets/edit`)}>
-           Edit
-         </button>
-          <button className="preset-apply-btn">Apply</button>
+        <Button variant="edit" size="sm" onClick={() => navigate(`/presets/edit`)}>
+            Edit
+          </Button>
+          <Button variant="default" size="sm">Apply</Button>
         </div>
       </div>
     </div>
