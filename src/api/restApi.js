@@ -35,30 +35,18 @@ let sensorPath = 'SensorReading/';
  */
 export const SensorAPI = {
 
-    /**
-     * Fetch a list of sensor readings.
-     * @param {number} [limit=20] - Number of readings to retrieve.
-     * @returns {Promise<Object[]>} List of sensor readings.
+     /**
+     * Fetch the current sensor readings for a specific greenhouse.
+     * @param {number|string} greenhouseId - The ID of the greenhouse.
+     * @returns {Promise<Object>} Current sensor readings for the greenhouse.
      * @example
-     * const readings = await SensorAPI.getReadings(10);
-     * @see SensorAPI.getLatestReading
+     * const data = await SensorAPI.getCurrentReadingsByGreenhouseId(1);
      */
-    async getReadings(limit = 20) {
-        const response = await API.get(sensorPath + '/', {params: {limit}});
-        return response.data;
-    },
-
-    /**
-     * Fetch the latest sensor reading.
-     * @returns {Promise<Object>} Latest sensor reading.
-     * @example
-     * const latest = await SensorAPI.getLatestReading();
-     * @see SensorAPI.getReadings
-     */
-    async getLatestReading() {
-        const response = await API.get('/SensorReadings/latest');
+     async getCurrentReadingsByGreenhouseId(greenhouseId) {
+        const response = await API.get(`${sensorPath}${greenhouseId}/current-sensor-readings`);
         return response.data;
     }
+
 };
 
 /**

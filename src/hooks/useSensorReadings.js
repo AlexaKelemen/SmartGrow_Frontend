@@ -8,50 +8,42 @@
  * @since 0.0.1
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SensorAPI } from '@/api/restApi';
 
 /**
- * Hook for fetching sensor readings from the backend server.
+ * Hook for fetching current sensor readings by greenhouse ID.
  *
+ * @param {number|string} greenhouseId - The greenhouse to fetch data for.
  * @returns {{
- *   data: Object[]|null,
- *   loading: boolean,
- *   error: string|null,
- *   fetchReadings: (limit?: number) => Promise<void>
- * }}
- * @example
- * const { data, loading, error, fetchReadings } = useSensorReadings();
- *
- * await fetchReadings(50);
- */
-export function useSensorReadings() {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+*   latestReading: Object|null,
+*   isLoading: boolean,
+*   isError: boolean
+* }}
+*/
+export function useSensorReadings(greenhouseId) {
+    const [latestReading, setLatestReading] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
 
-    /**
-     * Fetch a list of sensor readings.
-     *
-     * @async
-     * @function fetchReadings
-     * @param {number} [limit=20] - Number of readings to retrieve from the server.
-     * @returns {Promise<void>}
-     * @example
-     * await fetchReadings(20);
-     */
-    async function fetchReadings(limit = 20) {
-        setLoading(true);
-        setError(null);
-        try {
-            const readings = await SensorAPI.getReadings(limit);
-            setData(readings);
-        } catch (err) {
-            setError(err.message || 'Unknown error');
-        } finally {
-            setLoading(false);
+    useEffect(() => {
+        if (!greenhouseId) return;
+
+        async function fetchData() {
+            setIsLoading(true);
+            setIsError(false);
+            try {
+                const data = await SensorAPI.getCurrentReadingsByGreenhouseId(greenhouseId);
+                setLatestReading(data);
+            } catch (err) {
+                console.error(err);
+                setIsError(true);
+            } finally {
+                setIsLoading(false);
+            }
         }
-    }
 
-    return { data, loading, error, fetchReadings };
+        fetchData();
+    }, [greenhouseId]);
+    return { latestReading, isLoading, isError };
 }

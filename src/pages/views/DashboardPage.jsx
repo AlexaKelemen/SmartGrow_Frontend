@@ -52,14 +52,14 @@ function GaugeCard({label, color, children}) {
  *
  * @returns {JSX.Element}
  */
-export default function Dashboard() {
+export default function Dashboard({greenhouseId = 1 }) {
     const {
         getTemperatureReading,
         getHumidityReading,
         getBrightnessReading,
         isLoading,
         isError
-    } = dashboardModel();
+    } = dashboardModel(greenhouseId);
 
     if (isLoading) {
         return (
