@@ -17,13 +17,19 @@ import axios from 'axios';
  * @author Taggerkov
  * @version 1.0.0
  * @since 1.0.0
- */
+
 const API = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://myapp.com/api/' : 'http://localhost:5000/api/',
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://myapp.com/api/' : 'http://localhost:5050/api/',
     headers: {
         'Content-Type': 'application/json'
     }
-});
+}); I HAVE COMMENTED THIS OUT BECAUSE I AM MOCKING THE SERVER, IN CASE BACKEND FIXES THEIR STUFF WE STILL HAVE THIS */
+const API = axios.create({
+    baseURL: '/api/', 
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
 
 let sensorPath = 'SensorReading/';
 
