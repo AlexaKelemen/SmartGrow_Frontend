@@ -35,7 +35,7 @@ import {useSensorReadings} from "@/hooks";
  * const temp = model.getTemperatureReading();
  * <GaugeTemperature {...temp} />
  */
-export function dashboardModel() {
+export function dashboardModel(greenhouseId) {
     const { latestReading, isLoading, isError } = useSensorReadings();
     // Safely retrieve value or fallback if undefined
     const safe = (key, fallback = 0) => latestReading?.[key] ?? fallback;
