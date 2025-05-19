@@ -68,9 +68,12 @@ const PresetPage = () => {
 
       {showPopUp && selectedPreset && (
         <DeletePopUp
-          presetName={selectedPreset.name}
-          onCancel={handleCancel}
-          onConfirm={handleConfirm}
+        title="Delete preset?"
+        description="delete"
+        nameLabel={selectedPreset.name}
+        confirmLabel="Delete"
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
         />
       )}
     </div>
