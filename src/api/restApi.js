@@ -17,13 +17,19 @@ import axios from 'axios';
  * @author Taggerkov
  * @version 1.0.0
  * @since 1.0.0
- */
+
 const API = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://myapp.com/api/' : 'http://localhost:5000/api/',
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://myapp.com/api/' : 'http://localhost:5050/api/',
     headers: {
         'Content-Type': 'application/json'
     }
-});
+}); I HAVE COMMENTED THIS OUT BECAUSE I AM MOCKING THE SERVER, IN CASE BACKEND FIXES THEIR STUFF WE STILL HAVE THIS */
+const API = axios.create({
+    baseURL: '/api/', 
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
 
 let sensorPath = 'SensorReading/';
 
@@ -35,30 +41,18 @@ let sensorPath = 'SensorReading/';
  */
 export const SensorAPI = {
 
-    /**
-     * Fetch a list of sensor readings.
-     * @param {number} [limit=20] - Number of readings to retrieve.
-     * @returns {Promise<Object[]>} List of sensor readings.
+     /**
+     * Fetch the current sensor readings for a specific greenhouse.
+     * @param {number|string} greenhouseId - The ID of the greenhouse.
+     * @returns {Promise<Object>} Current sensor readings for the greenhouse.
      * @example
-     * const readings = await SensorAPI.getReadings(10);
-     * @see SensorAPI.getLatestReading
+     * const data = await SensorAPI.getCurrentReadingsByGreenhouseId(1);
      */
-    async getReadings(limit = 20) {
-        const response = await API.get(sensorPath + '/', {params: {limit}});
-        return response.data;
-    },
-
-    /**
-     * Fetch the latest sensor reading.
-     * @returns {Promise<Object>} Latest sensor reading.
-     * @example
-     * const latest = await SensorAPI.getLatestReading();
-     * @see SensorAPI.getReadings
-     */
-    async getLatestReading() {
-        const response = await API.get('/SensorReadings/latest');
+     async getCurrentReadingsByGreenhouseId(greenhouseId) {
+        const response = await API.get(`${sensorPath}${greenhouseId}/current-sensor-readings`);
         return response.data;
     }
+
 };
 
 /**
