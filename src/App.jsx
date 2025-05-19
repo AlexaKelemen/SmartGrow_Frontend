@@ -23,7 +23,7 @@
 import {Outlet} from 'react-router-dom'
 import Header from "@/components/Header"
 import Footer from "@/components/Footer";
-import {usePushNotifications} from "@/hooks/usePushNotifications";
+import {usePush} from "@/hooks/push/usePush";
 import {useEffect} from "react";
 
 /**
@@ -36,7 +36,7 @@ import {useEffect} from "react";
  * @returns {JSX.Element} The full application layout.
  */
 function App() {
-    const { runPush } = usePushNotifications();
+    const { runPush } = usePush();
     useEffect(() => {
         const setupPush = async () => await runPush();
         setupPush();

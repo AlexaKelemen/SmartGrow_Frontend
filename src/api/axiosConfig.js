@@ -11,7 +11,7 @@
  *
  * Any service making authenticated HTTP requests should import and use `API`.
  * @author Taggerkov
- * @version 1.0.0
+ * @version 1.2.0
  * @since 0.7.0
  * @see axios
  */
@@ -24,7 +24,7 @@ import axios from 'axios';
  * Kept in sync with backend controller route attributes.
  * @type {string}
  */
-const authPath = 'Auth', sensorPath = 'SensorReading', actionPath = 'Action', presetPath = 'Preset', healthPath = 'Health';
+const authPath = 'Auth', userPath='User', greenhousePath='Greenhouse', sensorPath = 'SensorReading', actionPath = 'Action', presetPath = 'RawPreset', notificationPath='Notification', healthPath = 'Health';
 
 /**
  * Axios instance preconfigured with baseURL and JSON content headers.
@@ -107,4 +107,4 @@ API.interceptors.response.use(response => response, async error => {
 );
 
 export default API;
-export {authPath, sensorPath, actionPath, presetPath, healthPath};
+export {authPath, userPath, greenhousePath, sensorPath, actionPath, presetPath, notificationPath,healthPath};
