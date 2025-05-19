@@ -7,6 +7,7 @@
 import useRealTime from "../viewmodels/DateTime.js"; // Custom hook to get real-time date and time
 import React, { useState } from 'react';
 import "@/styles/pages/lighting.css"; // Styles specific to the lighting page
+import { GaugeHumidity, GaugeBrightness } from "@/components/gauges/wrappers";
 
 const LightingPage = () => {
   const currentDate = useRealTime(); // Gets live updating current date and time
@@ -41,7 +42,7 @@ const LightingPage = () => {
           <span>{currentDate.getDate()}</span>
         </div>
 
-        <div className="gauge-placeholder">😊</div>
+        <GaugeBrightness value={72} min={0} max={100} />
         <div className="brightness-label">Brightness</div>
       </div>
 

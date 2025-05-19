@@ -8,6 +8,8 @@
 import React, { useState } from 'react';
 import useRealTime from '../viewmodels/DateTime.js';
 import "@/styles/pages/watering.css";
+import { GaugeHumidity, GaugeBrightness } from "@/components/gauges/wrappers";
+
 
 
 const WateringPage = () => {
@@ -43,7 +45,8 @@ const WateringPage = () => {
           <span>{currentDate.getDate()}</span>
         </div>
 
-        <div className="gauge-placeholder">😊</div>
+        <GaugeHumidity value={76} min={0} max={100} minIdeal={60} maxIdeal={80} />
+
         <div className="humidity-label">Soil humidity</div>
       </div>
 
