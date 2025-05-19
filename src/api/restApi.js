@@ -1,134 +1,251 @@
 /**
- * @file restApi.js
- * @description Centralized REST API client module for SmartGrowFrontend.
- * <br>Handles all HTTP/HTTPS communications between the frontend and the backend
- * services, organized into modular namespaces: SensorAPI, ModelAPI, and ControlAPI.
- * <br>Uses Axios for network requests with JSON handling.
+ * SmartGrow REST API layer.
  *
+ * This module defines an interface to all HTTP endpoints exposed by the SmartGrow backend.
+ * It uses a configured Axios instance to ensure consistent headers, authentication, and refresh handling.
+ *
+ * This layer is grouped by logical backend services:
+ * - AuthAPI: Authentication and token issuance
+ * - ActionAPI: Historical user-triggered actions
+ * - SensorAPI: Environmental sensor data
+ * - PresetAPI: CRUD operations for plant growth presets
+ * - HealthAPI: System status diagnostics
+ *
+ * All requests are authenticated unless otherwise noted.
  * @author Taggerkov
- * @version 1.1.0
+ * @version 2.0.0
  * @since 0.0.1
  */
 
-import axios from 'axios';
-
+import API, {authPath, userPath, greenhousePath, sensorPath, actionPath, presetPath, notificationPath, healthPath} from './axiosConfig'
 /**
- * Axios instance configured for API calls.
- * @author Taggerkov
- * @version 1.0.0
- * @since 1.0.0
-
-const API = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://myapp.com/api/' : 'http://localhost:5050/api/',
-    headers: {
-        'Content-Type': 'application/json'
-    }
-}); I HAVE COMMENTED THIS OUT BECAUSE I AM MOCKING THE SERVER, IN CASE BACKEND FIXES THEIR STUFF WE STILL HAVE THIS */
-const API = axios.create({
-    baseURL: '/api/', 
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-
-let sensorPath = 'SensorReading/';
-
-/**
- * API functions related to sensor readings.
- * @namespace SensorAPI
- * @author Taggerkov
- * @since 1.0.0
+ * @typedef {import('@/api/dtoTypes').LoginCredentials}
+ * @typedef {import('@/api/dtoTypes').RegisterCredentials}
+ * @typedef {import('@/api/dtoTypes').AuthResponse}
+ * @typedef {import('@/api/dtoTypes').UserProfileDTO}
+ * @typedef {import('@/api/dtoTypes').PastSensorReadingRequestDTO}
+ * @typedef {import('@/api/dtoTypes').PastSensorReadingResultDTO}
+ * @typedef {import('@/api/dtoTypes').CurrentSensorReadingResultDTO}
+ * @typedef {import('@/api/dtoTypes').SensorThresholdDTO}
+ * @typedef {import('@/api/dtoTypes').ActionQueryDTO}
+ * @typedef {import('@/api/dtoTypes').ActionResultDTO}
+ * @typedef {import('@/api/dtoTypes').GreenhouseStatusDTO}
+ * @typedef {import('@/api/dtoTypes').GreenhousePairDTO}
+ * @typedef {import('@/api/dtoTypes').GreenhouseRenameDTO}
+ * @typedef {import('@/api/dtoTypes').NotificationQueryDTO}
+ * @typedef {import('@/api/dtoTypes').NotificationResultDTO}
+ * @typedef {import('@/api/dtoTypes').RawHealthResponse}
  */
-export const SensorAPI = {
 
-     /**
-     * Fetch the current sensor readings for a specific greenhouse.
-     * @param {number|string} greenhouseId - The ID of the greenhouse.
-     * @returns {Promise<Object>} Current sensor readings for the greenhouse.
-     * @example
-     * const data = await SensorAPI.getCurrentReadingsByGreenhouseId(1);
+/**
+ * Authentication API for user login and registration.
+ *
+ * This module interacts with the backend `AuthController`, mapping to the following DTOs:
+ * - Request: `UserDto` (for login), `RegisterRequestDto` (for registration)
+ * - Response: `AuthResponseDto`
+ */
+const AuthAPI = {
+    /**
+     * Logs in an existing user.
+     * @param {LoginCredentials} credentials - UserDto.<br>
+     * Contains email and password.
+     * @returns {Promise<AuthResponse>} AuthResponseDto.<br>
+     * Contains tokens and confirmed email.
      */
-     async getCurrentReadingsByGreenhouseId(greenhouseId) {
-        const response = await API.get(`${sensorPath}${greenhouseId}/current-sensor-readings`);
-        return response.data;
-    }
+    login: credentials => API.post(`${authPath}/login`, credentials).then(res => res.data),
+    /**
+     * Registers a new user.
+     * @param {RegisterCredentials} credentials - RegisterRequestDto.<br>
+     * Contains email, password, and confirmation.
+     * @returns {Promise<AuthResponse>} AuthResponseDto.<br>
+     * Contains tokens and confirmed email.
+     */
+    register: credentials => API.post(`${authPath}/register`, credentials).then(res => res.data),
 
+    /**
+     * Requests a new access token using a refresh token.
+     * @param {string} refreshToken - The existing refresh token.
+     * @returns {Promise<RefreshResponse>} RefreshResponse.<br>
+     * Contains both new tokens.
+     */
+    refresh: (refreshToken) => API.post(`${authPath}/refresh`, refreshToken, {headers: {'Content-Type': 'application/json'}}).then(res => res.data)
 };
 
 /**
- * API functions related to the machine learning prediction model.
- * @namespace ModelAPI
- * @author Taggerkov
- * @since 1.0.0
+ * User API for account-level operations on the authenticated user.
+ *
+ * This module interacts with the backend `UserController`, scoped to the currently authenticated user.
+ * - No request DTO is used
+ * - Response: `string` confirmation message
+ *
+ * All endpoints require authentication (`Authorization: Bearer <token>`).
  */
-export const ModelAPI = {
+const UserAPI = {
     /**
-     * Send data to the prediction model and get the prediction result.
-     * @param {Object} mushroomData - Data for prediction.
-     * @returns {Promise<Object>} Prediction result.
-     * @example
-     * const prediction = await ModelAPI.predict({ feature1: 1.0, feature2: 5.2 });
+     * Deletes the authenticated user's account.
+     * @returns {Promise<string>} Success message.
      */
-    async predict(mushroomData) {
-        const response = await API.post('/Model/predict', mushroomData);
-        return response.data;
-    },
-
-    /**
-     * Check the health status of the upstream prediction service.
-     * @returns {Promise<Object>} Health status.
-     * @example
-     * const status = await ModelAPI.health();
-     */
-    async health() {
-        const response = await API.get('/Model/health');
-        return response.data;
-    }
+    deleteUser: () => API.delete(`${userPath}`).then(res => res.data)
 };
 
 /**
- * API functions related to the greenhouse control state.
- * @namespace ControlAPI
- * @author Taggerkov
- * @since 1.0.0
+ * Greenhouse API for managing user-linked greenhouse devices.
+ *
+ * This module interacts with the backend `GreenhouseController`, mapping to the following DTOs:
+ * - Request: `GreenhousePairDTO`, `GreenhouseRenameDTO`
+ * - Response: `string` confirmation messages
  */
-export const ControlAPI = {
+const GreenhouseAPI = {
     /**
-     * Fetch the current control system state.
-     * @returns {Promise<Object>} Current control state.
-     * @example
-     * const state = await ControlAPI.getCurrentState();
+     * Pairs a greenhouse device with the authenticated user.
+     * @param {GreenhousePairDTO} payload - GreenhousePairDto.<br>
+     * Contains MAC address and greenhouse name.
+     * @returns {Promise<string>} Confirmation message.
      */
-    async getCurrentState() {
-        const response = await API.get('/Control/state');
-        return response.data;
-    },
+    pair: (payload) => API.post(`${greenhousePath}/pair`, payload).then(res => res.data),
 
     /**
-     * Fetch the history of control system states.
-     * @param {number} [limit=20] - Number of history entries to retrieve.
-     * @returns {Promise<Object[]>} List of historical control states.
-     * @example
-     * const history = await ControlAPI.getHistory(30);
+     * Unpairs a greenhouse by ID from the authenticated user.
+     * @param {number} id - ID of the greenhouse to unpair.
+     * @returns {Promise<string>} Confirmation message.
      */
-    async getHistory(limit = 20) {
-        const response = await API.get('/Control/history', {params: {limit}});
-        return response.data;
-    }
+    unpair: (id) => API.post(`${greenhousePath}/unpair/${id}`, id, {headers: { 'Content-Type': 'application/json' }}).then(res => res.data),
+
+    /**
+     * Renames a greenhouse associated with the authenticated user.
+     * @param {GreenhouseRenameDTO} payload - GreenhouseRenameDTO<br>
+     * Contains new name and greenhouse ID.
+     * @returns {Promise<string>} Confirmation message.
+     */
+    rename: (payload) => API.put(`Greenhouse/rename/${payload.id}`, payload).then(res => res.data)
+}
+
+/**
+ * Sensor API for accessing environmental sensor data.
+ *
+ * This module interacts with the backend `SensorReadingController`, mapping to the following DTOs:
+ * - Request: `PastSensorReadingRequestDTO` (for historical queries)
+ * - Response: `CurrentSensorReadingResultDTO[]`, `PastSensorReadingResultDTO[]`
+ */
+const SensorAPI = {
+    /**
+     * Gets current sensor readings.
+     * @param {number} greenhouseId - Greenhouse ID.
+     * @returns {Promise<CurrentSensorReadingResultDTO[]>} CurrentSensorReadingResultDTO.<br>
+     * Contains id, type, unit, timestamp, and values.
+     */
+    getCurrentReadings: (greenhouseId) => API.get(`${sensorPath}/${greenhouseId}/current-sensor-readings/`).then(res => res.data),
+
+    /**
+     * Gets historical sensor data with optional filters.
+     * @param {number} greenhouseId - Greenhouse ID.
+     * @param {PastSensorReadingRequestDTO} [filters={}] - PastSensorReadingRequestDTO.<br>
+     * Contains after/before dates and reading type.
+     * @returns {Promise<PastSensorReadingResultDTO[]>} PastSensorReadingResultDTO.<br>
+     * Contains id, type, value, unit, and timestamp.
+     */
+    getPastReadings: (greenhouseId, filters = {}) => API.get(`${sensorPath}/${greenhouseId}/past-sensor-readings/`, {params: filters}).then(res => res.data)
+};
+
+/**
+ * Action API for querying historical greenhouse actions.
+ *
+ * This module interacts with the backend `ActionController`, mapping to the following DTOs:
+ * - Request: `ActionQueryDTO`
+ * - Response: `ActionResultDTO[]`
+ */
+const ActionAPI = {
+    /**
+     * Retrieves past actions for a greenhouse in a date range.
+     * @param {number} greenhouseId - Greenhouse ID.
+     * @param {ActionQueryDTO} filters - ActionQueryDTO.<br>
+     * Contains start and end timestamps.
+     * @returns {Promise<ActionResultDTO[]>} ActionResultDTO.<br>
+     * Contains type, status, and timestamp.
+     */
+    getPastActions: (greenhouseId, filters) => API.post(`${actionPath}/${greenhouseId}/past-actions`, filters).then(res => res.data)
+};
+
+/**
+ * Preset API for managing user-defined plant growth configurations.
+ *
+ * This module interacts with the backend `PresetController`, mapping to the following DTOs:
+ * - Request: `Preset` (used for creation and update)
+ * - Response: `Preset` (on fetch and create)
+ */
+const PresetAPI = {
+    /**
+     * Creates a new preset with specified parameters.
+     *
+     * @param {RawPreset} preset - Preset object with user-defined environmental preferences.
+     * @returns {Promise<RawPreset>} The newly created preset.
+     */
+    createPreset: (preset) => API.post(`${presetPath}`, preset).then(res => res.data),
+
+    /**
+     * Fetches a preset by unique identifier.
+     *
+     * @param {number} id - Preset ID.
+     * @returns {Promise<RawPreset>} The preset, if found.
+     */
+    getPreset: (id) => API.get(`${presetPath}/${id}`).then(res => res.data),
+
+    /**
+     * Updates a preset by ID with new parameters.
+     *
+     * @param {number} id - Preset ID.
+     * @param {RawPreset} preset - Full preset object to replace existing.
+     * @returns {Promise<number>} HTTP status code from server.
+     */
+    updatePreset: (id, preset) => API.put(`${presetPath}/${id}`, preset).then(res => res.status),
+
+    /**
+     * Permanently deletes a preset by ID.
+     *
+     * @param {number} id - Preset ID.
+     * @returns {Promise<number>} HTTP status code from server.
+     */
+    deletePreset: (id) => API.delete(`${presetPath}/${id}`).then(res => res.status)
+};
+
+const NotificationAPI = {
+    /**
+     * Fetches notifications for a greenhouse in a specific time range.
+     *
+     * @param {number} greenhouseId - ID of the greenhouse.
+     * @param {NotificationQueryDTO} query - NotificationQueryDTO.<br>
+     * Contains start/end dates (ISO 8601).
+     * @returns {Promise<NotificationResultDTO[]>} NotificationResultDTO.<br>
+     * Contains id, timestamp, and content.
+     */
+    getPastNotifications: (greenhouseId, query) => API.post(`${notificationPath}/${greenhouseId}/past-notifications`, query).then(res => res.data)
+};
+
+/**
+ * Health API for checking backend service availability.
+ *
+ * This module interacts with the backend `HealthCheckController`, returning a simple service status response.
+ * - Response: `{ status: string }`
+ */
+const HealthAPI = {
+    /**
+     * Verifies whether the backend service is online.
+     *
+     * @returns {Promise<RawHealthResponse>} A status object, e.g. { status: "Healthy" }.
+     */
+    getStatus: () => API.get(`${healthPath}`).then(res => res.data)
 };
 
 /**
  * API functions related to push notification setup.
- * @namespace PushAPI
- * @since 1.1.0
  */
-export const PushAPI = {
+const PushAPI = {
     /**
      * Retrieves the VAPID public key used for client-side push subscription.
      * @returns {Promise<string>} Base64-encoded VAPID public key.
      */
     async getVapidKey() {
-        const response = await API.get('/vapidPublicKey');
+        const response = await API.get('/get-pub-key');
         return response.data;
     },
 
@@ -142,49 +259,4 @@ export const PushAPI = {
     }
 };
 
-/**
- * API functions related to presets.
- * @namespace PresetAPI
- * @author SophiaJustin
- */
-export const PresetAPI = {
-    /**
-     * Fetch a preset by its ID.
-     * @param {number} id - The preset ID to retrieve.
-     * @returns {Promise<Object>} The preset data.
-     * @example
-     * const preset = await PresetAPI.getPresetById(3);
-     */
-    async getPresetById(id) {
-        const response = await API.get(`/Preset/${id}`);
-        return response.data;
-    },
-    /**
-     * Create a new preset.
-     * @param {Object} presetData - The preset data to create.
-     * @returns {Promise<Object>} The created preset.
-     */
-    async createPreset(presetData) {
-        const response = await API.post('/Preset', presetData);
-        return response.data;
-    },
-    /**
-    * Update an existing preset.
-    * @param {number} id - The preset ID to update.
-    * @param {Object} presetData - The new preset data.
-    * @returns {Promise<Object>} The updated preset.
-    */
-    async updatePreset(id, presetData) {
-    const response = await API.put(`/Preset/${id}`, presetData);
-    return response.data;
-    },
-    /**
-    * Delete a preset by its ID.
-    * @param {number} id - The preset ID to delete.
-    * @returns {Promise<void>}
-    */
-    async deletePreset(id) {
-    await API.delete(`/Preset/${id}`);
-    }
-
-};
+export {AuthAPI, UserAPI, GreenhouseAPI, SensorAPI, ActionAPI, PresetAPI, NotificationAPI, HealthAPI, PushAPI}

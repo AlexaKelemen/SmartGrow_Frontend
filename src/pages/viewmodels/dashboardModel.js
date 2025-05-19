@@ -10,11 +10,11 @@
  * @see useSensorReadings
  * @see Dashboard.jsx
  * @author Taggerkov
- * @version 1.0.0
+ * @version 1.2.0
  * @since 0.5.0
  */
 
-import {useSensorReadings} from "@/hooks";
+import {useSensor} from "@/hooks";
 
 /**
  * dashboardModel
@@ -35,13 +35,11 @@ import {useSensorReadings} from "@/hooks";
  * const temp = model.getTemperatureReading();
  * <GaugeTemperature {...temp} />
  */
-export function dashboardModel(greenhouseId) {
-    const { latestReading, isLoading, isError } = useSensorReadings(greenhouseId);
-    // Safely retrieve value or fallback if undefined
+export function dashboardModel() {
+    const { latestReading, isLoading, isError } = useSensor();
     const safe = (key, fallback = 0) => latestReading?.[key] ?? fallback;
     return {
-        isLoading,
-        isError,
+        isLoading, isError,
         getTemperatureReading: () => ({ value: safe('airTemperature'), min: 0, max: 40, minIdeal: 18, maxIdeal: 28 }),
         getHumidityReading: () => ({ value: safe('soilHumidity'), min: 0, max: 100, minIdeal: 60, maxIdeal: 80 }),
         getBrightnessReading: () => ({ value: safe('brightness') })
