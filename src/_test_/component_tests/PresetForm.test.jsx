@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
@@ -39,7 +38,15 @@ describe('PresetForm', () => {
       </MemoryRouter>
     );
 
+    // ✅ Fill required input (e.g. preset name)
+    fireEvent.change(screen.getByPlaceholderText('e.g. Tomato'), {
+      target: { value: 'Test Preset' }
+    });
+
+    // ✅ Click the Create button
     fireEvent.click(screen.getByText('Create'));
+
+    // ✅ Expect the mock to be called
     expect(mockSubmit).toHaveBeenCalled();
   });
 });
