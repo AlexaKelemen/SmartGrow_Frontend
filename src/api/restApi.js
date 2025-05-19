@@ -141,3 +141,50 @@ export const PushAPI = {
         await API.post('/subscribe', subscription);
     }
 };
+
+/**
+ * API functions related to presets.
+ * @namespace PresetAPI
+ * @author SophiaJustin
+ */
+export const PresetAPI = {
+    /**
+     * Fetch a preset by its ID.
+     * @param {number} id - The preset ID to retrieve.
+     * @returns {Promise<Object>} The preset data.
+     * @example
+     * const preset = await PresetAPI.getPresetById(3);
+     */
+    async getPresetById(id) {
+        const response = await API.get(`/Preset/${id}`);
+        return response.data;
+    },
+    /**
+     * Create a new preset.
+     * @param {Object} presetData - The preset data to create.
+     * @returns {Promise<Object>} The created preset.
+     */
+    async createPreset(presetData) {
+        const response = await API.post('/Preset', presetData);
+        return response.data;
+    },
+    /**
+    * Update an existing preset.
+    * @param {number} id - The preset ID to update.
+    * @param {Object} presetData - The new preset data.
+    * @returns {Promise<Object>} The updated preset.
+    */
+    async updatePreset(id, presetData) {
+    const response = await API.put(`/Preset/${id}`, presetData);
+    return response.data;
+    },
+    /**
+    * Delete a preset by its ID.
+    * @param {number} id - The preset ID to delete.
+    * @returns {Promise<void>}
+    */
+    async deletePreset(id) {
+    await API.delete(`/Preset/${id}`);
+    }
+
+};
