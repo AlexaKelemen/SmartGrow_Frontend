@@ -1,43 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "@/styles/pages/editPresetPage.css"; 
+import PresetForm from "@/components/forms/PresetForm";
+import { PresetAPI } from "@/api/restApi";
 
-const PresetEditPage = () => {
+const EditPresetPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [preset, setPreset] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    const fetchPreset = async () => {
+      try {
+        const data = await PresetAPI.getPresetById(id);
+        setPreset(data);
+      } catch (error) {
+        console.error("Failed to load preset:", error);
+      }
+    };
+
+    fetchPreset();
+  }, [id]);
+
+  const handleSubmit = async (updatedData) => {
+    try {
+      await PresetAPI.updatePreset(id, updatedData);
+      setSuccessMessage("✅ Preset updated successfully!");
+      setTimeout(() => {
+        navigate("/presets");
+      }, 2000);
+    } catch (error) {
+      console.error("Failed to update preset:", error);
+      setSuccessMessage("❌ Update failed. Please try again.");
+    }
+  };
+
+  if (!preset) return <p>Loading preset...</p>;
 
   return (
-    <div className="preset-edit-container">
-      <h2>Edit preset</h2>
-
-      <div className="preset-form">
-        <div className="column">
-          <label>Air humidity</label>
-          <input type="number" placeholder="10" />
-          <input type="number" placeholder="99" />
-
-          <label>Soil humidity</label>
-          <input type="number" placeholder="10" />
-          <input type="number" placeholder="99" />
-        </div>
-
-        <div className="column">
-          <label>Temperature humidity</label>
-          <input type="number" placeholder="10" />
-          <input type="number" placeholder="92" />
-
-          <label>Brightness</label>
-          <input type="number" placeholder="10" />
-          <input type="number" placeholder="99" />
-        </div>
-      </div>
-
-      <div className="preset-edit-buttons">
-        <button className="cancel-btn" onClick={() => navigate("/presets")}>Cancel</button>
-        <button className="edit-btn">Edit</button>
-      </div>
+    <div>
+      <PresetForm mode="edit" onSubmit={handleSubmit} initialData={preset} />
+      {successMessage && (
+        <p style={{ color: successMessage.startsWith("✅") ? "green" : "red", marginTop: "1rem" }}>
+          {successMessage}
+        </p>
+      )}
     </div>
   );
 };
 
-export default PresetEditPage;
+export default EditPresetPage;
+

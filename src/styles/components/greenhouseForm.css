@@ -1,0 +1,46 @@
+.pair-greenhouse-page {
+    padding: 3rem;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.pair-greenhouse-page h2 {
+    font-size: 2rem;
+    color: #2f4f2f;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.pair-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.pair-form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+}
+
+.pair-form input {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.pair-buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+}

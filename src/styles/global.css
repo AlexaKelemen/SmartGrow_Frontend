@@ -95,7 +95,44 @@ body {
     background-color: var(--colorActive);
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
+.dropdown-toggle {
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    color: inherit;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--colorMain);
+    /* or your preferred background */
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    padding: 0.4rem 1rem;
+    color: var(--colorContrast);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--colorHover);
+    color: white;
+}
 /* Footer */
 .footer {
     padding: 1rem;

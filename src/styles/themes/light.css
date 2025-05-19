@@ -6,13 +6,45 @@
     --colorMain: #3d6031;
     --colorPrimary: #007bff;
     --colorSecondary: #6c757d;
-    --colorContrast: #ffffff;
-    --colorText: #000000;
     --colorBackground: #ffffff;
+    --colorText: #000000;
+    --colorContrast: var(--colorBackground);
 
     /* Detail */
     --colorHover: #59f1b7;
     --colorActive: #00bcd4;
     --colorSuccess: #28a745;
     --colorError: #dc3545;
+
+    /*| Gauge |*/
+    /* Gauge Pointer */
+    --gaugePointerColor: var(--colorSecondary);
+    --gaugePointerWidth: 15;
+    --gaugePointerLength: 0.8;
+    --gaugeAnimationDelay: 1s;
+
+    /* Gauge Labels */
+    --gaugeValueFontSize: 14;
+    --gaugeTickFontSize: 10;
+
+    /* Temp Gauge */
+    --colorTempFreeze: #3b82f6;
+    --colorTempCold: #60a5fa;
+    --colorTempOk: #22c55e;
+    --colorTempWarm: #facc15;
+    --colorTempHot: #ef4444;
+
+    /* Bright Gauge */
+    --colorBrightDark: #333333;
+    --colorBrightDim: #666666;
+    --colorBrightNormal: #999999;
+    --colorBrightBright: #cccccc;
+    --colorBrightOverload: #ffffff;
+
+    /* Humidity Gauge */
+    --colorHumidityDry: #0ea5e9;
+    --colorHumidityLow: #38bdf8;
+    --colorHumidityIdeal: #22c55e;
+    --colorHumidityHigh: #a3e635;
+    --colorHumiditySaturated: #f87171;
 }
