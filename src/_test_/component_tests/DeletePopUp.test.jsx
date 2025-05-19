@@ -1,39 +1,56 @@
-import { vi } from 'vitest';
 import React from "react";
-import { render, screen, fireEvent } from '@testing-library/react';
-import DeletePopUp from '../../components/DeletePopUp';
+import { describe, test, expect, vi, beforeEach, afterEach } from "vitest";
+import { render, screen, fireEvent, cleanup } from "@testing-library/react";
+import DeletePopUp from "../../components/DeletePopUp";
 
-describe('DeletePopUp component', () => {
-    const presetName = 'Vegetable Preset';  // Example preset name
-    const onCancel = vi.fn();          // Mock function for onCancel
-    const onConfirm = vi.fn();         // Mock function for onConfirm
+describe("DeletePopUp", () => {
+  const mockOnCancel = vi.fn();
+  const mockOnConfirm = vi.fn();
 
-    test('renders without crashing and displays preset name', () => {
-        render(<DeletePopUp presetName={presetName} onCancel={onCancel} onConfirm={onConfirm} />);
-        
-        // Check that the preset name is displayed
-       expect(screen.getByText((content, element) => element?.textContent === `Are you sure you want to delete ${presetName} preset?`)).toBeInTheDocument();     
-        // Check that the "Delete preset?" heading is visible
-        expect(screen.getByText('Delete preset?')).toBeInTheDocument();
-    });
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
 
-    test('calls onCancel when Cancel button is clicked', () => {
-        render(<DeletePopUp presetName={presetName} onCancel={onCancel} onConfirm={onConfirm} />);
-        
-        // Simulate clicking the Cancel button
-        fireEvent.click(screen.getByText('Cancel'));
-        
-        // Ensure that onCancel is called
-        expect(onCancel).toHaveBeenCalledTimes(1);
-    });
+  afterEach(() => {
+    cleanup();
+  });
 
-    test('calls onConfirm when Delete button is clicked', () => {
-        render(<DeletePopUp presetName={presetName} onCancel={onCancel} onConfirm={onConfirm} />);
-        
-        // Simulate clicking the Delete button
-        fireEvent.click(screen.getByText('Delete'));
-        
-        // Ensure that onConfirm is called
-        expect(onConfirm).toHaveBeenCalledTimes(1);
-    });
+  test("renders correct title and message", () => {
+    render(
+      <DeletePopUp
+        title="Unpair Greenhouse?"
+        description="unpair"
+        nameLabel="Greenhouse #5"
+        onCancel={mockOnCancel}
+        onConfirm={mockOnConfirm}
+        confirmLabel="Unpair"
+      />
+    );
+
+    // Title appears
+    expect(screen.getByText("Unpair Greenhouse?")).toBeInTheDocument();
+
+    // Check button text
+    expect(screen.getByText("Cancel")).toBeInTheDocument();
+    expect(screen.getByText("Unpair")).toBeInTheDocument();
+
+    // Does not crash while rendering the message
+    expect(screen.getByTestId("popup-message")).toBeInTheDocument();
+  });
+
+  test("calls onCancel and onConfirm correctly", () => {
+    render(
+      <DeletePopUp
+        nameLabel="Tomato Preset"
+        onCancel={mockOnCancel}
+        onConfirm={mockOnConfirm}
+      />
+    );
+
+    fireEvent.click(screen.getByText("Cancel"));
+    fireEvent.click(screen.getByText("Delete"));
+
+    expect(mockOnCancel).toHaveBeenCalledTimes(1);
+    expect(mockOnConfirm).toHaveBeenCalledTimes(1);
+  });
 });

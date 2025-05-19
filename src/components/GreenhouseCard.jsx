@@ -3,7 +3,7 @@ import "@/styles/pages/greenhouse.css";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button"; 
 
-const GreenhouseCard = ({ greenhouse }) => {
+const GreenhouseCard = ({ greenhouse, onUnpair }) => {
   const navigate = useNavigate();
   return (
     <div className="greenhouse-card">
@@ -11,7 +11,7 @@ const GreenhouseCard = ({ greenhouse }) => {
         <img src={greenhouse.imageUrl} alt={greenhouse.name} />
         <div className="top-labels">
           <span className="green-label">{greenhouse.name}</span>
-          <Button variant="cancel" size="sm">
+          <Button variant="cancel" size="sm"   onClick={() => onUnpair(greenhouse)}>
             Unpair Greenhouse
           </Button>
         </div>
