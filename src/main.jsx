@@ -3,42 +3,44 @@
  * Licensed under the MIT License. See LICENSE file in: https://github.com/Taggerkov/openpokedex, for full license information.
  */
 
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import router from '@/router';
+import '@/styles/global.css';
+import '@/styles/anime.css';
+import '@/styles/themes/light.css';
+
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Root element not found.');
+
 /**
- * @file main.jsx
- * @description Entry point for the SmartGrow React application.
- *
- * Responsible for:
- * - Mounting the React app into the root DOM element
- * - Initializing the router via <RouterProvider>
- * - Applying global styles and themes
- * - Wrapping the app in React.StrictMode for dev safety
- *
- * This is the first code executed when the frontend starts.
- *
- * @see router.jsx
- * @see App.jsx
- * @author Taggerkov
- * @version 1.0.0
- * @since 0.0.1
+ * Mounts the application.
  */
-
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { RouterProvider } from 'react-router-dom'
-import router from '@/router'
-import '@/styles/global.css'
-import '@/styles/anime.css'
-import '@/styles/themes/light.css'
-
-// Locate the root DOM element for React to mount into.
-const root = document.getElementById('root');
-if (!root) {
-    throw new Error('Root element not found.');
+function renderApp() {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  );
 }
 
-// Render the app inside <StrictMode> for highlighting potential problems.
-ReactDOM.createRoot(root).render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>
-)
+/**
+ * Conditionally enables MSW mocking in development mode.
+ */
+async function enableMocking() {
+  if (process.env.NODE_ENV === 'development') {
+    try {
+      const { worker } = await import('@/mocks/browser');
+      await worker.start({
+        onUnhandledRequest: 'warn' // change to 'bypass' in production-like tests
+      });
+      console.info('[MSW] Mock Service Worker started.');
+    } catch (error) {
+      console.warn('[MSW] Failed to start the mock service worker:', error);
+    }
+  }
+}
+
+// Initialize app after (optional) mocking setup
+enableMocking().finally(renderApp);
