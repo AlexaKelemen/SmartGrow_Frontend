@@ -35,6 +35,8 @@ import SoilHumidityPage from '@/pages/views/SoilHumidityPage';
 import FertilizationPage from '@/pages/views/FertilizationPage';
 import WateringPage from '@/pages/views/WateringPage';
 import AboutPage from '@/pages/views/AboutPage';
+import ProtectedRoute from '@/components/ProtectedRoute';
+
 
 
 /**
@@ -95,68 +97,115 @@ const routes = [
             },
             {
                 path: 'home',
-                element: <HomePage />,
+                element:( <ProtectedRoute><HomePage />,</ProtectedRoute>),
                 navLabel: 'Home',
             },
             {
                 path: 'greenhouses',
-                element: <GreenhousesPage />,
+                element:(
+                    <ProtectedRoute>
+                      <GreenhousesPage />
+                    </ProtectedRoute>
+                  ),
                 navLabel: 'Greenhouses',
             },
             {
                 path: 'pair-greenhouse',
-                element: <PairGreenhousePage />,
+                element: (
+                    <ProtectedRoute>
+                      <PairGreenhousePage />
+                    </ProtectedRoute>
+                  )
+          
             },
             {
                 path: 'edit-greenhouse/:id',
-                element: <EditGreenhousePage />,
+                element:  <ProtectedRoute>
+                <EditGreenhousePage />
+              </ProtectedRoute>
             },
             {
                 path: 'greenhouses/logs:id',
-                element: <GreenhouseLogs />,
+                element:  (<ProtectedRoute>
+                <GreenhouseLogs />
+              </ProtectedRoute>),
                 navLabel: 'Greenhouse logs',
             },
             {
                 path: 'dashboard',
-                element: <DashboardPage />,
+                element:  (
+                    <ProtectedRoute>
+                      <DashboardPage />
+                    </ProtectedRoute>
+                  ),
                 navLabel: 'Dashboard',
             },
             {
                 path: 'presets',
-                element: <PresetsPage />,
+                element: (
+                    <ProtectedRoute>
+                      <PresetsPage />
+                    </ProtectedRoute>
+                  ),
                 navLabel: 'Presets',
             },
             {
                 path: 'presets/create',
-                element: <CreatePresetForm />,
+                element: (
+                    <ProtectedRoute>
+                      <CreatePresetForm />
+                    </ProtectedRoute>
+                  )
             },
             {
                 path: 'presets/edit',
-                element: <EditPresetPage/>,
+                element:  (
+                    <ProtectedRoute>
+                      <EditPresetPage />
+                    </ProtectedRoute>
+                  )
             }, 
             {
                 path: 'lighting',
-                element: <LightingPage />,
+                element: (
+                    <ProtectedRoute>
+                      <LightingPage />
+                    </ProtectedRoute>
+                  ),
                 navLabel: 'Lighting',
             },
             {
                 path: 'soil-humidity',
-                element: <SoilHumidityPage />,
+                element:( <ProtectedRoute>
+                <SoilHumidityPage />
+              </ProtectedRoute>),
                 navLabel: 'Soil Humidity Levels',
             },
             {
                 path: 'fertilization',
-                element: <FertilizationPage />,
+                element: (
+                    <ProtectedRoute>
+                      <FertilizationPage />
+                    </ProtectedRoute>
+                  ),
                 navLabel: 'Fertilization',
             },
             {
                 path: 'watering',
-                element: <WateringPage />,
+                element: (
+                    <ProtectedRoute>
+                      <WateringPage />
+                    </ProtectedRoute>
+                  ),
                 navLabel: 'Watering',
             },
             {
                 path: 'about',
-                element: <AboutPage />,
+                element: (
+                    <ProtectedRoute>
+                      <AboutPage />
+                    </ProtectedRoute>
+                  ),
                 navLabel: 'About',
             },
         ],

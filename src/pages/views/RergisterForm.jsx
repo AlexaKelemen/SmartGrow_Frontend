@@ -7,7 +7,8 @@ const RegisterForm = ({ onClose }) => {
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const handleRegister = (e) => {
+  // ✅ MOCK-RELATED: Register logic with POST /api/auth/register
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     if (!validateEmail(email)) {
@@ -20,8 +21,27 @@ const RegisterForm = ({ onClose }) => {
       return;
     }
 
-    console.log("Registering:", { email, password });
-    // Add API call
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: email, password }), // ✅ MOCK: expects { username, password }
+      });
+
+      if (response.status === 201) {
+        const data = await response.json();
+        localStorage.setItem("authToken", data.token); // ✅ MOCK: save mock token
+        alert("Registered successfully! Token: " + data.token);
+        onClose(); // Close modal
+      } else if (response.status === 409) {
+        alert("User already exists.");
+      } else {
+        alert("Something went wrong.");
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
+      alert("Failed to register. Please try again.");
+    }
   };
 
   return (

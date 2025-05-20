@@ -15,7 +15,7 @@ const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Root element not found.');
 
 /**
- * Mounts the application.
+ * Mounts the React app.
  */
 function renderApp() {
   ReactDOM.createRoot(rootElement).render(
@@ -26,21 +26,25 @@ function renderApp() {
 }
 
 /**
- * Conditionally enables MSW mocking in development mode.
+ * Starts MSW in development and then renders the app.
  */
-async function enableMocking() {
+async function enableMockingAndRender() {
   if (process.env.NODE_ENV === 'development') {
     try {
       const { worker } = await import('@/mocks/browser');
       await worker.start({
-        onUnhandledRequest: 'warn' // change to 'bypass' in production-like tests
+        onUnhandledRequest: 'warn'
       });
       console.info('[MSW] Mock Service Worker started.');
     } catch (error) {
       console.warn('[MSW] Failed to start the mock service worker:', error);
     }
+  } else {
+    console.info('[MSW] Skipped (using real backend).');
   }
+
+  renderApp();
 }
 
-// Initialize app after (optional) mocking setup
-enableMocking().finally(renderApp);
+// ✅ This must be placed AFTER the function definition
+enableMockingAndRender();
