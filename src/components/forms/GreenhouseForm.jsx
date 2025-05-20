@@ -6,10 +6,11 @@ import "@/styles/components/greenhouseForm.css";
 
 const GreenhouseForm = ({
   title,
-  nameValue = "",
+  nameValue,
+  macValue,
+  showMacField = false, // <-- toggle field
   nameDisabled = false,
-  something1 = "",
-  something2 = "",
+  onChange,
   onCancel,
   onSubmit,
   submitLabel
@@ -26,24 +27,41 @@ const GreenhouseForm = ({
     if (onSubmit) onSubmit();
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (onChange) {
+      onChange((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
   return (
     <main className="pair-greenhouse-page">
       <h2>{title}</h2>
       <form className="pair-form" onSubmit={handleSubmit}>
         <label>
           Name of the greenhouse:
-          <input type="text" name="greenhouseName" defaultValue={nameValue} disabled={nameDisabled} required />
+          <input
+            type="text"
+            name="name"
+            value={nameValue}
+            onChange={handleChange}
+            disabled={nameDisabled}
+            required
+          />
         </label>
 
-        <label>
-          Something:
-          <input type="text" name="something1" defaultValue={something1} />
-        </label>
-
-        <label>
-          Something:
-          <input type="text" name="something2" defaultValue={something2} />
-        </label>
+        {showMacField && (
+          <label>
+            MAC Address:
+            <input
+              type="text"
+              name="macAddress"
+              value={macValue}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        )}
 
         <div className="pair-buttons">
           <Button variant="cancel" onClick={handleCancel}>Cancel</Button>
@@ -56,13 +74,14 @@ const GreenhouseForm = ({
 
 GreenhouseForm.propTypes = {
   title: PropTypes.string.isRequired,
-  nameValue: PropTypes.string,
+  nameValue: PropTypes.string.isRequired,
+  macValue: PropTypes.string,
+  showMacField: PropTypes.bool,
   nameDisabled: PropTypes.bool,
-  something1: PropTypes.string,
-  something2: PropTypes.string,
   onCancel: PropTypes.func,
-  onSubmit: PropTypes.func,
-  submitLabel: PropTypes.string.isRequired
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  submitLabel: PropTypes.string.isRequired,
 };
 
 export default GreenhouseForm;

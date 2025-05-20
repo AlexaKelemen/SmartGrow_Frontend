@@ -7,8 +7,6 @@ export const sensorHandlers = [
 
     const readings = {
       1: { airTemperature: 24.2, soilHumidity: 68, brightness: 120 },
-      2: { airTemperature: 20.5, soilHumidity: 75, brightness: 140 },
-      3: { airTemperature: 26.0, soilHumidity: 60, brightness: 180 }
     };
 
     const reading = readings[id] ?? {
