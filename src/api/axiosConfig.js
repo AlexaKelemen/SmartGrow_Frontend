@@ -31,7 +31,7 @@ const authPath = 'Auth', userPath='User', greenhousePath='Greenhouse', sensorPat
  * @type {import('axios').AxiosInstance}
  */
 const API = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://myapp.com/api/' : 'http://localhost:5000/api/',
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://myapp.com/api/' : 'http://localhost:5050/api/',
     headers: {
         'Content-Type': 'application/json',
     }
