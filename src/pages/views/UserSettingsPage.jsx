@@ -1,59 +1,46 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API, { userPath } from "@/api/axiosConfig";
-
+import { useUser } from "@/hooks/api/useUser";
 
 const UserSettingsPage = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const { deleteUser, isLoading, error } = useUser();
   const [password, setPassword] = useState("");
 
   const handleDelete = async () => {
-    const confirmed = window.confirm("Are you sure you want to delete your account? This action is permanent.");
+    const confirmed = window.confirm("Are you sure you want to permanently delete your account?");
     if (!confirmed) return;
 
     try {
-      await API.delete(`${userPath}`, {
-        data: {
-          email,
-          password,
-        },
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
+      await deleteUser(password);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       navigate("/");
     } catch (err) {
       console.error("Account deletion failed:", err);
-      alert("Failed to delete account. Please check your email and password.");
+      alert("Failed to delete account. Please check your password.");
     }
   };
 
   return (
     <div className="user-settings-form">
-      <h2>Account Settings</h2>
-      <p>Enter your login info to confirm account deletion:</p>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
+      <h2>Delete Account</h2>
+      <p>Enter your password to confirm:</p>
       <input
         type="password"
-        placeholder="Password"
+        placeholder="Your password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <button onClick={handleDelete} className="btn btn--destructive">
-  Delete My Account
-</button>
-
+      <button
+        className="btn btn--destructive"
+        onClick={handleDelete}
+        disabled={isLoading}
+      >
+        Delete My Account
+      </button>
+      {error && <p className="error-text">{error.message || "Error deleting account."}</p>}
     </div>
   );
 };

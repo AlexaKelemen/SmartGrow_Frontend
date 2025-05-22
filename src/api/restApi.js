@@ -81,12 +81,23 @@ const AuthAPI = {
  * All endpoints require authentication (`Authorization: Bearer <token>`).
  */
 const UserAPI = {
-    /**
-     * Deletes the authenticated user's account.
-     * @returns {Promise<string>} Success message.
-     */
-    deleteUser: () => API.delete(`${userPath}`).then(res => res.data)
+  /**
+   * Deletes the currently authenticated user's account.
+   * @param {string} password - User's password for confirmation.
+   * @returns {Promise<string>} Success message
+   */
+  deleteUser: (password) => {
+    return API.delete('/User', {
+      params: { password },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(res => res.data);
+  }
 };
+
+
+
 
 /**
  * Greenhouse API for managing user-linked greenhouse devices.

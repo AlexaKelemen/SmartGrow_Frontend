@@ -9,46 +9,31 @@
  * This hook uses `UserAPI` internally and prepares for future expansion
  * (e.g., update email, change password, etc.).
  *
- * @author Taggerkov
+ * @author Taggerkov and SophiaJustin
  * @version 1.0.0
  * @since 0.7.0
  */
 
-import {useCallback} from 'react';
-import {UserAPI} from '@/api/restApi';
-import {useApiUtils} from '@/utils/apiUtils';
+import { useCallback } from 'react';
+import { UserAPI } from '@/api/restApi';
+import { useApiUtils } from '@/utils/apiUtils';
 
 /**
- * User account management hook scoped to the authenticated session.
+ * Provides account deletion functionality for the logged-in user.
  *
  * @returns {{
- *   deleteUser: () => Promise<string>,
+ *   deleteUser: (password: string) => Promise<string>,
  *   isLoading: boolean,
  *   error: unknown
  * }}
- * @example
- * const { deleteUser, isLoading, error } = useUser();
- *
- * try {
- *   const message = await deleteUser();
- *   console.log(message); // e.g., "User deleted successfully"
- * } catch (err) {
- *   console.error('Failed to delete user:', err);
- * }
  */
 export function useUser() {
-    const { handleRequest, isLoading, error } = useApiUtils();
+  const { handleRequest, isLoading, error } = useApiUtils();
 
-    /**
-     * Deletes the currently authenticated user's account.
-     *
-     * @returns {Promise<string>} Confirmation message from the backend.
-     * @throws unknown - If the user is not authorized or deletion fails.
-     * @example
-     * const { deleteUser } = useUser();
-     * await deleteUser();
-     */
-    const deleteUser = useCallback(() => handleRequest(() => UserAPI.deleteUser()), [handleRequest]);
+  const deleteUser = useCallback(
+    (password) => handleRequest(() => UserAPI.deleteUser(password)),
+    [handleRequest]
+  );
 
-    return {deleteUser, isLoading, error};
+  return { deleteUser, isLoading, error };
 }
