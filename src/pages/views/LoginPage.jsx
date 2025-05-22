@@ -1,3 +1,9 @@
+/**
+ * @file LoginPage.jsx
+ * @description Handles the login and registration activity in the smart grow application.
+ *
+ * @author SophiaJustin
+ * */
 import React, { useState } from "react";
 import "@/styles/pages/login.css";
 import plantImg from "../../../assets/Plant.png";

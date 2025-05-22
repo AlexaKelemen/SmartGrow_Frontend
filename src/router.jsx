@@ -35,6 +35,7 @@ import SoilHumidityPage from '@/pages/views/SoilHumidityPage';
 import FertilizationPage from '@/pages/views/FertilizationPage';
 import WateringPage from '@/pages/views/WateringPage';
 import AboutPage from '@/pages/views/AboutPage';
+import UserSettingsPage from '@/pages/views/UserSettingsPage';
 
 
 /**
@@ -159,6 +160,12 @@ const routes = [
                 element: <AboutPage />,
                 navLabel: 'About',
             },
+            {
+  path: 'user-settings',
+  element: <UserSettingsPage />,
+  navLabel: 'User Settings',
+},
+
         ],
     },
 ];
