@@ -14,8 +14,13 @@ describe('LoginPage E2E', () => {
       }
     });
   
-    // Close the permission modal if it appears
-    cy.get('button').contains('Deny').click({ force: true });
+    cy.get('button')
+    .contains('Deny')
+    .click({ force: true })
+    .should('not.exist')
+    .catch(() => {
+    });
+  
   
     cy.get('[data-testid="login-email"]', { timeout: 10000 }).should('exist');
   });
