@@ -33,11 +33,13 @@ const LoginPage = () => {
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     try {
-      await register({
+      const res = await register({
         email,
         password,
         passwordConfirmation: passwordConfirm
       });
+      localStorage.setItem("accessToken", res.accessToken);
+      localStorage.setItem("refreshToken", res.refreshToken);
       navigate("/home");
     } catch (err) {
       console.error("Registration failed:", err);
@@ -89,6 +91,7 @@ const LoginPage = () => {
             <h2>Welcome back!</h2>
             <form onSubmit={handleLoginSubmit}>
               <input
+                data-testid="login-email"
                 type="email"
                 placeholder="Email address"
                 value={email}
@@ -96,19 +99,20 @@ const LoginPage = () => {
                 required
               />
               <input
+               data-testid="login-password"
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <button type="submit" disabled={isLoading}>Sign in</button>
+              <button  data-testid="login-submit" type="submit" disabled={isLoading}>Sign in</button>
             </form>
             {error && <p className="error-text">{error.message || "Login error"}</p>}
             {isLoading && <p>Loading...</p>}
             <p className="signup-text">
               Don’t have an account?{" "}
-              <span className="signup-link" onClick={() => setRegisterMode(true)}>
+              <span className="signup-link"  data-testid="switch-to-register"  onClick={() => setRegisterMode(true)}>
                 Sign up
               </span>
             </p>
