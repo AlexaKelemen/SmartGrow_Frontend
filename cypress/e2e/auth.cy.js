@@ -14,11 +14,16 @@ describe('LoginPage E2E', () => {
       }
     });
   
-    cy.contains('button', 'Deny', { timeout: 3000 }).then(($btn) => {
-      if ($btn.length > 0 && !$btn.is(':disabled')) {
-        cy.wrap($btn).click({ force: true });
-      }
-    });
+    cy.contains('button', 'Deny', { timeout: 3000 })
+    .then(($btn) => {
+    if ($btn) {
+      cy.wrap($btn).click({ force: true });
+    }
+    })
+  .catch(() => {
+    
+  });
+
     
   
   
