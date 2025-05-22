@@ -18,6 +18,7 @@ import "@/styles/components/greenhouseForm.css";
  * @param {function} props.onSubmit - Function to handle form submission
  * @param {function} props.onCancel - Function to handle cancel button
  * @param {string} props.submitLabel - Label for the submit button
+ * author:Alexa Kelemen
  */
 const GreenhouseForm = ({
   title,
@@ -25,7 +26,7 @@ const GreenhouseForm = ({
   nameDisabled = false,
   macValue = "",
   macDisabled = false,
-  showMacField = false,
+  showMacField = true,
   onCancel,
   onSubmit,
   submitLabel

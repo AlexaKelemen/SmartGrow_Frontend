@@ -1,21 +1,21 @@
 import React from "react";
 import GreenhouseForm from "@/components/forms/GreenhouseForm";
 import { useNavigate } from "react-router-dom";
+import { useGreenhouse } from "@/hooks/api/useGreenhouse";
 
 const PairGreenhousePage = () => {
   const navigate = useNavigate();
+  const { pair, error } = useGreenhouse();
 
   const handleSubmit = async (formData) => {
     try {
-      // Replace this with your actual backend API call
-      // await GreenhouseAPI.pairGreenhouse(formData);
-
-      console.log("Pairing greenhouse with data:", formData);
+      await pair(formData); 
       navigate("/greenhouses");
-    } catch (error) {
-      console.error("Failed to pair greenhouse:", error);
+    } catch (err) {
+      console.error("Failed to pair greenhouse:", err);
       alert("Something went wrong while pairing.");
     }
+     
   };
 
   return (

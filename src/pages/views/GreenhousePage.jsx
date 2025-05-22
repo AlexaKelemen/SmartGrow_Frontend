@@ -2,7 +2,7 @@
  * @file GreenhousePage.jsx
  * @description Displays a dashboard of paired greenhouses and their environmental conditions.
  * Includes navigation to pair/edit greenhouses.
- * @author: SophiaJustin
+ * @author: SophiaJustin,Alexa Kelemen
  */
 import React, { useState } from "react";
 import "@/styles/pages/greenhouse.css";
@@ -11,10 +11,13 @@ import GreenhouseCard from "@/components/GreenhouseCard";
 import greenhouse from "@/pages/viewmodels/Greenhouses.js";
 import { Button } from "@/components/ui/Button";
 import DeletePopUp from "@/components/DeletePopUp";
+import { useGreenhouse } from "@/hooks/api/useGreenhouse";
 
 const GreenhousePage = () => {
   const navigate = useNavigate();
+  const { unpair, error, isLoading } = useGreenhouse(); 
 
+  const [greenhouseList, setGreenhouseList] = useState(greenhouse);
   const [selectedGreenhouse, setSelectedGreenhouse] = useState(null);
   const [showUnpairPopup, setShowUnpairPopup] = useState(false);
 
@@ -25,12 +28,22 @@ const GreenhousePage = () => {
   };
 
   // Called when "Unpair" in popup is confirmed
-  const handleConfirmUnpair = () => {
-    console.log("Unpaired:", selectedGreenhouse.name);
-    // TODO: implement backend unpairing logic here
-    setShowUnpairPopup(false);
-    setSelectedGreenhouse(null);
+  const handleConfirmUnpair = async () => {
+    try {
+      await unpair(selectedGreenhouse.id);
+      setGreenhouseList(prev =>
+        prev.filter((gh) => gh.id !== selectedGreenhouse.id)
+      );
+      console.log("Unpaired:", selectedGreenhouse.name);
+    } catch (err) {
+      console.error("Failed to unpair:", err);
+      alert("Failed to unpair greenhouse.");
+    } finally {
+      setShowUnpairPopup(false);
+      setSelectedGreenhouse(null);
+    }
   };
+
 
   // Called when "Cancel" in popup is clicked
   const handleCancelUnpair = () => {
@@ -52,7 +65,7 @@ const GreenhousePage = () => {
    
 
       <div className="greenhouse-grid">
-        {greenhouse.map((gh) => (
+        {greenhouseList.map((gh) => (
           <GreenhouseCard key={gh.id} greenhouse={gh} onUnpair={handleUnpair} />
         ))}
       </div>
