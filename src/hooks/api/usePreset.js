@@ -7,6 +7,7 @@
  * Includes:
  * - `createPreset()` to add a new preset
  * - `getPreset()` to retrieve a preset by ID
+ * - `getAllPresets()` to retrieve all presets
  * - `updatePreset()` to modify an existing preset
  * - `deletePreset()` to permanently remove a preset
  *
@@ -14,7 +15,7 @@
  *
  * Preset data structure is assumed to match the backend `Preset` entity.
  *
- * @author Taggerkov
+ * @author Taggerkov, Alexa Kelemen
  * @version 1.0.0
  * @since 0.7.0
  */
@@ -32,6 +33,7 @@ import { useApiUtils } from '@/utils/apiUtils';
  * @returns {{
  *   createPreset: (preset: RawPreset) => Promise<RawPreset>,
  *   getPreset: (id: number) => Promise<RawPreset>,
+ *   getAllPresets: () => Promise<RawPreset[]>,
  *   updatePreset: (id: number, preset: RawPreset) => Promise<number>,
  *   deletePreset: (id: number) => Promise<number>,
  *   isLoading: boolean,
@@ -64,7 +66,12 @@ export function usePreset() {
      * @returns {Promise<RawPreset>} The preset object if found.
      */
     const getPreset = useCallback((id) => handleRequest(() => PresetAPI.getPreset(id)), [handleRequest]);
-
+   
+    /** Retrieves all presets. */
+    const getAllPresets = useCallback(
+        () => handleRequest(() => PresetAPI.getAllPresets()),
+        [handleRequest]
+    );
     /**
      * Updates an existing preset.
      *
@@ -82,5 +89,5 @@ export function usePreset() {
      */
     const deletePreset = useCallback((id) => handleRequest(() => PresetAPI.deletePreset(id)), [handleRequest]);
 
-    return {createPreset, getPreset, updatePreset, deletePreset, isLoading, error};
+    return {createPreset, getPreset,getAllPresets, updatePreset, deletePreset, isLoading, error};
 }

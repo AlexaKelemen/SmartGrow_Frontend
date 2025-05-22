@@ -11,12 +11,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "@/styles/pages/preset.css"; 
-import presets from "@/pages/viewmodels/Preset";
 import PresetCard from "@/components/PresetCard";
 import DeletePopUp from "@/components/DeletePopUp";
 import { Button } from "@/components/ui/Button";
-import { PresetAPI } from "../../api/restApi";
-
+import { usePreset } from "@/hooks/api/usePreset";
 
 /**
  * Renders the Preset Page UI.
@@ -29,16 +27,16 @@ const PresetPage = () => {
   const [presets, setPresets] = useState([]);
   const [showPopUp, setShowPopUp] = useState(false);
   const [selectedPreset, setSelectedPreset] = useState(null);
+  const { getAllPresets, deletePreset, isLoading, error } = usePreset(); 
 
   useEffect(() => {
-    // Replace with your real backend endpoint to get all presets
     fetchPresets();
   }, []);
 
   const fetchPresets = async () => {
     try {
-      const response = await fetch("http://localhost:5050/api/Preset"); // Replace with your actual URL
-      const data = await response.json();
+        const data = await getAllPresets();
+        setPresets(data);
       setPresets(data);
     } catch (error) {
       console.error("Error fetching presets:", error);
@@ -56,21 +54,17 @@ const PresetPage = () => {
   };
 
   const handleConfirm = async () => {
-  try {
-    await PresetAPI.deletePreset(selectedPreset.id);
-    console.log("Deleted:", selectedPreset.name);
-
-    // Update local state to remove the deleted preset from the list
-    setPresets((prevPresets) =>
-      prevPresets.filter((p) => p.id !== selectedPreset.id)
-    );
-
-    setShowPopUp(false);
-    setSelectedPreset(null);
-  } catch (error) {
-    console.error("Failed to delete preset:", error);
-  }
-};
+    try {
+      await deletePreset(selectedPreset.id);
+      setPresets((prevPresets) =>
+        prevPresets.filter((p) => p.id !== selectedPreset.id)
+      );
+      setShowPopUp(false);
+      setSelectedPreset(null);
+    } catch (error) {
+      console.error("Failed to delete preset:", error);
+    }
+  };
 
 
   const handleViewPreset = (id) => {

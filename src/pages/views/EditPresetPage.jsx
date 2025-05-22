@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PresetForm from "@/components/forms/PresetForm";
-import { PresetAPI } from "@/api/restApi";
+import { usePreset } from "@/hooks/api/usePreset";
 
 const EditPresetPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [preset, setPreset] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
+  const { getPreset, updatePreset, isLoading, error } = usePreset();
 
   useEffect(() => {
     const fetchPreset = async () => {
       try {
-        const data = await PresetAPI.getPresetById(id);
+        const data = await getPreset(id);
         setPreset(data);
       } catch (error) {
         console.error("Failed to load preset:", error);
       }
     };
-
     fetchPreset();
-  }, [id]);
+  }, [id, getPreset]);
 
   const handleSubmit = async (updatedData) => {
     try {
-      await PresetAPI.updatePreset(id, updatedData);
+      await updatePreset(id, updatedData);
       setSuccessMessage("✅ Preset updated successfully!");
       setTimeout(() => {
         navigate("/presets");

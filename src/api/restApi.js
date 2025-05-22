@@ -215,7 +215,21 @@ const PresetAPI = {
      * @returns {Promise<number>} HTTP status code from server.
      */
     updatePreset: (id, preset) => API.put(`${presetPath}/${id}`, preset).then(res => res.status),
-
+   /**
+ * Retrieves all user-defined presets from the backend.
+ *
+ * This method calls the `GET /api/RawPreset` endpoint and returns an array
+ * of preset configurations. Each preset defines a set of environmental parameters
+ * such as temperature, humidity, and light exposure.
+ *
+ * @returns {Promise<RawPreset[]>} An array of RawPreset objects representing
+ *         all user-defined presets stored on the server.
+ *
+ * @example
+ * const presets = await PresetAPI.getAllPresets();
+ * console.log(presets[0].name); // "Tomato Grow Profile"
+ */
+getAllPresets: () => API.get(`${presetPath}`).then(res => res.data),
     /**
      * Permanently deletes a preset by ID.
      *
