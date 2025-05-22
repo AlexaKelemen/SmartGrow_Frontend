@@ -14,7 +14,7 @@
  *
  * All data structures used are defined in `dtoTypes.js`.
  *
- * @author Taggerkov
+ * @author Taggerkov, Alexa Kelemen
  * @version 1.0.0
  * @since 0.7.0
  */
@@ -26,6 +26,7 @@ import { useApiUtils } from '@/utils/apiUtils';
 /**
  * @typedef {import('@/api/dtoTypes').GreenhousePairDTO}
  * @typedef {import('@/api/dtoTypes').GreenhouseRenameDTO}
+ * @typedef {import('@/api/dtoTypes').GreenhouseDTO}
  */
 
 /**
@@ -35,11 +36,13 @@ import { useApiUtils } from '@/utils/apiUtils';
  * - `pair()` to associate a new greenhouse with the logged-in user
  * - `unpair()` to detach an existing greenhouse by ID
  * - `rename()` to update greenhouse name
+ * - `getAll()` to fetch all greenhouses for the current user
  *
  * @returns {{
  *   pair: (payload: GreenhousePairDTO) => Promise<string>,
  *   unpair: (id: number) => Promise<string>,
  *   rename: (payload: GreenhouseRenameDTO) => Promise<string>,
+ *   getAll: () => Promise<GreenhouseDTO[]>,
  *   isLoading: boolean,
  *   error: unknown
  * }}
@@ -87,5 +90,14 @@ export function useGreenhouse() {
      */
     const rename = useCallback((payload) => handleRequest(() => GreenhouseAPI.rename(payload)), [handleRequest]);
 
-    return { pair, unpair, rename, isLoading, error };
+    /**
+   * Fetches all greenhouses for the authenticated user.
+   * @returns {Promise<GreenhouseDTO[]>}
+   */
+  const getAll = useCallback(
+    () => handleRequest(() => GreenhouseAPI.getAll()),
+    [handleRequest]
+  );
+
+    return { pair, unpair, rename,getAll, isLoading, error };
 }

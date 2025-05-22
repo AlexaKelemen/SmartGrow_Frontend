@@ -9,7 +9,7 @@
  * All types defined here are intended for use with the `restApi.js` module
  * and its associated React hooks (e.g., `useLogin`, `useCurrentSensorReadings`).
  *
- * @author Taggerkov
+ * @author Taggerkov, Alexa kelemen
  * @version 2.0.0
  * @since 0.7.0
  */
@@ -73,7 +73,34 @@
 // ────────────────
 //  GreenHouse DTOs
 // ────────────────
-
+/**
+ * @typedef {Object} GreenhouseDTO
+ * @property {number} id - Unique identifier for the greenhouse.
+ * @property {string} name - User-assigned greenhouse name.
+ * @property {string} macAddress - MAC address of the greenhouse device.
+ * @property {string} lightingMethod - Type of lighting used (e.g. LED).
+ * @property {string} wateringMethod - Watering system in use (e.g. Drip).
+ * @property {string} fertilizationMethod - Fertilization method (e.g. Organic).
+ * @property {string} userEmail - Email of the greenhouse owner.
+ * @property {number} [activePresetId] - ID of the currently applied preset (nullable).
+ * @property {string} [activePresetName] - Name of the currently applied preset (nullable).
+ *
+ * @description
+ * Represents a greenhouse record returned by the backend (maps to `GreenhouseDto`).
+ *
+ * @example
+ * const greenhouse = {
+ *   id: 1,
+ *   name: "Tomato House",
+ *   macAddress: "00:11:22:33:44:55",
+ *   lightingMethod: "LED",
+ *   wateringMethod: "Drip",
+ *   fertilizationMethod: "Organic",
+ *   userEmail: "user@example.com",
+ *   activePresetId: 5,
+ *   activePresetName: "Tomato Boost"
+ * };
+ */
 /**
  * @typedef {Object} GreenhousePairDTO
  * @property {string} macAddress - MAC address of the greenhouse device.

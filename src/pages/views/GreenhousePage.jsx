@@ -4,22 +4,28 @@
  * Includes navigation to pair/edit greenhouses.
  * @author: SophiaJustin,Alexa Kelemen
  */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "@/styles/pages/greenhouse.css";
 import { useNavigate } from "react-router-dom";
 import GreenhouseCard from "@/components/GreenhouseCard"; 
-import greenhouse from "@/pages/viewmodels/Greenhouses.js";
+//import greenhouse from "@/pages/viewmodels/Greenhouses.js";
 import { Button } from "@/components/ui/Button";
 import DeletePopUp from "@/components/DeletePopUp";
 import { useGreenhouse } from "@/hooks/api/useGreenhouse";
 
 const GreenhousePage = () => {
   const navigate = useNavigate();
-  const { unpair, error, isLoading } = useGreenhouse(); 
+  const {getAll, unpair, error, isLoading } = useGreenhouse(); 
 
-  const [greenhouseList, setGreenhouseList] = useState(greenhouse);
+  const [greenhouseList, setGreenhouseList] = useState([]);
   const [selectedGreenhouse, setSelectedGreenhouse] = useState(null);
   const [showUnpairPopup, setShowUnpairPopup] = useState(false);
+ 
+  useEffect(() => {
+    getAll().then(setGreenhouseList).catch(console.error);
+  }, []);
+
+
 
   // Called when "Unpair Greenhouse" is clicked
   const handleUnpair = (gh) => {
