@@ -14,34 +14,59 @@
  * @since 0.5.0
  */
 
-import {useSensor} from "@/hooks";
+import { useSensor } from '@/hooks/api/useSensor.js';
+
+import { useEffect, useState } from "react";
+
 
 /**
- * dashboardModel
- *
- * Hooks into sensor API data and returns preformatted value structures for each gauge.
- * Will automatically update on API response change via `useSensorReadings`.
- *
- * @returns {{
- *   isLoading: boolean,
- *   isError: boolean,
- *   getTemperatureReading: () => { value: number, min: number, max: number, minIdeal: number, maxIdeal: number },
- *   getHumidityReading: () => { value: number, min: number, max: number, minIdeal: number, maxIdeal: number },
- *   getBrightnessReading: () => { value: number }
- * }}
- *
- * @example
- * const model = dashboardModel();
- * const temp = model.getTemperatureReading();
- * <GaugeTemperature {...temp} />
+ * Dashboard model to fetch and expose formatted sensor readings.
  */
-export function dashboardModel() {
-    const { latestReading, isLoading, isError } = useSensor();
-    const safe = (key, fallback = 0) => latestReading?.[key] ?? fallback;
-    return {
-        isLoading, isError,
-        getTemperatureReading: () => ({ value: safe('airTemperature'), min: 0, max: 40, minIdeal: 18, maxIdeal: 28 }),
-        getHumidityReading: () => ({ value: safe('soilHumidity'), min: 0, max: 100, minIdeal: 60, maxIdeal: 80 }),
-        getBrightnessReading: () => ({ value: safe('brightness') })
+export function dashboardModel(greenhouseId = 1) {
+  const { getCurrentReadings, isLoading, error } = useSensor();
+  const [latestReading, setLatestReading] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getCurrentReadings(greenhouseId);
+
+        // Convert list of readings to an object with { type: value }
+        const readingMap = {};
+        for (const reading of data) {
+          readingMap[reading.type] = reading.value;
+        }
+
+        setLatestReading(readingMap);
+      } catch (err) {
+        console.error("Failed to load dashboard sensor data:", err);
+      }
     };
+
+    fetchData();
+  }, [getCurrentReadings, greenhouseId]);
+
+  const safe = (key, fallback = 0) => latestReading?.[key] ?? fallback;
+
+  return {
+    isLoading,
+    isError: !!error,
+    getTemperatureReading: () => ({
+      value: safe("AirTemperature"),
+      min: 0,
+      max: 40,
+      minIdeal: 18,
+      maxIdeal: 28,
+    }),
+    getHumidityReading: () => ({
+      value: safe("SoilHumidity"),
+      min: 0,
+      max: 100,
+      minIdeal: 60,
+      maxIdeal: 80,
+    }),
+    getBrightnessReading: () => ({
+      value: safe("Brightness"),
+    }),
+  };
 }
