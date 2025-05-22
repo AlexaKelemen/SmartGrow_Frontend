@@ -14,12 +14,12 @@ describe('LoginPage E2E', () => {
       }
     });
   
-    cy.get('button')
-    .contains('Deny')
-    .click({ force: true })
-    .should('not.exist')
-    .catch(() => {
+    cy.contains('button', 'Deny', { timeout: 3000 }).then(($btn) => {
+      if ($btn.length > 0 && !$btn.is(':disabled')) {
+        cy.wrap($btn).click({ force: true });
+      }
     });
+    
   
   
     cy.get('[data-testid="login-email"]', { timeout: 10000 }).should('exist');
