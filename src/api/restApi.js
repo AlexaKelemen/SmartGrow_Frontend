@@ -12,7 +12,7 @@
  * - HealthAPI: System status diagnostics
  *
  * All requests are authenticated unless otherwise noted.
- * @author Taggerkov
+ * @author Taggerkov,Alexa Kelemen
  * @version 2.0.0
  * @since 0.0.1
  */
@@ -117,7 +117,13 @@ const GreenhouseAPI = {
      * Contains new name and greenhouse ID.
      * @returns {Promise<string>} Confirmation message.
      */
-    rename: (payload) => API.put(`Greenhouse/rename/${payload.id}`, payload).then(res => res.data)
+    rename: (payload) => API.put(`Greenhouse/rename/${payload.id}`, payload).then(res => res.data),
+     /**
+   * Fetches all greenhouses associated with the authenticated user.
+   * @returns {Promise<GreenhouseDTO[]>} Array of greenhouse objects.
+   */
+     getAll: () =>
+        API.get(`${greenhousePath}`).then((res) => res.data),
 }
 
 /**

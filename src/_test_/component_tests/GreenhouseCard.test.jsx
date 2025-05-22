@@ -8,9 +8,9 @@ import React from 'react';
 const mockGreenhouse = {
   name: 'Tomato House',
   imageUrl: 'https://example.com/tomato.jpg',
-  lighting: 'Medium',
-  temperature: '24°C',
-  humidity: '60%',
+  lightingMethod: 'Manual',
+  wateringMethod: 'Drip',
+  fertilizationMethod: 'Organic',
 };
 
 describe('GreenhouseCard', () => {
@@ -39,12 +39,12 @@ describe('GreenhouseCard', () => {
 
     // Check that each environmental value is displayed correctly
     expect(screen.getByText('Lighting')).toBeInTheDocument();
-    expect(screen.getByText(mockGreenhouse.lighting)).toBeInTheDocument();
+    expect(screen.getByText(mockGreenhouse.lightingMethod)).toBeInTheDocument();
 
-    expect(screen.getByText('Temperature')).toBeInTheDocument();
-    expect(screen.getByText(mockGreenhouse.temperature)).toBeInTheDocument();
+    expect(screen.getByText('Watering')).toBeInTheDocument();
+    expect(screen.getByText(mockGreenhouse.wateringMethod)).toBeInTheDocument();
 
-    expect(screen.getByText('Humidity')).toBeInTheDocument();
-    expect(screen.getByText(mockGreenhouse.humidity)).toBeInTheDocument();
+    expect(screen.getByText('Fertilization')).toBeInTheDocument();
+    expect(screen.getByText(mockGreenhouse.fertilizationMethod)).toBeInTheDocument();
   });
 });
