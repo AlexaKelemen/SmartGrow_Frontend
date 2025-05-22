@@ -22,7 +22,10 @@ const LoginPage = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login({ email, password });
+      const res = await login({ email, password });
+
+      localStorage.setItem("accessToken", res.accessToken);
+      localStorage.setItem("refreshToken", res.refreshToken);
       navigate("/home");
     } catch (err) {
       console.error("Login failed:", err);
