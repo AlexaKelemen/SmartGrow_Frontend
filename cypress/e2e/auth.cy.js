@@ -1,35 +1,15 @@
-/* eslint jest/valid-expect: off */
-Cypress.on('uncaught:exception', (err, runnable) => {
-  if (err.message.includes('Network Error')) {
-    return false; // prevents the test from failing
-  }
-});
 describe('LoginPage E2E', () => {
   beforeEach(() => {
     cy.clearLocalStorage();
-  
+
     cy.visit('/', {
       onBeforeLoad(win) {
         cy.stub(win.Notification, 'requestPermission').resolves('denied');
       }
     });
-  
-    cy.contains('button', 'Deny', { timeout: 3000 })
-    .then(($btn) => {
-    if ($btn) {
-      cy.wrap($btn).click({ force: true });
-    }
-    })
-  .catch(() => {
-    
-  });
 
-    
-  
-  
     cy.get('[data-testid="login-email"]', { timeout: 10000 }).should('exist');
   });
-  
 
   it('logs in successfully', () => {
     cy.intercept('POST', '**/Auth/login', {
