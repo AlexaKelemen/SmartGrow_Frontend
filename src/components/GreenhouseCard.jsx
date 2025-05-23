@@ -58,6 +58,13 @@ const GreenhouseCard = ({ greenhouse, onUnpair }) => {
       >
         Edit
       </Button>
+      <Button
+          variant="default"
+          size="sm"
+          onClick={() => navigate(`/greenhouses/logs/${greenhouse.id}`)}
+        >
+          View Logs
+        </Button>
     </div>
   );
 };

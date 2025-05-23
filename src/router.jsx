@@ -113,9 +113,9 @@ const routes = [
                 element: <EditGreenhousePage />,
             },
             {
-                path: 'greenhouses/logs:id',
+                path: 'greenhouses/logs/:id',
                 element: <GreenhouseLogs />,
-                navLabel: 'Greenhouse logs',
+                navLabel: 'Greenhouse Logs',
             },
             {
                 path: 'dashboard',
