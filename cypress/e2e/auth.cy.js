@@ -28,9 +28,9 @@ describe('LoginPage E2E', () => {
       body: {
         accessToken: 'test-access-token',
         refreshToken: 'test-refresh-token',
-        email: 'user@example.com'
-      }
-    }).as('login');
+        email: 'user@example.com',
+      },
+    }).as('login');    
 
     cy.get('[data-testid="login-email"]').type('user@example.com');
     cy.get('[data-testid="login-password"]').type('password123');
