@@ -14,59 +14,38 @@
  * @since 0.5.0
  */
 
-import { useSensor } from '@/hooks/api/useSensor.js';
+import { useSensor } from '@/hooks/api/useSensor';
 
 import { useEffect, useState } from "react";
 
-
-/**
- * Dashboard model to fetch and expose formatted sensor readings.
- */
-export function dashboardModel(greenhouseId = 1) {
+export function dashboardModel(greenhouseId) {
   const { getCurrentReadings, isLoading, error } = useSensor();
   const [latestReading, setLatestReading] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
-        const data = await getCurrentReadings(greenhouseId);
-
-        // Convert list of readings to an object with { type: value }
-        const readingMap = {};
-        for (const reading of data) {
-          readingMap[reading.type] = reading.value;
-        }
-
-        setLatestReading(readingMap);
+        const readings = await getCurrentReadings(greenhouseId);
+        const mapped = {};
+        readings.forEach(r => {
+          mapped[r.type.toLowerCase()] = r.value;
+        });
+        setLatestReading(mapped);
       } catch (err) {
         console.error("Failed to load dashboard sensor data:", err);
       }
-    };
+    }
 
     fetchData();
-  }, [getCurrentReadings, greenhouseId]);
+  }, [greenhouseId, getCurrentReadings]);
 
   const safe = (key, fallback = 0) => latestReading?.[key] ?? fallback;
 
   return {
     isLoading,
-    isError: !!error,
-    getTemperatureReading: () => ({
-      value: safe("AirTemperature"),
-      min: 0,
-      max: 40,
-      minIdeal: 18,
-      maxIdeal: 28,
-    }),
-    getHumidityReading: () => ({
-      value: safe("SoilHumidity"),
-      min: 0,
-      max: 100,
-      minIdeal: 60,
-      maxIdeal: 80,
-    }),
-    getBrightnessReading: () => ({
-      value: safe("Brightness"),
-    }),
+    isError: error,
+    getTemperatureReading: () => ({ value: safe('airtemperature'), min: 0, max: 40, minIdeal: 18, maxIdeal: 28 }),
+    getHumidityReading: () => ({ value: safe('soilhumidity'), min: 0, max: 100, minIdeal: 60, maxIdeal: 80 }),
+    getBrightnessReading: () => ({ value: safe('brightness') }),
   };
 }

@@ -96,6 +96,7 @@ API.interceptors.response.use(response => response, async error => {
                 processQueue(refreshErr, null);
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('refreshToken');
+                localStorage.clear();
                 window.location.href = '/';
                 return Promise.reject(refreshErr);
             } finally {

@@ -47,6 +47,18 @@ function App() {
     const isLoggedIn = Boolean(localStorage.getItem("accessToken"));
     const hideLayout = !isLoggedIn && location.pathname === "/";
 
+    useEffect(() => {
+  const accessToken = localStorage.getItem("accessToken");
+
+  // Optional: if no token but user is on protected page
+  const isProtectedRoute = !["/", "/login", "/register"].includes(location.pathname);
+  if (!accessToken && isProtectedRoute) {
+    localStorage.clear();
+    window.location.href = "/";
+  }
+}, []);
+
+
     return (
         <div className="app">
             {!hideLayout && <Header />}
