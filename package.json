@@ -1,6 +1,6 @@
 {
   "name": "smartgrow-frontend",
-  "version": "0.6.5",
+  "version": "0.7.0",
   "description": "SmartGrow is a smart home solution for your greenhouse.",
   "author": "SmartGrow Frontend Team",
   "license": "N/A",
@@ -23,10 +23,11 @@
     "@radix-ui/react-slot": "^1.2.2",
     "axios": "^1.9.0",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-datepicker": "^8.3.0",
     "react-dom": "^18.2.0",
-    "react-gauge-chart": "^0.5.1",
     "react-gauge-component": "^1.2.64",
     "react-router-dom": "^7.5.2"
   },

@@ -1,5 +1,5 @@
 /**
- * @file usePushNotifications.js
+ * @file usePush.js
  * @description
  * SmartGrow's push notification hook for managing client-side setup of web push services.
  * This includes service worker registration, VAPID key usage, user permission flow,
@@ -34,7 +34,7 @@ import {showPushPermissionPrompt} from "@/components/permissions/showPushPermiss
  * serves as the persistent source of truth. The hook ensures that permission requests
  * are user-initiated via a custom confirmation UI before invoking the browser prompt.
  */
-export function usePushNotifications() {
+export function usePush() {
     const [registration, setRegistration] = useState(null);
     const [permission, setPermission] = useState(getPermissionStatus());
     const [promptVisible] = useState(false);
@@ -159,8 +159,5 @@ export function usePushNotifications() {
         return existing;
     }
 
-    return {
-        rotateSubscription, getSubscription,
-        promptVisible, permission, runPush
-    };
+    return {rotateSubscription, getSubscription, promptVisible, permission, runPush};
 }

@@ -17,14 +17,14 @@
  * @see Footer.jsx
  * @version 1.2.0
  * @since 0.0.1
- * @author Taggerkov
+ * @author Taggerkov and SophiaJustin
  */
 
-import {Outlet} from 'react-router-dom'
-import Header from "@/components/Header"
+import { Outlet, useLocation } from 'react-router-dom';
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import {usePushNotifications} from "@/hooks/usePushNotifications";
-import {useEffect} from "react";
+import { usePush } from "@/hooks/push/usePush";
+import { useEffect } from "react";
 
 /**
  * Application layout component.
@@ -32,25 +32,42 @@ import {useEffect} from "react";
  *
  * Also loads available ServiceWorkers if compatible.
  *
- * @author Taggerkov
  * @returns {JSX.Element} The full application layout.
  */
+
 function App() {
-    const { runPush } = usePushNotifications();
+    const { runPush } = usePush();
+    const location = useLocation();
+
     useEffect(() => {
         const setupPush = async () => await runPush();
         setupPush();
     }, []);
 
+    const isLoggedIn = Boolean(localStorage.getItem("accessToken"));
+    const hideLayout = !isLoggedIn && location.pathname === "/";
+
+    useEffect(() => {
+  const accessToken = localStorage.getItem("accessToken");
+
+  // Optional: if no token but user is on protected page
+  const isProtectedRoute = !["/", "/login", "/register"].includes(location.pathname);
+  if (!accessToken && isProtectedRoute) {
+    localStorage.clear();
+    window.location.href = "/";
+  }
+}, []);
+
+
     return (
         <div className="app">
-            <Header/>
+            {!hideLayout && <Header />}
             <main className="main">
-                <Outlet/>
+                <Outlet />
             </main>
-            <Footer/>
+            {!hideLayout && <Footer />}
         </div>
     );
 }
 
-export default App
+export default App;
