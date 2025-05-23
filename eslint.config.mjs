@@ -13,6 +13,8 @@ export default defineConfig([
         ...globals.browser,
         ...globals.node,
         ...globals.jest,
+        ...globals.mocha, 
+        ...globals.cy, 
       },
     },
     plugins: {
@@ -62,6 +64,7 @@ export default defineConfig([
     },
     rules: {
       "cypress/no-unnecessary-waiting": "warn",
+       "jest/valid-expect": "off",
     },
   },
 ]);
