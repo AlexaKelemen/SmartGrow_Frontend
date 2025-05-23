@@ -6,8 +6,21 @@ import "@/styles/pages/greenhouse-logs.css";
 
 const GreenhouseLogs = () => {
   const { id } = useParams();
-  const { getPastActions, isLoading, error } = useAction();
+  const { getPastActions, triggerAction, isLoading, error } = useAction();
   const [logs, setLogs] = useState([]);
+  const [selectedAction, setSelectedAction] = useState("Watering");
+
+
+  const handleTriggerAction = async () => {
+    try {
+      const result = await triggerAction(Number(id), selectedAction);
+      alert(`Triggered: ${result}`);
+      fetchLogs(); 
+    } catch (err) {
+      console.error("Failed to trigger action:", err);
+      alert("Action failed");
+    }
+  }; 
 
   const [dateRange, setDateRange] = useState({
     startDate: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
@@ -53,7 +66,7 @@ const GreenhouseLogs = () => {
     if (!id || isNaN(Number(id))) return;
     fetchLogs();
   }, [dateRange]);
-  
+
   const handleDateChange = (key, value) => {
     setDateRange((prev) => ({ ...prev, [key]: value }));
   };
@@ -88,6 +101,20 @@ const GreenhouseLogs = () => {
           ))
         )}
       </div>
+      <div className="trigger-section">
+  <label>
+    Action to trigger:
+    <select
+      value={selectedAction}
+      onChange={(e) => setSelectedAction(e.target.value)}
+    >
+      <option value="Watering">Watering</option>
+      <option value="Fertilize">Fertilize</option>
+      <option value="Lighting">Lighting</option>
+    </select>
+  </label>
+  <button onClick={handleTriggerAction}>Trigger Action</button>
+</div>
     </main>
   );
 };
