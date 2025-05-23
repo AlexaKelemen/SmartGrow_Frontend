@@ -24,8 +24,7 @@ const LoginPage = () => {
     try {
       const res = await login({ email, password });
 
-      localStorage.setItem("accessToken", res.accessToken);
-      localStorage.setItem("refreshToken", res.refreshToken);
+      localStorage.setItem("userEmail", res.email);
       navigate("/home");
     } catch (err) {
       console.error("Login failed:", err);
@@ -43,6 +42,7 @@ const LoginPage = () => {
       });
       localStorage.setItem("accessToken", res.accessToken);
       localStorage.setItem("refreshToken", res.refreshToken);
+      localStorage.setItem("userEmail", res.email);
       navigate("/home");
     } catch (err) {
       console.error("Registration failed:", err);

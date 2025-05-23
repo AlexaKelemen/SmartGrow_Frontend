@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "@/styles/pages/greenhouse.css";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
  * @typedef {Object} GreenhouseCardProps
  * @property {Object} greenhouse - GreenhouseDTO object.
  * @property {Function} onUnpair - Callback to unpair the greenhouse.
+ * @property {Function} onConfigure - Callback to configure the greenhouse.
  */
 
 /**
@@ -15,11 +16,25 @@ import { Button } from "@/components/ui/Button";
  * @param {GreenhouseCardProps} props
  * @returns {JSX.Element}
  */
-const GreenhouseCard = ({ greenhouse, onUnpair }) => {
+const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure }) => {
   const navigate = useNavigate();
 
   // Fallback to default image if greenhouse.imageUrl is undefined
   const imageSrc = greenhouse.imageUrl || "/images/greenhouse.png";
+
+  const [type, setType] = useState("Lighting");
+  const [method, setMethod] = useState("Manual");
+
+  const handleConfigure = async (e) => {
+    e.preventDefault();
+    try {
+      await onConfigure(greenhouse.id, greenhouse.id, { type, method });
+      alert("Configuration applied!");
+    } catch (error) {
+      console.error("Configuration failed:", error);
+      alert("Failed to configure greenhouse.");
+    }
+  };
 
   return (
     <div className="greenhouse-card">
@@ -65,6 +80,23 @@ const GreenhouseCard = ({ greenhouse, onUnpair }) => {
         >
           View Logs
         </Button>
+         {/* Configuration Form */}
+      <form className="config-form" onSubmit={handleConfigure}>
+        <div className="config-selects">
+          <select value={type} onChange={(e) => setType(e.target.value)} required>
+            <option value="Lighting">Lighting</option>
+            <option value="Watering">Watering</option>
+            <option value="Fertilization">Fertilization</option>
+          </select>
+
+          <select value={method} onChange={(e) => setMethod(e.target.value)} required>
+            <option value="Manual">Manual</option>
+          </select>
+        </div>
+        <Button type="submit" variant="default" size="sm">
+          Apply Configuration
+        </Button>
+      </form>
     </div>
   );
 };

@@ -132,7 +132,7 @@ const routes = [
                 element: <CreatePresetForm />,
             },
             {
-                path: 'presets/edit',
+                path: 'presets/edit/:id',
                 element: <EditPresetPage/>,
             }, 
             {

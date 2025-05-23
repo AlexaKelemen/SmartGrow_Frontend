@@ -16,6 +16,7 @@
  * @version 2.0.0
  * @since 0.0.1
  */
+import { useCallback } from 'react';
 
 import API, {authPath, userPath, greenhousePath, sensorPath, actionPath, presetPath, notificationPath, healthPath} from './axiosConfig'
 /**
@@ -135,6 +136,36 @@ const GreenhouseAPI = {
    */
      getAll: () =>
         API.get(`${greenhousePath}`).then((res) => res.data),
+     /**
+ * Assigns a preset to a greenhouse.
+ * @param {number} id - Greenhouse ID.
+ * @param {number} presetId - ID of the preset to assign.
+ * @returns {Promise<string>} Confirmation message.
+ */
+assignPreset: (id, presetId) =>
+    API.put(`${greenhousePath}/preset/${id}`, presetId, {
+      headers: { 'Content-Type': 'application/json' }
+    }).then(res => res.data),
+  
+/**
+ * Sends a configuration POST request for a greenhouse.
+ *
+ * @param {number} greenhouseId - The greenhouse ID (used in query).
+ * @param {number|string} id - The config target ID (used in path).
+ * @param {{ type: string, method: string }} payload - Configuration data.
+ * @returns {Promise<string>} Confirmation message.
+ */
+configure: (greenhouseId, id, payload) =>
+    API.put(`${greenhousePath}/configure/${id}`, payload, {
+      params: { greenhouseId }
+    }),
+  /**
+   * Triggers a prediction for a specific greenhouse.
+   * @param {number} greenhouseId
+   * @returns {Promise<string>} Prediction result or confirmation.
+   */
+  predict: (greenhouseId) =>
+    API.post(`${greenhousePath}/predict/${greenhouseId}`).then(res => res.data),
 }
 
 /**
@@ -203,50 +234,39 @@ const ActionAPI = {
  */
 const PresetAPI = {
     /**
-     * Creates a new preset with specified parameters.
-     *
-     * @param {RawPreset} preset - Preset object with user-defined environmental preferences.
-     * @returns {Promise<RawPreset>} The newly created preset.
-     */
-    createPreset: (preset) => API.post(`${presetPath}`, preset).then(res => res.data),
+   * Creates a new preset.
+   * @param {CreatePresetDTO} preset
+   * @returns {Promise<Preset>}
+   */
+  createPreset: (preset) => API.post(`${presetPath}`, preset).then(res => res.data),
 
-    /**
-     * Fetches a preset by unique identifier.
-     *
-     * @param {number} id - Preset ID.
-     * @returns {Promise<RawPreset>} The preset, if found.
-     */
-    getPreset: (id) => API.get(`${presetPath}/${id}`).then(res => res.data),
+  /**
+   * Gets a preset by ID.
+   * @param {number} id
+   * @returns {Promise<Preset>}
+   */
+  getPreset: (id) => API.get(`${presetPath}/${id}`).then(res => res.data),
 
-    /**
-     * Updates a preset by ID with new parameters.
-     *
-     * @param {number} id - Preset ID.
-     * @param {RawPreset} preset - Full preset object to replace existing.
-     * @returns {Promise<number>} HTTP status code from server.
-     */
-    updatePreset: (id, preset) => API.put(`${presetPath}/${id}`, preset).then(res => res.status),
+  /**
+   * Updates a preset.
+   * @param {number} id
+   * @param {UpdatePresetDTO} preset
+   * @returns {Promise<number>}
+   */
+  updatePreset: (id, preset) => API.put(`${presetPath}/${id}`, preset).then(res => res.status),
 
-    /**
-     * Permanently deletes a preset by ID.
-     *
-     * @param {number} id - Preset ID.
-     * @returns {Promise<number>} HTTP status code from server.
-     */
-    deletePreset: (id) => API.delete(`${presetPath}/${id}`).then(res => res.status)
-};
+  /**
+   * Deletes a preset.
+   * @param {number} id
+   * @returns {Promise<number>}
+   */
+  deletePreset: (id) => API.delete(`${presetPath}/${id}`).then(res => res.status),
 
-const NotificationAPI = {
-    /**
-     * Fetches notifications for a greenhouse in a specific time range.
-     *
-     * @param {number} greenhouseId - ID of the greenhouse.
-     * @param {NotificationQueryDTO} query - NotificationQueryDTO.<br>
-     * Contains start/end dates (ISO 8601).
-     * @returns {Promise<NotificationResultDTO[]>} NotificationResultDTO.<br>
-     * Contains id, timestamp, and content.
-     */
-    getPastNotifications: (greenhouseId, query) => API.post(`${notificationPath}/${greenhouseId}/past-notifications`, query).then(res => res.data)
+  /**
+   * Gets all presets.
+   * @returns {Promise<RawPreset[]>}
+   */
+  getAllPresets: () => API.get(`${presetPath}`).then(res => res.data)
 };
 
 /**
@@ -285,6 +305,26 @@ const PushAPI = {
     async saveSubscription(subscription) {
         await API.post('/subscribe', subscription);
     }
+    
 };
+
+/**
+ * Notification API for fetching greenhouse alerts.
+ *
+ * This module interacts with the backend `NotificationController`, which provides
+ * time-bound alert messages such as warnings about environmental conditions.
+ */
+const NotificationAPI = {
+    /**
+     * Fetches notifications for a greenhouse within a specific time window.
+     *
+     * @param {number} greenhouseId - ID of the greenhouse.
+     * @param {NotificationQueryDTO} query - Contains `startDate` and `endDate` in ISO format.
+     * @returns {Promise<NotificationResultDTO[]>} List of notifications.
+     */
+    getPastNotifications: (greenhouseId, query) =>
+      API.post(`${notificationPath}/${greenhouseId}/past-notifications`, query)
+        .then(res => res.data)
+  };
 
 export {AuthAPI, UserAPI, GreenhouseAPI, SensorAPI, ActionAPI, PresetAPI, NotificationAPI, HealthAPI, PushAPI}
