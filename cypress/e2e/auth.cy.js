@@ -8,14 +8,15 @@ describe('LoginPage E2E', () => {
       }
     });
   
-    // Try to click 'Deny' if the button is visible
-    cy.get('button')
-      .contains('Deny')
-      .then(($btn) => {
-        if ($btn.length > 0) {
-          cy.wrap($btn).click({ force: true });
-        }
-      });
+    cy.get('button', { timeout: 5000 })
+    .contains('Deny')
+    .click({ force: true })
+    .then(() => {
+      cy.log('Notification modal closed');
+    })
+    .catch(() => {
+      cy.log('No notification modal appeared');
+    });
   
     // Wait until the login form is actually interactable
     cy.get('[data-testid="login-email"]', { timeout: 10000 }).should('be.visible');
