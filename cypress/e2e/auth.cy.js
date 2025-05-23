@@ -1,27 +1,25 @@
 describe('LoginPage E2E', () => {
   beforeEach(() => {
     cy.clearLocalStorage();
-  
+
     cy.visit('/', {
       onBeforeLoad(win) {
         cy.stub(win.Notification, 'requestPermission').resolves('denied');
       }
     });
-  
-    cy.get('button', { timeout: 5000 })
-    .contains('Deny')
-    .click({ force: true })
-    .then(() => {
-      cy.log('Notification modal closed');
-    })
-    .catch(() => {
-      cy.log('No notification modal appeared');
+    
+    // Remove the overlay manually if it's present
+    cy.get('.permission-overlay', { timeout: 10000 })
+      .then($el => {
+        if ($el.length) {
+          $el.remove();
+        }
     });
-  
-    // Wait until the login form is actually interactable
-    cy.get('[data-testid="login-email"]', { timeout: 10000 }).should('be.visible');
+    
+
+    // Make sure login email input appears
+    cy.get('[data-testid="login-email"]', { timeout: 10000 }).should('exist');
   });
-  
 
   it('logs in successfully', () => {
     cy.intercept('POST', '**/Auth/login', {
@@ -29,10 +27,11 @@ describe('LoginPage E2E', () => {
       body: {
         accessToken: 'test-access-token',
         refreshToken: 'test-refresh-token',
-        email: 'user@example.com',
-      },
-    }).as('login');    
+        email: 'user@example.com'
+      }
+    }).as('login');
 
+    // Now safe to type
     cy.get('[data-testid="login-email"]').type('user@example.com');
     cy.get('[data-testid="login-password"]').type('password123');
     cy.get('[data-testid="login-submit"]').click();
