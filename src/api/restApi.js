@@ -180,7 +180,18 @@ const ActionAPI = {
      * @returns {Promise<ActionResultDTO[]>} ActionResultDTO.<br>
      * Contains type, status, and timestamp.
      */
-    getPastActions: (greenhouseId, filters) => API.post(`${actionPath}/${greenhouseId}/past-actions`, filters).then(res => res.data)
+    getPastActions: (greenhouseId, filters) => API.post(`${actionPath}/${greenhouseId}/past-actions`, filters).then(res => res.data),
+
+      /**
+   * Triggers a new action on the specified greenhouse.
+   * @param {number} greenhouseId - Greenhouse ID.
+   * @param {string} actionType - Action name (e.g., "Irrigation", "Ventilation").
+   * @returns {Promise<string>} Success message or result from server.
+   */
+  triggerAction: (greenhouseId, actionType) =>
+    API.post(`${actionPath}/${greenhouseId}/triggerAction`, actionType, {
+      headers: { "Content-Type": "application/json" }
+    }).then(res => res.data)
 };
 
 /**
