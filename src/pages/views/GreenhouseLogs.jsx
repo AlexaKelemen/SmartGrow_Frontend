@@ -108,9 +108,9 @@ const GreenhouseLogs = () => {
       value={selectedAction}
       onChange={(e) => setSelectedAction(e.target.value)}
     >
-      <option value="Watering">Watering</option>
-      <option value="Fertilize">Fertilize</option>
-      <option value="Lighting">Lighting</option>
+      <option value="watering">Watering</option>
+      <option value="fertilize">Fertilize</option>
+      <option value="light">Lighting</option>
     </select>
   </label>
   <button onClick={handleTriggerAction}>Trigger Action</button>

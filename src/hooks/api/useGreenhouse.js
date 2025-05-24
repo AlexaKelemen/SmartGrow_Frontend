@@ -98,6 +98,39 @@ export function useGreenhouse() {
     () => handleRequest(() => GreenhouseAPI.getAll()),
     [handleRequest]
   );
+  /**
+ * Assigns a preset to a greenhouse by its ID.
+ *
+ * @param {number} id - The ID of the greenhouse.
+ * @param {number} presetId - The ID of the preset to assign.
+ * @returns {Promise<string>} A confirmation message from the backend.
+ */
+const assignPreset = useCallback((id, presetId) =>
+    handleRequest(() => GreenhouseAPI.assignPreset(id, presetId)), [handleRequest]);
+  
+/**
+ * Triggers a configuration for a greenhouse.
+ *
+ * @param {number} greenhouseId - ID of the greenhouse (used in query param).
+ * @param {number|string} id - Configuration ID (used in path).
+ * @param {{ type: string, method: string }} payload
+ * @returns {Promise<string>}
+ */
+const configure = useCallback(
+    (greenhouseId, id, payload) =>
+      handleRequest(() => GreenhouseAPI.configure(greenhouseId, id, payload)),
+    [handleRequest]
+  );
+  
 
-    return { pair, unpair, rename,getAll, isLoading, error };
+  /**
+   * Triggers a prediction for the specified greenhouse.
+   *
+   * @param {number} greenhouseId - The ID of the greenhouse to predict for.
+   * @returns {Promise<string>} A prediction result or confirmation from the backend.
+   */
+  const predict = useCallback((greenhouseId) =>
+    handleRequest(() => GreenhouseAPI.predict(greenhouseId)), [handleRequest]);
+
+    return { pair, unpair, rename,getAll, assignPreset,configure,predict, isLoading, error };
 }

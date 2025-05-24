@@ -8,14 +8,13 @@ import React, { useState, useEffect } from "react";
 import "@/styles/pages/greenhouse.css";
 import { useNavigate } from "react-router-dom";
 import GreenhouseCard from "@/components/GreenhouseCard"; 
-//import greenhouse from "@/pages/viewmodels/Greenhouses.js";
 import { Button } from "@/components/ui/Button";
 import DeletePopUp from "@/components/DeletePopUp";
 import { useGreenhouse } from "@/hooks/api/useGreenhouse";
 
 const GreenhousePage = () => {
   const navigate = useNavigate();
-  const {getAll, unpair, error, isLoading } = useGreenhouse(); 
+  const {getAll, unpair,assignPreset,configure,predict, error, isLoading } = useGreenhouse(); 
 
   const [greenhouseList, setGreenhouseList] = useState([]);
   const [selectedGreenhouse, setSelectedGreenhouse] = useState(null);
@@ -56,36 +55,56 @@ const GreenhousePage = () => {
     setShowUnpairPopup(false);
     setSelectedGreenhouse(null);
   };
-  return (
-    <div className="greenhouse-page">
-      <h2 className="section-title">Greenhouses</h2>
-      <div className="action-buttons">
-        <Button
-          variant="default" 
-          onClick={() => navigate('/pair-greenhouse')}
-        >
-          Pair Greenhouse
-        </Button>
+    // Actions
+    const handleAssignPreset = (id) => {
+      assignPreset(id, 1); // replace `1` with dynamic value later
+    };
+    const handlePredict = (id) => {
+      predict(id);
+    };
+    const handleConfigure = (greenhouseId, configId, payload) => {
+      return configure(greenhouseId, configId, payload);
+    };
 
+    return (
+      <div className="greenhouse-page">
+        <h2 className="section-title">Greenhouses</h2>
+  
+        <div className="action-buttons">
+          <Button variant="default" onClick={() => navigate("/pair-greenhouse")}>
+            Pair Greenhouse
+          </Button>
+        </div>
+  
+        <div className="greenhouse-grid">
+          {greenhouseList.map((gh) => (
+            <div key={gh.id} className="greenhouse-wrapper">
+              <GreenhouseCard greenhouse={gh} onUnpair={handleUnpair} onConfigure={handleConfigure} />
+  
+              <div className="card-actions">
+                <Button
+                  variant="default"
+                  size="sm"
+                  onClick={() => handleAssignPreset(gh.id)}
+                >
+                  Assign Preset
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+  
+        {showUnpairPopup && selectedGreenhouse && (
+          <DeletePopUp
+            title="Unpair Greenhouse?"
+            description="unpair"
+            nameLabel={selectedGreenhouse.name}
+            confirmLabel="Unpair"
+            onCancel={handleCancelUnpair}
+            onConfirm={handleConfirmUnpair}
+          />
+        )}
       </div>
-   
-
-      <div className="greenhouse-grid">
-        {greenhouseList.map((gh) => (
-          <GreenhouseCard key={gh.id} greenhouse={gh} onUnpair={handleUnpair} />
-        ))}
-      </div>
-      {showUnpairPopup && selectedGreenhouse && (
-        <DeletePopUp
-          title="Unpair Greenhouse?"
-          description="unpair"
-          nameLabel={selectedGreenhouse.name}
-          confirmLabel="Unpair"
-          onCancel={handleCancelUnpair}
-          onConfirm={handleConfirmUnpair}
-        />
-      )}
-    </div>
   );
 };
 
