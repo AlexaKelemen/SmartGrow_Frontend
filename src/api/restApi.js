@@ -142,10 +142,12 @@ const GreenhouseAPI = {
  * @param {number} presetId - ID of the preset to assign.
  * @returns {Promise<string>} Confirmation message.
  */
-assignPreset: (id, presetId) =>
-    API.put(`${greenhousePath}/preset/${id}`, presetId, {
-      headers: { 'Content-Type': 'application/json' }
-    }).then(res => res.data),
+     assignPreset: (greenhouseId, presetId) =>
+        API.put(`${greenhousePath}/preset/${greenhouseId}`, presetId, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(res => res.data),
   
 /**
  * Sends a configuration POST request for a greenhouse.

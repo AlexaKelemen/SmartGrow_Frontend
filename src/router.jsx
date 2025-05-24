@@ -113,9 +113,13 @@ const routes = [
                 element: <EditGreenhousePage />,
             },
             {
+                path: 'greenhouses/:if/presets',
+                element: <PresetsPage />,
+              },
+            {
                 path: 'greenhouses/logs/:id',
                 element: <GreenhouseLogs />,
-                navLabel: 'Greenhouse Logs',
+                navLabel: 'Greenhouse Actions',
             },
             {
                 path: 'dashboard',

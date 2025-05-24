@@ -109,7 +109,7 @@ const GreenhouseLogs = () => {
       onChange={(e) => setSelectedAction(e.target.value)}
     >
       <option value="watering">Watering</option>
-      <option value="fertilize">Fertilize</option>
+      <option value="fertilizer">Fertilize</option>
       <option value="light">Lighting</option>
     </select>
   </label>
