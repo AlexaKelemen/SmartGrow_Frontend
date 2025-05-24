@@ -79,7 +79,7 @@ const GreenhousePage = () => {
         <div className="greenhouse-grid">
           {greenhouseList.map((gh) => (
             <div key={gh.id} className="greenhouse-wrapper">
-              <GreenhouseCard greenhouse={gh} onUnpair={handleUnpair}  />
+              <GreenhouseCard greenhouse={gh} onUnpair={handleUnpair} onConfigure={handleConfigure} />
   
               <div className="card-actions">
                 <Button

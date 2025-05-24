@@ -1,6 +1,7 @@
+// Updated PresetPage.jsx - fully working with usePreset and correct API route
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "@/styles/pages/preset.css"; 
+import "@/styles/pages/preset.css";
 import PresetCard from "@/components/PresetCard";
 import DeletePopUp from "@/components/DeletePopUp";
 import { Button } from "@/components/ui/Button";
@@ -8,26 +9,25 @@ import { usePreset } from "@/hooks/api/usePreset";
 
 const PresetPage = () => {
   const navigate = useNavigate();
-  const { getPreset, deletePreset, isLoading } = usePreset();
+  const { getAllPresets, deletePreset, isLoading, error } = usePreset();
 
-  const [preset, setPreset] = useState(null);
+  const [presets, setPresets] = useState([]);
   const [showPopUp, setShowPopUp] = useState(false);
   const [selectedPreset, setSelectedPreset] = useState(null);
 
   useEffect(() => {
-    const fetchPreset = async () => {
+    const fetchPresets = async () => {
       try {
-        const data = await getPreset(1); // hardcoded ID
-        setPreset(data);
-      } catch (error) {
-        console.error("Error fetching preset with id 1:", error);
+        const data = await getAllPresets();
+        setPresets(data);
+      } catch (err) {
+        console.error("Error fetching presets:", err);
       }
     };
+    fetchPresets();
+  }, [getAllPresets]);
 
-    fetchPreset();
-  }, [getPreset]);
-
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (preset) => {
     setSelectedPreset(preset);
     setShowPopUp(true);
   };
@@ -39,9 +39,10 @@ const PresetPage = () => {
 
   const handleConfirm = async () => {
     try {
-      await deletePreset(preset.id);
-      console.log("Deleted:", preset.name);
-      setPreset(null);
+      await deletePreset(selectedPreset.id);
+      setPresets((prevPresets) =>
+        prevPresets.filter((p) => p.id !== selectedPreset.id)
+      );
       setShowPopUp(false);
       setSelectedPreset(null);
     } catch (error) {
@@ -49,23 +50,26 @@ const PresetPage = () => {
     }
   };
 
+  const handleViewPreset = (id) => {
+    navigate(`/presets/${id}`);
+  };
+
   return (
     <div className="preset-page">
       <div className="preset-header">
-        <Button variant="default" onClick={() => navigate("/presets/create")}>
-          Create Preset
-        </Button>
+        <Button variant="default" onClick={() => navigate("/presets/create")}>Create Preset</Button>
       </div>
 
-      {isLoading ? (
-        <p>Loading preset...</p>
-      ) : preset ? (
-        <div className="preset-cards" onClick={() => navigate(`/presets/edit/${preset.id}`)}>
-          <PresetCard preset={preset} onDelete={handleDeleteClick} />
-        </div>
-      ) : (
-        <p>No preset found.</p>
-      )}
+      {isLoading && <p>Loading presets...</p>}
+      {error && <p style={{ color: "red" }}>Error loading presets</p>}
+
+      <div className="preset-cards">
+        {presets.map((preset) => (
+          <div key={preset.id} onClick={() => handleViewPreset(preset.id)}>
+            <PresetCard preset={preset} onDelete={() => handleDeleteClick(preset)} />
+          </div>
+        ))}
+      </div>
 
       {showPopUp && selectedPreset && (
         <DeletePopUp
@@ -82,3 +86,5 @@ const PresetPage = () => {
 };
 
 export default PresetPage;
+
+

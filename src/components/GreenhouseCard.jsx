@@ -22,8 +22,8 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure }) => {
   // Fallback to default image if greenhouse.imageUrl is undefined
   const imageSrc = greenhouse.imageUrl || "/images/greenhouse.png";
 
-  const [type, setType] = useState("Lighting");
-  const [method, setMethod] = useState("Manual");
+  const [type, setType] = useState("lighting");
+  const [method, setMethod] = useState("manual");
 
   const handleConfigure = async (e) => {
     e.preventDefault();
@@ -84,13 +84,13 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure }) => {
       <form className="config-form" onSubmit={handleConfigure}>
         <div className="config-selects">
           <select value={type} onChange={(e) => setType(e.target.value)} required>
-            <option value="Lighting">Lighting</option>
-            <option value="Watering">Watering</option>
-            <option value="Fertilization">Fertilization</option>
+            <option value="lighting">Lighting</option>
+            <option value="watering">Watering</option>
+            <option value="fertilization">Fertilization</option>
           </select>
 
           <select value={method} onChange={(e) => setMethod(e.target.value)} required>
-            <option value="Manual">Manual</option>
+            <option value="manual">Manual</option>
           </select>
         </div>
         <Button type="submit" variant="default" size="sm">

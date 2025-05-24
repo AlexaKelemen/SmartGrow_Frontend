@@ -81,6 +81,11 @@ export function usePreset() {
      * @returns {Promise<number>} HTTP status code.
      */
     const deletePreset = useCallback((id) => handleRequest(() => PresetAPI.deletePreset(id)), [handleRequest]);
+    
+    const getAllPresets = useCallback(
+        () => handleRequest(() => PresetAPI.getAllPresets()),
+        [handleRequest]
+      );
 
-    return {createPreset, getPreset, updatePreset, deletePreset,isLoading, error};
+    return {createPreset, getPreset, updatePreset, deletePreset,getAllPresets,isLoading, error};
 }

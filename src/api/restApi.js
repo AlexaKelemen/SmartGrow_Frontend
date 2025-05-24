@@ -264,9 +264,9 @@ const PresetAPI = {
 
   /**
    * Gets all presets.
-   * @returns {Promise<RawPreset[]>}
+   * @returns {Promise<Preset[]>}
    */
-  getAllPresets: () => API.get(`${presetPath}`).then(res => res.data)
+  getAllPresets: () => API.get(`${presetPath}/all`).then(res => res.data)
 };
 
 /**
