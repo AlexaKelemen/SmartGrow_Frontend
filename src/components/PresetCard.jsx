@@ -1,76 +1,75 @@
 /**
  * @file PresetCard.jsx
  * @description Reusable card component for displaying individual plant presets
- * in the SmartGrow webpage. This component receives preset data via props
- * and visually presents key details, including image, name, type, creation and 
- * update dates, along with basic UI buttons for future interaction.
- * 
+ * in the SmartGrow webpage. Displays key data and a fallback image if none is provided.
+ *
  * @author Alexa Kelemen
- * @since 1.0.0
+ * @since 1.0.1
  */
+
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import "@/styles/pages/preset.css"; 
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
+import "@/styles/pages/preset.css";
 
-const PresetCard = ({ preset,onDelete }) => {
+const PresetCard = ({ preset, onDelete, onApply, onEdit }) => {
   const [hovered, setHovered] = useState(false);
   const navigate = useNavigate();
 
-    const handleMouseEnter = (e) => {
-    if (!e.target.closest(".delete-btn-wrapper")) {
-      setHovered(true);
-    }
+  const placeholderImage = "/images/strawberry.png";
+  const imageUrl = preset.image || placeholderImage;
+
+  const handleMouseEnter = (e) => {
+    if (!e.target.closest(".delete-btn-wrapper")) setHovered(true);
   };
 
   const handleMouseLeave = (e) => {
-    if (!e.target.closest(".delete-btn-wrapper")) {
-      setHovered(false);
-    }
+    if (!e.target.closest(".delete-btn-wrapper")) setHovered(false);
   };
-  
+
   return (
     <div
       className="preset-card"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div
         className="preset-image"
-        style={{ backgroundImage: `url(${preset.image})` }}
+        style={{
+          backgroundImage: `url(${imageUrl})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "150px",
+          borderTopLeftRadius: "10px",
+          borderTopRightRadius: "10px",
+          position: "relative",
+        }}
       >
-          <div className="delete-btn-wrapper">
-          <Button variant="destructive" size="sm" onClick={onDelete}>
-            Delete
-          </Button>
+        <div className="delete-btn-wrapper">
+          <Button variant="destructive" size="sm"  onClick={(e) => {
+    e.stopPropagation(); 
+    onDelete?.();
+  }}
+>Delete</Button>
         </div>
-        <h2 className="preset-title">{preset.title}</h2>
       </div>
 
       <div className="preset-info">
-        <p><strong>Name:</strong> {preset.name}</p>
-        <p><strong>Type:</strong> {preset.type}</p>
-        <p>
-          <strong>Created / Updated dates:</strong><br />
-          {preset.creationDate} - {preset.updateDate}
+        <p><strong>Name:</strong> {preset.name}
         </p>
 
         {hovered && (
           <div className="hover-details">
-            <p>Air humidity: {preset.airHumidity}</p>
-            <p>Soil Humidity: {preset.soilHumidity}</p>
-            <p>CO₂: {preset.co2}</p>
-            <p>Temperature: {preset.temperature}</p>
-            <p>Brightness: {preset.brightness}</p>
+            <p>Air humidity: {preset.minAirHumidity}–{preset.maxAirHumidity}%</p>
+            <p>Soil humidity: {preset.minSoilHumidity}–{preset.maxSoilHumidity}%</p>
+            <p>Temperature: {preset.minTemperature}–{preset.maxTemperature}°C</p>
+            <p>Light: {preset.hoursOfLight} hrs</p>
           </div>
         )}
 
         <div className="preset-buttons">
-        <Button variant="edit" size="sm" onClick={() => navigate(`/presets/edit`)}>
-            Edit
-          </Button>
-          <Button variant="default" size="sm">Apply</Button>
+          <Button variant="edit" size="sm" onClick={()  => navigate(`/presets/edit/${preset.id}`)}>Edit</Button>
         </div>
       </div>
     </div>
@@ -81,16 +80,21 @@ PresetCard.propTypes = {
   preset: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    creationDate: PropTypes.string.isRequired,
-    updateDate: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    airHumidity: PropTypes.string,
-    soilHumidity: PropTypes.string,
-    co2: PropTypes.string,
-    temperature: PropTypes.string,
-    brightness: PropTypes.string,
+    type: PropTypes.string,
+    creationDate: PropTypes.string,
+    updateDate: PropTypes.string,
+    image: PropTypes.string,
+    minAirHumidity: PropTypes.number,
+    maxAirHumidity: PropTypes.number,
+    minSoilHumidity: PropTypes.number,
+    maxSoilHumidity: PropTypes.number,
+    minTemperature: PropTypes.number,
+    maxTemperature: PropTypes.number,
+    hoursOfLight: PropTypes.number,
   }).isRequired,
+  onDelete: PropTypes.func,
+  onApply: PropTypes.func,
+  onEdit: PropTypes.func,
 };
 
 export default PresetCard;

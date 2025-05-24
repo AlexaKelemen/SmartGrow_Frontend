@@ -1,4 +1,3 @@
-// Updated PresetPage.jsx - fully working with usePreset and correct API route
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "@/styles/pages/preset.css";
@@ -7,14 +6,17 @@ import DeletePopUp from "@/components/DeletePopUp";
 import { Button } from "@/components/ui/Button";
 import { usePreset } from "@/hooks/api/usePreset";
 
+
+
+
 const PresetPage = () => {
   const navigate = useNavigate();
   const { getAllPresets, deletePreset, isLoading, error } = usePreset();
-
   const [presets, setPresets] = useState([]);
+
   const [showPopUp, setShowPopUp] = useState(false);
   const [selectedPreset, setSelectedPreset] = useState(null);
-
+ 
   useEffect(() => {
     const fetchPresets = async () => {
       try {
@@ -51,7 +53,7 @@ const PresetPage = () => {
   };
 
   const handleViewPreset = (id) => {
-    navigate(`/presets/${id}`);
+    navigate(`/presets/edit/${id}`);
   };
 
   return (
@@ -66,20 +68,21 @@ const PresetPage = () => {
       <div className="preset-cards">
         {presets.map((preset) => (
           <div key={preset.id} onClick={() => handleViewPreset(preset.id)}>
-            <PresetCard preset={preset} onDelete={() => handleDeleteClick(preset)} />
+            <PresetCard preset={preset} onDelete={() => handleDeleteClick(preset)}/>
           </div>
         ))}
       </div>
+      
 
       {showPopUp && selectedPreset && (
         <DeletePopUp
-          title="Delete preset?"
-          description="delete"
-          nameLabel={selectedPreset.name}
-          confirmLabel="Delete"
-          onCancel={handleCancel}
-          onConfirm={handleConfirm}
-        />
+        title="Delete preset?"
+        description="delete"
+        nameLabel={selectedPreset.name}
+        confirmLabel="Delete"
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+      />
       )}
     </div>
   );
