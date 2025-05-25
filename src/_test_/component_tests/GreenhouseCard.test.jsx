@@ -91,7 +91,6 @@ describe('GreenhouseCard', () => {
     fireEvent.click(screen.getByText('View Logs and action'));
     expect(mockNavigate).toHaveBeenCalledWith('/greenhouses/logs/1');
   });
-
   test('calls onUnpair when Unpair Greenhouse is clicked', () => {
     const handleUnpair = vi.fn();
 

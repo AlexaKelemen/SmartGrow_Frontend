@@ -122,7 +122,7 @@ const routes = [
                 navLabel: 'Greenhouse Actions',
             },
             {
-                path: 'dashboard',
+                path: 'dashboard/:id',
                 element: <DashboardPage />,
                 navLabel: 'Dashboard',
             },
@@ -145,7 +145,7 @@ const routes = [
                 navLabel: 'Lighting',
             },
             {
-                path: 'soil-humidity',
+                path: '/greenhouses/:id/soil-humidity',
                 element: <SoilHumidityPage />,
                 navLabel: 'Soil Humidity Levels',
             },

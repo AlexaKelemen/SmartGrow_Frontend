@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "@/styles/pages/greenhouse.css";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
+import { useSensor } from "@/hooks/api/useSensor";
+
 
 /**
  * @typedef {Object} GreenhouseCardProps
@@ -20,6 +22,8 @@ import { Button } from "@/components/ui/Button";
  */
 const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApplyPreset }) => {
   const navigate = useNavigate();
+  const { getCurrentReadings } = useSensor();
+
 
   // Fallback to default image if greenhouse.imageUrl is undefined
   const imageSrc = greenhouse.imageUrl || "/images/greenhouse.png";
@@ -63,11 +67,11 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
           <span>Watering</span>
           <span>{greenhouse.wateringMethod || "N/A"}</span>
         </div>
-        <div className="info-box">
-          <span>🧪</span>
-          <span>Fertilization</span>
-          <span>{greenhouse.fertilizationMethod || "N/A"}</span>
-        </div>
+        <div className="info-box" onClick={() => navigate(`/greenhouses/${greenhouse.id}/soil-humidity`)} style={{ cursor: "pointer" }}>
+         <span>🌱</span>
+        <span>Soil Humidity</span>
+       <span>{greenhouse.soilHumidity != null ? `${greenhouse.soilHumidity}%` : "N/A"}</span>
+       </div>
       </div>
       <Button
   variant="default"
@@ -116,6 +120,13 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
         >
           View Logs and action
         </Button>
+        <Button
+  variant="default"
+  size="sm"
+  onClick={() => navigate(`/dashboard/${greenhouse.id}`)}
+>
+  View Dashboard
+</Button>
          {/* Configuration Form */}
       <form className="config-form" onSubmit={handleConfigure}>
         <div className="config-selects">
