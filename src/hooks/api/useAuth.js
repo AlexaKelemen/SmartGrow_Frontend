@@ -68,7 +68,7 @@ export function useAuth() {
      *   console.error('Login failed:', err);
      * }
      */
-    const login = useCallback((credentials) => handleRequest(() => AuthAPI.login(credentials)), [handleRequest]);
+    const login = useCallback((credentials) => handleRequest(() => AuthAPI.login(credentials)), [handleRequest])
 
     /**
      * Registers a new user account using credentials.
