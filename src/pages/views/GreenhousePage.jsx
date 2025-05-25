@@ -11,11 +11,13 @@ import GreenhouseCard from "@/components/GreenhouseCard";
 import { Button } from "@/components/ui/Button";
 import DeletePopUp from "@/components/DeletePopUp";
 import { useGreenhouse } from "@/hooks/api/useGreenhouse";
+import { usePreset } from "@/hooks/api/usePreset";
 
 const GreenhousePage = () => {
   const navigate = useNavigate();
   const {getAll, unpair,assignPreset,configure,predict, error, isLoading } = useGreenhouse(); 
-
+  const { getAllPresets } = usePreset();
+  const [allPresets, setAllPresets] = useState([]);
   const [greenhouseList, setGreenhouseList] = useState([]);
   const [selectedGreenhouse, setSelectedGreenhouse] = useState(null);
   const [showUnpairPopup, setShowUnpairPopup] = useState(false);
@@ -24,7 +26,9 @@ const GreenhousePage = () => {
     getAll().then(setGreenhouseList).catch(console.error);
   }, []);
 
-
+  useEffect(() => {
+    getAllPresets().then(setAllPresets).catch(console.error);
+  }, []);
 
   // Called when "Unpair Greenhouse" is clicked
   const handleUnpair = (gh) => {
@@ -79,17 +83,10 @@ const GreenhousePage = () => {
         <div className="greenhouse-grid">
           {greenhouseList.map((gh) => (
             <div key={gh.id} className="greenhouse-wrapper">
-              <GreenhouseCard greenhouse={gh} onUnpair={handleUnpair} onConfigure={handleConfigure} />
+              <GreenhouseCard greenhouse={gh} onUnpair={handleUnpair} onConfigure={handleConfigure}  presets={allPresets}
+  onApplyPreset={(greenhouseId, presetId) => assignPreset(greenhouseId, presetId)}/>
   
-              <div className="card-actions">
-                <Button
-                  variant="default"
-                  size="sm"
-                  onClick={() => handleAssignPreset(gh.id)}
-                >
-                  Assign Preset
-                </Button>
-              </div>
+            
             </div>
           ))}
         </div>

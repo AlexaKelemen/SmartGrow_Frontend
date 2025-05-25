@@ -112,6 +112,10 @@ const routes = [
                 element: <EditGreenhousePage/>,
             },
             {
+                path: 'greenhouses/:if/presets',
+                element: <PresetsPage />,
+              },
+            {
                 path: 'greenhouses/logs/:id',
                 element: <GreenhouseLogs/>,
                 navLabel: 'Greenhouse Logs',
@@ -119,6 +123,14 @@ const routes = [
             {
                 path: 'dashboard',
                 element: <DashboardPage/>,
+
+                element: <GreenhouseLogs />,
+                navLabel: 'Greenhouse Actions',
+            },
+            {
+                path: 'dashboard/:id',
+                element: <DashboardPage />,
+
                 navLabel: 'Dashboard',
             },
             {
@@ -140,8 +152,9 @@ const routes = [
                 navLabel: 'Lighting',
             },
             {
-                path: 'soil-humidity',
-                element: <SoilHumidityPage/>,
+
+                path: '/greenhouses/:id/soil-humidity',
+                element: <SoilHumidityPage />,
                 navLabel: 'Soil Humidity Levels',
             },
             {

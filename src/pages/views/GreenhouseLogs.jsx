@@ -87,20 +87,24 @@ const GreenhouseLogs = () => {
       {error && <p style={{ color: "red" }}>Error loading logs.</p>}
 
       <div className="log-list">
-        {logs.length === 0 && !isLoading ? (
-          <p>No logs found for the selected date range.</p>
-        ) : (
-          logs.map((log, index) => (
-            <div key={index} className="log-entry">
-              <div className="log-type">{log.type}</div>
-              <div className="log-desc">Status: {log.status}</div>
-              <div className="log-date">
-                {new Date(log.timestamp).toLocaleString()}
-              </div>
-            </div>
-          ))
-        )}
+  <div className="log-header">
+    <span>Action Type</span>
+    <span>Timestamp</span>
+  </div>
+
+  {logs.length === 0 && !isLoading ? (
+    <p>No logs found for the selected date range.</p>
+  ) : (
+    logs.map((log, index) => (
+      <div key={index} className="log-entry">
+        <span className="log-type">{log.type}</span>
+        <span className="log-timestamp">
+          {new Date(log.timestamp).toLocaleString()}
+        </span>
       </div>
+    ))
+  )}
+</div>
       <div className="trigger-section">
   <label>
     Action to trigger:
@@ -109,7 +113,7 @@ const GreenhouseLogs = () => {
       onChange={(e) => setSelectedAction(e.target.value)}
     >
       <option value="watering">Watering</option>
-      <option value="fertilize">Fertilize</option>
+      <option value="fertilizer">Fertilize</option>
       <option value="light">Lighting</option>
     </select>
   </label>

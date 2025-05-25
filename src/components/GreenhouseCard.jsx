@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import "@/styles/pages/greenhouse.css";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
+import { useSensor } from "@/hooks/api/useSensor";
+
 
 /**
  * @typedef {Object} GreenhouseCardProps
  * @property {Object} greenhouse - GreenhouseDTO object.
  * @property {Function} onUnpair - Callback to unpair the greenhouse.
  * @property {Function} onConfigure - Callback to configure the greenhouse.
+ * @property {Array<Object>} presets - List of available presets to choose from.
+ * @property {Function} onApplyPreset - Called with (greenhouseId, presetId)
  */
 
 /**
@@ -16,14 +20,18 @@ import { Button } from "@/components/ui/Button";
  * @param {GreenhouseCardProps} props
  * @returns {JSX.Element}
  */
-const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure }) => {
+const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApplyPreset }) => {
   const navigate = useNavigate();
+  const { getCurrentReadings } = useSensor();
+
 
   // Fallback to default image if greenhouse.imageUrl is undefined
   const imageSrc = greenhouse.imageUrl || "/images/greenhouse.png";
 
   const [type, setType] = useState("lighting");
   const [method, setMethod] = useState("manual");
+  const [selectedPresetId, setSelectedPresetId] = useState("");
+
 
   const handleConfigure = async (e) => {
     e.preventDefault();
@@ -59,13 +67,45 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure }) => {
           <span>Watering</span>
           <span>{greenhouse.wateringMethod || "N/A"}</span>
         </div>
-        <div className="info-box">
-          <span>🧪</span>
-          <span>Fertilization</span>
-          <span>{greenhouse.fertilizationMethod || "N/A"}</span>
-        </div>
+        <div className="info-box" onClick={() => navigate(`/greenhouses/${greenhouse.id}/soil-humidity`)} style={{ cursor: "pointer" }}>
+         <span>🌱</span>
+        <span>Soil Humidity</span>
+       <span>{greenhouse.soilHumidity != null ? `${greenhouse.soilHumidity}%` : "N/A"}</span>
+       </div>
       </div>
+      <Button
+  variant="default"
+  size="sm"
+  onClick={() => navigate(`/greenhouses/${greenhouse.id}/presets`)}
+>
+  View Presets
+</Button>
+<div className="apply-preset-section">
+  <select
+    value={selectedPresetId}
+    onChange={(e) => setSelectedPresetId(Number(e.target.value))}
+  >
+    <option value="">Choose a preset</option>
+    {presets.map((preset) => (
+      <option key={preset.id} value={preset.id}>
+        {preset.name}
+      </option>
+    ))}
+  </select>
 
+  <Button
+    variant="default"
+    size="sm"
+    onClick={() => {
+      if (selectedPresetId) {
+        onApplyPreset(greenhouse.id, selectedPresetId);
+      }
+    }}
+    disabled={!selectedPresetId}
+  >
+    Apply Preset
+  </Button>
+</div>
       <Button
         variant="edit"
         size="sm"
@@ -78,8 +118,15 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure }) => {
           size="sm"
           onClick={() => navigate(`/greenhouses/logs/${greenhouse.id}`)}
         >
-          View Logs
+          View Logs and action
         </Button>
+        <Button
+  variant="default"
+  size="sm"
+  onClick={() => navigate(`/dashboard/${greenhouse.id}`)}
+>
+  View Dashboard
+</Button>
          {/* Configuration Form */}
       <form className="config-form" onSubmit={handleConfigure}>
         <div className="config-selects">

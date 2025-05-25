@@ -4,7 +4,7 @@
  *
  * @author SophiaJustin
  * */
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "@/styles/pages/login.css";
 import plantImg from "../../../assets/Plant.png";
 import { useAuth } from "@/hooks/api/useAuth";
@@ -18,6 +18,7 @@ const LoginPage = () => {
 
   const { login, register, isLoading, error } = useAuth();
   const navigate = useNavigate();
+  
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +26,8 @@ const LoginPage = () => {
       const res = await login({ email, password });
 
       localStorage.setItem("userEmail", res.email);
+      localStorage.setItem("accessToken", res.accessToken);
+      localStorage.setItem("refreshToken", res.refreshToken);
       navigate("/home");
     } catch (err) {
       console.error("Login failed:", err);
