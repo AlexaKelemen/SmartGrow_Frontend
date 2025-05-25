@@ -20,6 +20,7 @@
 import '@/styles/pages/dashboard.css';
 import {dashboardModel} from '@/pages/viewmodels/dashboardModel';
 import {GaugeHumidity, GaugeBrightness, GaugeTemperature} from '@/components/gauges/wrappers';
+import { useParams } from "react-router-dom";
 
 /**
  * GaugeCard
@@ -52,12 +53,15 @@ function GaugeCard({label, color, children}) {
  *
  * @returns {JSX.Element}
  */
-export default function Dashboard({greenhouseId = 1 }) {
+export default function Dashboard() {
+    const { id } = useParams();
+    const greenhouseId = Number(id);
     const {
         getTemperatureReading,
         getHumidityReading,
         getBrightnessReading,
         isLoading,
+        
         isError
     } = dashboardModel(greenhouseId);
 
