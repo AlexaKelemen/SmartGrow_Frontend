@@ -112,10 +112,7 @@ const routes = [
                 path: 'edit-greenhouse/:id',
                 element: <EditGreenhousePage />,
             },
-            {
-                path: 'greenhouses/:if/presets',
-                element: <PresetsPage />,
-              },
+           
             {
                 path: 'greenhouses/logs/:id',
                 element: <GreenhouseLogs />,
