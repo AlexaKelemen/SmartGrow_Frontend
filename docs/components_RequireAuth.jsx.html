@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/RequireAuth.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-hooks_api.html">hooks/api</a></li></ul><h3>Global</h3><ul><li><a href="global.html#API">API</a></li><li><a href="global.html#ActionAPI">ActionAPI</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#AuthAPI">AuthAPI</a></li><li><a href="global.html#AuthProvider">AuthProvider</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#GaugeBrightness">GaugeBrightness</a></li><li><a href="global.html#GaugeCard">GaugeCard</a></li><li><a href="global.html#GaugeHumidity">GaugeHumidity</a></li><li><a href="global.html#GaugeIdealRadial">GaugeIdealRadial</a></li><li><a href="global.html#GaugeMultiZoneRadial">GaugeMultiZoneRadial</a></li><li><a href="global.html#GaugeTemperature">GaugeTemperature</a></li><li><a href="global.html#GreenhouseAPI">GreenhouseAPI</a></li><li><a href="global.html#GreenhouseCard">GreenhouseCard</a></li><li><a href="global.html#GreenhouseForm">GreenhouseForm</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HealthAPI">HealthAPI</a></li><li><a href="global.html#NotificationAPI">NotificationAPI</a></li><li><a href="global.html#PresetAPI">PresetAPI</a></li><li><a href="global.html#RequireAuth">RequireAuth</a></li><li><a href="global.html#SensorAPI">SensorAPI</a></li><li><a href="global.html#UserAPI">UserAPI</a></li><li><a href="global.html#authPath">authPath</a></li><li><a href="global.html#checkAuth">checkAuth</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#failedQueue">failedQueue</a></li><li><a href="global.html#getBrowserSubscription">getBrowserSubscription</a></li><li><a href="global.html#getPermissionStatus">getPermissionStatus</a></li><li><a href="global.html#isPushSupported">isPushSupported</a></li><li><a href="global.html#isRefreshing">isRefreshing</a></li><li><a href="global.html#normalizeSubscription">normalizeSubscription</a></li><li><a href="global.html#processQueue">processQueue</a></li><li><a href="global.html#resolveOffset">resolveOffset</a></li><li><a href="global.html#root">root</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#routes">routes</a></li><li><a href="global.html#secureChildren">secureChildren</a></li><li><a href="global.html#showPushPermissionPrompt">showPushPermissionPrompt</a></li><li><a href="global.html#urlBase64ToUint8Array">urlBase64ToUint8Array</a></li><li><a href="global.html#useAction">useAction</a></li><li><a href="global.html#useApiUtils">useApiUtils</a></li><li><a href="global.html#useAuth">useAuth</a></li><li><a href="global.html#useCSSVar">useCSSVar</a></li><li><a href="global.html#useCommonGaugeTheme">useCommonGaugeTheme</a></li><li><a href="global.html#useGreenhouse">useGreenhouse</a></li><li><a href="global.html#useHealth">useHealth</a></li><li><a href="global.html#useNotification">useNotification</a></li><li><a href="global.html#usePreset">usePreset</a></li><li><a href="global.html#usePush">usePush</a></li><li><a href="global.html#useUser">useUser</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/RequireAuth.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file RequireAuth.jsx
+ * @description Route guard component that enforces authentication for protected routes.
+ *
+ * This component checks whether a user is authenticated using the global AuthContext.
+ * If not authenticated, it redirects the user to the login route (`"/"`), preserving
+ * the original location for post-login redirection.
+ *
+ * It should be used to wrap any route element that requires login.
+ * @version 1.0.0
+ * @since 0.8.0
+ * @author Taggerkov
+ * @see AuthProvider
+ */
+
+import {Navigate, useLocation} from 'react-router-dom';
+import {checkAuth} from '@/context/authContext';
+
+/**
+ * Protects child components from being accessed without authentication.
+ *
+ * If the user is not authenticated, redirects to the login route (`/`).
+ * If authenticated, render the wrapped children.
+ *
+ * @function RequireAuth
+ * @param children - The components to render if the user is authenticated.
+ * @returns {JSX.Element} A `&lt;Navigate>` component if unauthorized; otherwise renders `children`.
+ *
+ * @example
+ * {
+ *   path: 'dashboard',
+ *   element: &lt;RequireAuth>&lt;DashboardPage />&lt;/RequireAuth>,
+ * }
+ */
+export default function RequireAuth({children}) {
+    const {user} = checkAuth();
+    const location = useLocation();
+    if (!user) return &lt;Navigate to="/" state={{from: location}} replace/>;
+    return &lt;>{children}&lt;/>;
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon May 26 2025 15:59:56 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

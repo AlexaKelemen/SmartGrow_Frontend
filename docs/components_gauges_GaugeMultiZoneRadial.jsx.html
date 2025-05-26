@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/gauges/GaugeMultiZoneRadial.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-hooks_api.html">hooks/api</a></li></ul><h3>Global</h3><ul><li><a href="global.html#API">API</a></li><li><a href="global.html#ActionAPI">ActionAPI</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#AuthAPI">AuthAPI</a></li><li><a href="global.html#AuthProvider">AuthProvider</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#GaugeBrightness">GaugeBrightness</a></li><li><a href="global.html#GaugeCard">GaugeCard</a></li><li><a href="global.html#GaugeHumidity">GaugeHumidity</a></li><li><a href="global.html#GaugeIdealRadial">GaugeIdealRadial</a></li><li><a href="global.html#GaugeMultiZoneRadial">GaugeMultiZoneRadial</a></li><li><a href="global.html#GaugeTemperature">GaugeTemperature</a></li><li><a href="global.html#GreenhouseAPI">GreenhouseAPI</a></li><li><a href="global.html#GreenhouseCard">GreenhouseCard</a></li><li><a href="global.html#GreenhouseForm">GreenhouseForm</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HealthAPI">HealthAPI</a></li><li><a href="global.html#NotificationAPI">NotificationAPI</a></li><li><a href="global.html#PresetAPI">PresetAPI</a></li><li><a href="global.html#RequireAuth">RequireAuth</a></li><li><a href="global.html#SensorAPI">SensorAPI</a></li><li><a href="global.html#UserAPI">UserAPI</a></li><li><a href="global.html#authPath">authPath</a></li><li><a href="global.html#checkAuth">checkAuth</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#failedQueue">failedQueue</a></li><li><a href="global.html#getBrowserSubscription">getBrowserSubscription</a></li><li><a href="global.html#getPermissionStatus">getPermissionStatus</a></li><li><a href="global.html#isPushSupported">isPushSupported</a></li><li><a href="global.html#isRefreshing">isRefreshing</a></li><li><a href="global.html#normalizeSubscription">normalizeSubscription</a></li><li><a href="global.html#processQueue">processQueue</a></li><li><a href="global.html#resolveOffset">resolveOffset</a></li><li><a href="global.html#root">root</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#routes">routes</a></li><li><a href="global.html#secureChildren">secureChildren</a></li><li><a href="global.html#showPushPermissionPrompt">showPushPermissionPrompt</a></li><li><a href="global.html#urlBase64ToUint8Array">urlBase64ToUint8Array</a></li><li><a href="global.html#useAction">useAction</a></li><li><a href="global.html#useApiUtils">useApiUtils</a></li><li><a href="global.html#useAuth">useAuth</a></li><li><a href="global.html#useCSSVar">useCSSVar</a></li><li><a href="global.html#useCommonGaugeTheme">useCommonGaugeTheme</a></li><li><a href="global.html#useGreenhouse">useGreenhouse</a></li><li><a href="global.html#useHealth">useHealth</a></li><li><a href="global.html#useNotification">useNotification</a></li><li><a href="global.html#usePreset">usePreset</a></li><li><a href="global.html#usePush">usePush</a></li><li><a href="global.html#useUser">useUser</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/gauges/GaugeMultiZoneRadial.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file GaugeMultiZoneRadial.jsx
+ * @description Generic React component for rendering radial gauges with discrete threshold zones.
+ *
+ * This gauge displays stepped ranges with custom labels, useful for brightness,
+ * battery, signal strength, or anything measured in clear tiers.
+ *
+ * Zones are defined by `limit`, `color`, and `label`, and rendered in a radial layout.
+ * If no custom tick list is provided, it auto-generates ticks from the zone limits.
+ *
+ * @see GaugeIdealRadial
+ * @author Taggerkov
+ * @version 1.0.0
+ * @since 0.4.7
+ */
+
+import GaugeComponent from 'react-gauge-component';
+import { useCommonGaugeTheme } from './useCommonGaugeTheme';
+
+/**
+ * GaugeMultiZoneRadial
+ *
+ * A reusable gauge component for visualizing discrete multi-zone data (e.g., brightness, signal strength).
+ * Zones are shown in a radial arc and labeled via tooltips. Ticks can be auto-generated or customized.
+ *
+ * @param {number} value - The current value to be displayed on the gauge.
+ * @param {number} [min=0] - Minimum value of the gauge range.
+ * @param {number} [max=100] - Maximum value of the gauge range.
+ * @param {Array&lt;{limit: number, color: string, label: string}>} zones - Array of visual thresholds.
+ * @param {function} [formatValue=(v) => `${v}`] - Optional function to format the value label.
+ * @param {?Array&lt;{value: number}>} [ticks=null] - Optional array of tick positions. Defaults to zone limits.
+ * @param {number} [arcWidth=0.3] - Width of the arc band.
+ * @param {number} [arcPadding=0.02] - Space between arc segments.
+ * @returns {JSX.Element} A fully styled radial gauge component.
+ *
+ * @example
+ * &lt;GaugeMultiZoneRadial
+ *   value={72}
+ *   zones={[
+ *     { limit: 20, color: '#1e3a8a', label: 'Dark' },
+ *     { limit: 40, color: '#3b82f6', label: 'Dim' },
+ *     { limit: 60, color: '#22c55e', label: 'Normal' },
+ *     { limit: 80, color: '#facc15', label: 'Bright' },
+ *     { limit: 100, color: '#dc2626', label: 'Overload' }
+ *   ]}
+ * />
+ */
+export function GaugeMultiZoneRadial({
+                                         value, min = 0, max = 100, zones, formatValue = v => `${v}`,
+                                         ticks = null, arcWidth = 0.3, arcPadding = 0.02
+                                     }) {
+    const {
+        colorText, pointerColor, pointerWidth, pointerLength,
+        animationDelay, valueFontSize, tickFontSize
+    } = useCommonGaugeTheme();
+    const subArcs = [...zones.map(({limit, color, label}) => ({limit, color, tooltip: {text: label}}))];
+    const tickList = ticks || zones.map(z => ({value: z.limit}));
+
+    return (
+        &lt;GaugeComponent
+            type="radial"
+            value={value}
+            minValue={min}
+            maxValue={max}
+            arc={{
+                width: arcWidth,
+                padding: arcPadding,
+                subArcs
+            }}
+            pointer={{
+                color: pointerColor,
+                length: pointerLength,
+                width: pointerWidth,
+                elastic: true,
+                animationDelay
+            }}
+            labels={{
+                valueLabel: {
+                    formatTextValue: formatValue,
+                    style: {color: colorText, fontSize: valueFontSize}
+                },
+                tickLabels: {
+                    type: 'inner',
+                    defaultTickValueConfig: {
+                        style: {fill: colorText, fontSize: tickFontSize},
+                        formatTextValue: formatValue
+                    },
+                    ticks: tickList
+                }
+            }}
+        />
+    );
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon May 26 2025 15:59:56 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>pages/views/DashboardPage.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-hooks_api.html">hooks/api</a></li></ul><h3>Global</h3><ul><li><a href="global.html#API">API</a></li><li><a href="global.html#ActionAPI">ActionAPI</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#AuthAPI">AuthAPI</a></li><li><a href="global.html#AuthProvider">AuthProvider</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#GaugeBrightness">GaugeBrightness</a></li><li><a href="global.html#GaugeCard">GaugeCard</a></li><li><a href="global.html#GaugeHumidity">GaugeHumidity</a></li><li><a href="global.html#GaugeIdealRadial">GaugeIdealRadial</a></li><li><a href="global.html#GaugeMultiZoneRadial">GaugeMultiZoneRadial</a></li><li><a href="global.html#GaugeTemperature">GaugeTemperature</a></li><li><a href="global.html#GreenhouseAPI">GreenhouseAPI</a></li><li><a href="global.html#GreenhouseCard">GreenhouseCard</a></li><li><a href="global.html#GreenhouseForm">GreenhouseForm</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HealthAPI">HealthAPI</a></li><li><a href="global.html#NotificationAPI">NotificationAPI</a></li><li><a href="global.html#PresetAPI">PresetAPI</a></li><li><a href="global.html#RequireAuth">RequireAuth</a></li><li><a href="global.html#SensorAPI">SensorAPI</a></li><li><a href="global.html#UserAPI">UserAPI</a></li><li><a href="global.html#authPath">authPath</a></li><li><a href="global.html#checkAuth">checkAuth</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#failedQueue">failedQueue</a></li><li><a href="global.html#getBrowserSubscription">getBrowserSubscription</a></li><li><a href="global.html#getPermissionStatus">getPermissionStatus</a></li><li><a href="global.html#isPushSupported">isPushSupported</a></li><li><a href="global.html#isRefreshing">isRefreshing</a></li><li><a href="global.html#normalizeSubscription">normalizeSubscription</a></li><li><a href="global.html#processQueue">processQueue</a></li><li><a href="global.html#resolveOffset">resolveOffset</a></li><li><a href="global.html#root">root</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#routes">routes</a></li><li><a href="global.html#secureChildren">secureChildren</a></li><li><a href="global.html#showPushPermissionPrompt">showPushPermissionPrompt</a></li><li><a href="global.html#urlBase64ToUint8Array">urlBase64ToUint8Array</a></li><li><a href="global.html#useAction">useAction</a></li><li><a href="global.html#useApiUtils">useApiUtils</a></li><li><a href="global.html#useAuth">useAuth</a></li><li><a href="global.html#useCSSVar">useCSSVar</a></li><li><a href="global.html#useCommonGaugeTheme">useCommonGaugeTheme</a></li><li><a href="global.html#useGreenhouse">useGreenhouse</a></li><li><a href="global.html#useHealth">useHealth</a></li><li><a href="global.html#useNotification">useNotification</a></li><li><a href="global.html#usePreset">usePreset</a></li><li><a href="global.html#usePush">usePush</a></li><li><a href="global.html#useUser">useUser</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">pages/views/DashboardPage.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file Dashboard.jsx
+ * @description SmartGrow dashboard view displaying sensor gauge data.
+ *
+ * Renders temperature, humidity, and brightness gauges in a consistent layout using the
+ * `dashboardModel` to provide live values.
+ * Gracefully handles loading and error states.
+ *
+ * The view delegates business logic to the ViewModel and displays a clean, reactive UI.
+ *
+ * @see dashboardModel
+ * @see GaugeTemperature
+ * @see GaugeHumidity
+ * @see GaugeBrightness
+ * @author Taggerkov
+ * @version 1.0.0
+ * @since 0.5.0
+ */
+
+import '@/styles/pages/dashboard.css';
+import {dashboardModel} from '@/pages/viewmodels/dashboardModel';
+import {GaugeHumidity, GaugeBrightness, GaugeTemperature} from '@/components/gauges/wrappers';
+import { useParams } from "react-router-dom";
+
+/**
+ * GaugeCard
+ *
+ * Wraps a gauge component with a label and background color.
+ * Used to standardize layout across multiple sensor widgets.
+ *
+ * @param {Object} props
+ * @param {string} props.label - Human-readable sensor label
+ * @param {string} props.color - Background color for the label badge
+ * @param {JSX.Element} props.children - Gauge content to render
+ * @returns {JSX.Element}
+ */
+function GaugeCard({label, color, children}) {
+    return (
+        &lt;div className="gauge-card">
+            {children}
+            &lt;div className="gauge-label" style={{backgroundColor: color}}>
+                {label}
+            &lt;/div>
+        &lt;/div>
+    );
+}
+
+/**
+ * Dashboard
+ *
+ * Main SmartGrow dashboard view displaying all sensor gauges.
+ * Reactively handles data loading and errors via `dashboardModel()`.
+ *
+ * @returns {JSX.Element}
+ */
+export default function Dashboard() {
+    const { id } = useParams();
+    const greenhouseId = Number(id);
+    const {
+        getTemperatureReading,
+        getHumidityReading,
+        getBrightnessReading,
+        isLoading,
+        
+        isError
+    } = dashboardModel(greenhouseId);
+
+    if (isLoading) {
+        return (
+            &lt;div className="dashboard">
+                &lt;h1>Dashboard&lt;/h1>
+                &lt;div className="gauge-row">
+                    &lt;GaugeCard label="Temperature" color="var(--colorTempHot)">
+                        &lt;p>Loading...&lt;/p>
+                    &lt;/GaugeCard>
+                    &lt;GaugeCard label="Soil humidity" color="var(--colorHumidityIdeal)">
+                        &lt;p>Loading...&lt;/p>
+                    &lt;/GaugeCard>
+                    &lt;GaugeCard label="Brightness" color="var(--colorBrightBright)">
+                        &lt;p>Loading...&lt;/p>
+                    &lt;/GaugeCard>
+                &lt;/div>
+            &lt;/div>
+        );
+    }
+    if (isError) return &lt;div className="dashboard">Error loading sensor data.&lt;/div>;
+
+    return (
+        &lt;div className="dashboard">
+            &lt;h1>Dashboard&lt;/h1>
+            &lt;div className="gauge-row">
+                &lt;GaugeCard label="Temperature" color="var(--colorTempHot)">
+                    &lt;GaugeTemperature {...getTemperatureReading()} />
+                &lt;/GaugeCard>
+                &lt;GaugeCard label="Soil humidity" color="var(--colorHumidityIdeal)">
+                    &lt;GaugeHumidity {...getHumidityReading()} />
+                &lt;/GaugeCard>
+                &lt;GaugeCard label="Brightness" color="var(--colorBrightBright)">
+                    &lt;GaugeBrightness {...getBrightnessReading()} />
+                &lt;/GaugeCard>
+                &lt;GaugeCard label="Air humidity" color="var(--colorHumidityIdeal)"> 
+                    &lt;GaugeHumidity {...getHumidityReading()} />
+                &lt;/GaugeCard>
+            &lt;/div>
+        &lt;/div>
+    );
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon May 26 2025 15:59:56 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

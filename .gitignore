@@ -8,9 +8,6 @@ build/
 # Vite related
 .vite/
 
-# Docs
-docs/
-
 # Editor configs
 .idea/
 .vscode/

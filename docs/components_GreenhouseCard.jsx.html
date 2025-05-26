@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/GreenhouseCard.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-hooks_api.html">hooks/api</a></li></ul><h3>Global</h3><ul><li><a href="global.html#API">API</a></li><li><a href="global.html#ActionAPI">ActionAPI</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#AuthAPI">AuthAPI</a></li><li><a href="global.html#AuthProvider">AuthProvider</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#GaugeBrightness">GaugeBrightness</a></li><li><a href="global.html#GaugeCard">GaugeCard</a></li><li><a href="global.html#GaugeHumidity">GaugeHumidity</a></li><li><a href="global.html#GaugeIdealRadial">GaugeIdealRadial</a></li><li><a href="global.html#GaugeMultiZoneRadial">GaugeMultiZoneRadial</a></li><li><a href="global.html#GaugeTemperature">GaugeTemperature</a></li><li><a href="global.html#GreenhouseAPI">GreenhouseAPI</a></li><li><a href="global.html#GreenhouseCard">GreenhouseCard</a></li><li><a href="global.html#GreenhouseForm">GreenhouseForm</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HealthAPI">HealthAPI</a></li><li><a href="global.html#NotificationAPI">NotificationAPI</a></li><li><a href="global.html#PresetAPI">PresetAPI</a></li><li><a href="global.html#RequireAuth">RequireAuth</a></li><li><a href="global.html#SensorAPI">SensorAPI</a></li><li><a href="global.html#UserAPI">UserAPI</a></li><li><a href="global.html#authPath">authPath</a></li><li><a href="global.html#checkAuth">checkAuth</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#failedQueue">failedQueue</a></li><li><a href="global.html#getBrowserSubscription">getBrowserSubscription</a></li><li><a href="global.html#getPermissionStatus">getPermissionStatus</a></li><li><a href="global.html#isPushSupported">isPushSupported</a></li><li><a href="global.html#isRefreshing">isRefreshing</a></li><li><a href="global.html#normalizeSubscription">normalizeSubscription</a></li><li><a href="global.html#processQueue">processQueue</a></li><li><a href="global.html#resolveOffset">resolveOffset</a></li><li><a href="global.html#root">root</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#routes">routes</a></li><li><a href="global.html#secureChildren">secureChildren</a></li><li><a href="global.html#showPushPermissionPrompt">showPushPermissionPrompt</a></li><li><a href="global.html#urlBase64ToUint8Array">urlBase64ToUint8Array</a></li><li><a href="global.html#useAction">useAction</a></li><li><a href="global.html#useApiUtils">useApiUtils</a></li><li><a href="global.html#useAuth">useAuth</a></li><li><a href="global.html#useCSSVar">useCSSVar</a></li><li><a href="global.html#useCommonGaugeTheme">useCommonGaugeTheme</a></li><li><a href="global.html#useGreenhouse">useGreenhouse</a></li><li><a href="global.html#useHealth">useHealth</a></li><li><a href="global.html#useNotification">useNotification</a></li><li><a href="global.html#usePreset">usePreset</a></li><li><a href="global.html#usePush">usePush</a></li><li><a href="global.html#useUser">useUser</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/GreenhouseCard.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react";
+import "@/styles/pages/greenhouse.css";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/Button";
+import { useSensor } from "@/hooks/api/useSensor";
+
+
+/**
+ * @typedef {Object} GreenhouseCardProps
+ * @property {Object} greenhouse - GreenhouseDTO object.
+ * @property {Function} onUnpair - Callback to unpair the greenhouse.
+ * @property {Function} onConfigure - Callback to configure the greenhouse.
+ * @property {Array&lt;Object>} presets - List of available presets to choose from.
+ * @property {Function} onApplyPreset - Called with (greenhouseId, presetId)
+ */
+
+/**
+ * Displays a single greenhouse card with details and actions.
+ *
+ * @param {GreenhouseCardProps} props
+ * @returns {JSX.Element}
+ */
+const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApplyPreset }) => {
+  const navigate = useNavigate();
+  const { getCurrentReadings } = useSensor();
+
+
+  // Fallback to default image if greenhouse.imageUrl is undefined
+  const imageSrc = greenhouse.imageUrl || "/images/greenhouse.png";
+
+  const [type, setType] = useState("lighting");
+  const [method, setMethod] = useState("manual");
+  const [selectedPresetId, setSelectedPresetId] = useState("");
+
+
+  const handleConfigure = async (e) => {
+    e.preventDefault();
+    try {
+      await onConfigure(greenhouse.id, greenhouse.id, { type, method });
+      alert("Configuration applied!");
+    } catch (error) {
+      console.error("Configuration failed:", error);
+      alert("Failed to configure greenhouse.");
+    }
+  };
+
+  return (
+    &lt;div className="greenhouse-card">
+      &lt;div className="image-container">
+        &lt;img src={imageSrc} alt={greenhouse.name} />
+        &lt;div className="top-labels">
+          &lt;span className="green-label">{greenhouse.name}&lt;/span>
+          &lt;Button variant="cancel" size="sm" onClick={() => onUnpair(greenhouse)}>
+            Unpair Greenhouse
+          &lt;/Button>
+        &lt;/div>
+      &lt;/div>
+
+      &lt;div className="info-cards">
+        &lt;div className="info-box">
+          &lt;span>🌞&lt;/span>
+          &lt;span>Lighting&lt;/span>
+          &lt;span>{greenhouse.lightingMethod || "N/A"}&lt;/span>
+        &lt;/div>
+        &lt;div className="info-box">
+          &lt;span>🚿&lt;/span>
+          &lt;span>Watering&lt;/span>
+          &lt;span>{greenhouse.wateringMethod || "N/A"}&lt;/span>
+        &lt;/div>
+        &lt;div className="info-box" onClick={() => navigate(`/greenhouses/${greenhouse.id}/soil-humidity`)} style={{ cursor: "pointer" }}>
+         &lt;span>🌱&lt;/span>
+        &lt;span>Soil Humidity&lt;/span>
+       &lt;span>{greenhouse.soilHumidity != null ? `${greenhouse.soilHumidity}%` : "N/A"}&lt;/span>
+       &lt;/div>
+      &lt;/div>
+      &lt;Button
+  variant="default"
+  size="sm"
+  onClick={() => navigate(`/greenhouses/${greenhouse.id}/presets`)}
+>
+  View Presets
+&lt;/Button>
+&lt;div className="apply-preset-section">
+  &lt;select
+    value={selectedPresetId}
+    onChange={(e) => setSelectedPresetId(Number(e.target.value))}
+  >
+    &lt;option value="">Choose a preset&lt;/option>
+    {presets.map((preset) => (
+      &lt;option key={preset.id} value={preset.id}>
+        {preset.name}
+      &lt;/option>
+    ))}
+  &lt;/select>
+
+  &lt;Button
+    variant="default"
+    size="sm"
+    onClick={() => {
+      if (selectedPresetId) {
+        onApplyPreset(greenhouse.id, selectedPresetId);
+      }
+    }}
+    disabled={!selectedPresetId}
+  >
+    Apply Preset
+  &lt;/Button>
+&lt;/div>
+      &lt;Button
+        variant="edit"
+        size="sm"
+        onClick={() => navigate(`/edit-greenhouse/${greenhouse.id}`)}
+      >
+        Edit
+      &lt;/Button>
+      &lt;Button
+          variant="default"
+          size="sm"
+          onClick={() => navigate(`/greenhouses/logs/${greenhouse.id}`)}
+        >
+          View Logs and action
+        &lt;/Button>
+        &lt;Button
+  variant="default"
+  size="sm"
+  onClick={() => navigate(`/dashboard/${greenhouse.id}`)}
+>
+  View Dashboard
+&lt;/Button>
+         {/* Configuration Form */}
+      &lt;form className="config-form" onSubmit={handleConfigure}>
+        &lt;div className="config-selects">
+          &lt;select value={type} onChange={(e) => setType(e.target.value)} required>
+            &lt;option value="lighting">Lighting&lt;/option>
+            &lt;option value="watering">Watering&lt;/option>
+            &lt;option value="fertilization">Fertilization&lt;/option>
+          &lt;/select>
+
+          &lt;select value={method} onChange={(e) => setMethod(e.target.value)} required>
+            &lt;option value="manual">Manual&lt;/option>
+          &lt;/select>
+        &lt;/div>
+        &lt;Button type="submit" variant="default" size="sm">
+          Apply Configuration
+        &lt;/Button>
+      &lt;/form>
+    &lt;/div>
+  );
+};
+
+export default GreenhouseCard;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon May 26 2025 15:59:56 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>router.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-hooks_api.html">hooks/api</a></li></ul><h3>Global</h3><ul><li><a href="global.html#API">API</a></li><li><a href="global.html#ActionAPI">ActionAPI</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#AuthAPI">AuthAPI</a></li><li><a href="global.html#AuthProvider">AuthProvider</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#GaugeBrightness">GaugeBrightness</a></li><li><a href="global.html#GaugeCard">GaugeCard</a></li><li><a href="global.html#GaugeHumidity">GaugeHumidity</a></li><li><a href="global.html#GaugeIdealRadial">GaugeIdealRadial</a></li><li><a href="global.html#GaugeMultiZoneRadial">GaugeMultiZoneRadial</a></li><li><a href="global.html#GaugeTemperature">GaugeTemperature</a></li><li><a href="global.html#GreenhouseAPI">GreenhouseAPI</a></li><li><a href="global.html#GreenhouseCard">GreenhouseCard</a></li><li><a href="global.html#GreenhouseForm">GreenhouseForm</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HealthAPI">HealthAPI</a></li><li><a href="global.html#NotificationAPI">NotificationAPI</a></li><li><a href="global.html#PresetAPI">PresetAPI</a></li><li><a href="global.html#RequireAuth">RequireAuth</a></li><li><a href="global.html#SensorAPI">SensorAPI</a></li><li><a href="global.html#UserAPI">UserAPI</a></li><li><a href="global.html#authPath">authPath</a></li><li><a href="global.html#checkAuth">checkAuth</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#failedQueue">failedQueue</a></li><li><a href="global.html#getBrowserSubscription">getBrowserSubscription</a></li><li><a href="global.html#getPermissionStatus">getPermissionStatus</a></li><li><a href="global.html#isPushSupported">isPushSupported</a></li><li><a href="global.html#isRefreshing">isRefreshing</a></li><li><a href="global.html#normalizeSubscription">normalizeSubscription</a></li><li><a href="global.html#processQueue">processQueue</a></li><li><a href="global.html#resolveOffset">resolveOffset</a></li><li><a href="global.html#root">root</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#routes">routes</a></li><li><a href="global.html#secureChildren">secureChildren</a></li><li><a href="global.html#showPushPermissionPrompt">showPushPermissionPrompt</a></li><li><a href="global.html#urlBase64ToUint8Array">urlBase64ToUint8Array</a></li><li><a href="global.html#useAction">useAction</a></li><li><a href="global.html#useApiUtils">useApiUtils</a></li><li><a href="global.html#useAuth">useAuth</a></li><li><a href="global.html#useCSSVar">useCSSVar</a></li><li><a href="global.html#useCommonGaugeTheme">useCommonGaugeTheme</a></li><li><a href="global.html#useGreenhouse">useGreenhouse</a></li><li><a href="global.html#useHealth">useHealth</a></li><li><a href="global.html#useNotification">useNotification</a></li><li><a href="global.html#usePreset">usePreset</a></li><li><a href="global.html#usePush">usePush</a></li><li><a href="global.html#useUser">useUser</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">router.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file router.jsx
+ * @description Central routing configuration for the SmartGrow application.
+ *
+ * Defines all client-side routes using `createHashRouter` from React Router.
+ * Each route may include custom metadata like `navLabel`, which can be used by other
+ * components (e.g., navigation headers) for dynamic UI generation.
+ *
+ * This file exports both:
+ * - `router`: The configured router for `RouterProvider`
+ * - `routes`: The raw route configuration array, useful for sidebar or breadcrumb logic
+ *
+ * @see Header.jsx for usage of `navLabel`
+ * @see https://reactrouter.com/en/main/routers/create-hash-router
+ * @author Taggerkov
+ * @version 1.5.0
+ * @since 0.0.1
+ */
+
+import {createHashRouter} from 'react-router-dom';
+import App from '@/App';
+import LoginPage from '@/pages/views/LoginPage';
+import RequireAuth from "@/components/RequireAuth";
+import HomePage from '@/pages/views/HomePage';
+import GreenhousesPage from '@/pages/views/GreenhousePage';
+import PairGreenhousePage from "@/pages/views/PairGreenhousePage";
+import EditGreenhousePage from "@/pages/views/EditGreenhouse";
+import GreenhouseLogs from "@/pages/views/GreenhouseLogs";
+import DashboardPage from '@/pages/views/DashboardPage';
+import PresetsPage from '@/pages/views/PresetPage';
+import CreatePresetForm from '@/pages/views/CreatePresetForm';
+import EditPresetPage from "@/pages/views/EditPresetPage";
+import LightingPage from '@/pages/views/LightingPage';
+import SoilHumidityPage from '@/pages/views/SoilHumidityPage';
+import FertilizationPage from '@/pages/views/FertilizationPage';
+import WateringPage from '@/pages/views/WateringPage';
+import AboutPage from '@/pages/views/AboutPage';
+import UserSettingsPage from '@/pages/views/UserSettingsPage';
+
+
+/**
+ * Defines all the routes for the SmartGrow application.
+ *
+ * The `routes` constant contains the configuration for all routes in the application.
+ * Each route in the array must have a `path` and `element` property, but can also include
+ * **custom metadata** such as `navLabel`. This metadata can be used for various purposes.
+ * &lt;br>`navLabel` is used for displaying the route into the navigation header, but other tags could serve any other custom logic.
+ *
+ * **General Structure: **
+ * Each route object should have:
+ * - `path`: The URL path for the route.
+ * - `element`: The React component that should be rendered when the route is accessed.
+ * - **Custom Metadata** (optional): Metadata like `navLabel`.
+ *
+ * Example of adding a custom `navLabel` for navigation:
+ * ```js
+ * {
+ *   path: '/sensor-readings',
+ *   element: &lt;DashboardPage />,
+ *   navLabel: 'Sensor Readings', // This is used to display the link in the navigation
+ * }
+ * ```
+ *
+ * Routes with no `navLabel` or metadata will not appear in the navigation menu by default.
+ * ```js
+ * {
+ *   path: '/hidden',
+ *   element: &lt;div>Hidden Page&lt;/div>,
+ * }
+ * ```
+ * @example &lt;p>Usage of the `navLabel` tag:&lt;/p>
+ * ```js
+ * // Flattening the routes to extract the path and navLabel for use in navigation
+ * const flattenedRoutes = routes.flatMap(route => [
+ *    {path: route.path, navLabel: route.navLabel},
+ *    ...(route.children ? route.children.map(child => ({
+ *        path: child.path,
+ *        navLabel: child.navLabel,
+ *    })) : []),
+ * ]).filter(link => link.navLabel);  // Only keep routes with a navLabel
+ * ```
+ *
+ * @author Taggerkov
+ * @version 1.0
+ * @type {Array&lt;Object>} The route configuration array.
+ * @see Header function in components/Header.jsx.
+ */
+const routes = [
+    {
+        path: '/', element: &lt;App/>,
+        children: [
+            {
+                path: '',
+                element: &lt;LoginPage/>,
+            },
+            {
+                path: 'home',
+                element: &lt;HomePage/>,
+                navLabel: 'Home',
+            },
+            {
+                path: 'greenhouses',
+                element: &lt;GreenhousesPage/>,
+                navLabel: 'Greenhouses',
+            },
+            {
+                path: 'pair-greenhouse',
+                element: &lt;PairGreenhousePage/>,
+            },
+            {
+                path: 'edit-greenhouse/:id',
+                element: &lt;EditGreenhousePage/>,
+            },
+            {
+                path: 'greenhouses/:if/presets',
+                element: &lt;PresetsPage/>,
+            },
+            {
+                path: 'presets/create',
+                element: &lt;CreatePresetForm/>,
+            },
+            {
+                path: 'presets/edit/:id',
+                element: &lt;EditPresetPage/>,
+            },
+            {
+                path: 'greenhouses/logs/:id',
+                element: &lt;GreenhouseLogs/>,
+            },
+            {
+                path: 'dashboard/:id',
+                element: &lt;DashboardPage/>,
+            },
+            {
+                path: 'greenhouses/:id/lighting',
+                element: &lt;LightingPage/>,
+            },
+            {
+
+                path: 'greenhouses/:id/soil-humidity',
+                element: &lt;SoilHumidityPage/>,
+            },
+            {
+                path: 'greenhouses/:id/fertilization',
+                element: &lt;FertilizationPage/>,
+            },
+            {
+                path: 'greenhouses/:id/watering',
+                element: &lt;WateringPage/>,
+            },
+            {
+                path: 'user-settings',
+                element: &lt;UserSettingsPage/>,
+                navLabel: 'User Settings',
+            },
+            {
+                path: 'about',
+                element: &lt;AboutPage/>,
+                navLabel: 'About',
+            },
+        ],
+    },
+];
+
+/**
+ * Wraps each child route's element with `&lt;RequireAuth>` unless it is publicly accessible.
+ *
+ * This function is used to enforce authentication across all routes in the application,
+ * except for explicitly defined public ones — currently, only the root path `""` (LoginPage).
+ * It preserves all route metadata and custom tags like `navLabel`, while modifying only
+ * the `element` property to include the authentication requirement.
+ *
+ * @function secureChildren
+ * @param {Array&lt;Object>} children - An array of route configuration objects.
+ * @returns {Array&lt;Object>} The modified route objects with protected elements, except for public routes.
+ *
+ * @example
+ * const protectedRoutes = secureChildren([
+ *   { path: '', element: &lt;LoginPage /> },
+ *   { path: 'dashboard', element: &lt;DashboardPage /> }
+ * ]);
+ * // Result:
+ * // [
+ * //   { path: '', element: &lt;LoginPage /> },
+ * //   { path: 'dashboard', element: &lt;RequireAuth>&lt;DashboardPage />&lt;/RequireAuth> }
+ * // ]
+ *
+ * @see RequireAuth
+ */
+function secureChildren(children) {
+    return children.map(child => {
+        const isPublic = child.path === '';
+        return {
+            ...child,
+            element: isPublic ? child.element : &lt;RequireAuth>{child.element}&lt;/RequireAuth>,
+        };
+    });
+}
+
+/**
+ * Application router configuration for SmartGrow.
+ *
+ * This `router` constant defines the routing for the SmartGrow application using a **HashRouter**.
+ * It is created by calling `createHashRouter` with the `routes` configuration.
+ *
+ * The `router` object is passed to `RouterProvider` to enable routing in the application,
+ * allowing navigation between different views based on the URL.
+ *
+ * @see https://reactrouter.com/en/main/routers/create-hash-router
+ */
+const router = createHashRouter(
+    routes.map(route => ({
+        ...route,
+        children: route.children ? secureChildren(route.children) : [],
+    }))
+);
+
+// Export the router as default for usage with RouterProvider
+export default router;
+// Export the routes separately for use in lookups
+export {routes};</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon May 26 2025 15:59:56 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

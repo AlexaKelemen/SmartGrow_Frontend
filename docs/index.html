@@ -1,0 +1,5538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-hooks_api.html">hooks/api</a></li></ul><h3>Global</h3><ul><li><a href="global.html#API">API</a></li><li><a href="global.html#ActionAPI">ActionAPI</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#AuthAPI">AuthAPI</a></li><li><a href="global.html#AuthProvider">AuthProvider</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#GaugeBrightness">GaugeBrightness</a></li><li><a href="global.html#GaugeCard">GaugeCard</a></li><li><a href="global.html#GaugeHumidity">GaugeHumidity</a></li><li><a href="global.html#GaugeIdealRadial">GaugeIdealRadial</a></li><li><a href="global.html#GaugeMultiZoneRadial">GaugeMultiZoneRadial</a></li><li><a href="global.html#GaugeTemperature">GaugeTemperature</a></li><li><a href="global.html#GreenhouseAPI">GreenhouseAPI</a></li><li><a href="global.html#GreenhouseCard">GreenhouseCard</a></li><li><a href="global.html#GreenhouseForm">GreenhouseForm</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#HealthAPI">HealthAPI</a></li><li><a href="global.html#NotificationAPI">NotificationAPI</a></li><li><a href="global.html#PresetAPI">PresetAPI</a></li><li><a href="global.html#RequireAuth">RequireAuth</a></li><li><a href="global.html#SensorAPI">SensorAPI</a></li><li><a href="global.html#UserAPI">UserAPI</a></li><li><a href="global.html#authPath">authPath</a></li><li><a href="global.html#checkAuth">checkAuth</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#failedQueue">failedQueue</a></li><li><a href="global.html#getBrowserSubscription">getBrowserSubscription</a></li><li><a href="global.html#getPermissionStatus">getPermissionStatus</a></li><li><a href="global.html#isPushSupported">isPushSupported</a></li><li><a href="global.html#isRefreshing">isRefreshing</a></li><li><a href="global.html#normalizeSubscription">normalizeSubscription</a></li><li><a href="global.html#processQueue">processQueue</a></li><li><a href="global.html#resolveOffset">resolveOffset</a></li><li><a href="global.html#root">root</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#routes">routes</a></li><li><a href="global.html#secureChildren">secureChildren</a></li><li><a href="global.html#showPushPermissionPrompt">showPushPermissionPrompt</a></li><li><a href="global.html#urlBase64ToUint8Array">urlBase64ToUint8Array</a></li><li><a href="global.html#useAction">useAction</a></li><li><a href="global.html#useApiUtils">useApiUtils</a></li><li><a href="global.html#useAuth">useAuth</a></li><li><a href="global.html#useCSSVar">useCSSVar</a></li><li><a href="global.html#useCommonGaugeTheme">useCommonGaugeTheme</a></li><li><a href="global.html#useGreenhouse">useGreenhouse</a></li><li><a href="global.html#useHealth">useHealth</a></li><li><a href="global.html#useNotification">useNotification</a></li><li><a href="global.html#usePreset">usePreset</a></li><li><a href="global.html#usePush">usePush</a></li><li><a href="global.html#useUser">useUser</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+    <section class="package">
+        <h3> </h3>		
+    </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            App.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Root layout component for the SmartGrow application.
+
+This file defines the top-level structure of the app, including the header,
+footer, and main content area (which is populated via React Router's <Outlet>).
+
+All routed views are rendered inside this layout.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="App.jsx.html">App.jsx</a>, <a href="App.jsx.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.2.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.0.1</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov and SophiaJustin</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>router.jsx for route definitions</li>
+        
+            <li>Header.jsx</li>
+        
+            <li>Footer.jsx</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Root layout component for the SmartGrow application.
+
+This file defines the top-level structure of the app, including the header,
+footer, and main content area (which is populated via React Router's <Outlet>).
+
+All routed views are rendered inside this layout.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            api/axiosConfig.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Axios configuration for SmartGrow frontend.
+
+This file provides a shared Axios instance (`API`) preconfigured with:
+- Base URL (depending on environment)
+- Automatic `Authorization` header injection
+- Transparent access token refreshing using refresh token
+- Safe retry of original request upon 401
+- Queued request handling during refresh
+
+Any service making authenticated HTTP requests should import and use `API`.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_axiosConfig.js.html">api/axiosConfig.js</a>, <a href="api_axiosConfig.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.2.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>axios</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Axios configuration for SmartGrow frontend.
+
+This file provides a shared Axios instance (`API`) preconfigured with:
+- Base URL (depending on environment)
+- Automatic `Authorization` header injection
+- Transparent access token refreshing using refresh token
+- Safe retry of original request upon 401
+- Queued request handling during refresh
+
+Any service making authenticated HTTP requests should import and use `API`.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            api/dtoTypes.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Contains data transfer object (DTO) type definitions used across the SmartGrow frontend.
+
+These typedefs describe the shape of data exchanged with the backend API,
+corresponding directly to DTOs defined in the C# `Api.DTOs` namespace.
+
+All types defined here are intended for use with the `restApi.js` module
+and its associated React hooks (e.g., `useLogin`, `useCurrentSensorReadings`).</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_dtoTypes.js.html">api/dtoTypes.js</a>, <a href="api_dtoTypes.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>2.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov, Alexa kelemen</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Contains data transfer object (DTO) type definitions used across the SmartGrow frontend.
+
+These typedefs describe the shape of data exchanged with the backend API,
+corresponding directly to DTOs defined in the C# `Api.DTOs` namespace.
+
+All types defined here are intended for use with the `restApi.js` module
+and its associated React hooks (e.g., `useLogin`, `useCurrentSensorReadings`).</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            components/PresetCard.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Reusable card component for displaying individual plant presets
+in the SmartGrow webpage. Displays key data and a fallback image if none is provided.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_PresetCard.jsx.html">components/PresetCard.jsx</a>, <a href="components_PresetCard.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.0.1</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Alexa Kelemen</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Reusable card component for displaying individual plant presets
+in the SmartGrow webpage. Displays key data and a fallback image if none is provided.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            components/RequireAuth.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Route guard component that enforces authentication for protected routes.
+
+This component checks whether a user is authenticated using the global AuthContext.
+If not authenticated, it redirects the user to the login route (`"/"`), preserving
+the original location for post-login redirection.
+
+It should be used to wrap any route element that requires login.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_RequireAuth.jsx.html">components/RequireAuth.jsx</a>, <a href="components_RequireAuth.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.8.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="global.html#AuthProvider">AuthProvider</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Route guard component that enforces authentication for protected routes.
+
+This component checks whether a user is authenticated using the global AuthContext.
+If not authenticated, it redirects the user to the login route (`"/"`), preserving
+the original location for post-login redirection.
+
+It should be used to wrap any route element that requires login.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            components/gauges/GaugeIdealRadial.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Generic React component for rendering gauges with an ideal value band.
+
+This component visualizes a value on a semicircular or radial gauge,
+with color-coded arcs that indicate ideal and out-of-range zones.
+
+Typically used for metrics with centered acceptable ranges, such as temperature,
+humidity, pH, CO₂, etc.
+
+Wrapper components pass in styling, labels, and value formatting.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_gauges_GaugeIdealRadial.jsx.html">components/gauges/GaugeIdealRadial.jsx</a>, <a href="components_gauges_GaugeIdealRadial.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.4.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="global.html#GaugeTemperature">GaugeTemperature</a></li>
+        
+            <li><a href="global.html#GaugeHumidity">GaugeHumidity</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Generic React component for rendering gauges with an ideal value band.
+
+This component visualizes a value on a semicircular or radial gauge,
+with color-coded arcs that indicate ideal and out-of-range zones.
+
+Typically used for metrics with centered acceptable ranges, such as temperature,
+humidity, pH, CO₂, etc.
+
+Wrapper components pass in styling, labels, and value formatting.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            components/gauges/GaugeMultiZoneRadial.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Generic React component for rendering radial gauges with discrete threshold zones.
+
+This gauge displays stepped ranges with custom labels, useful for brightness,
+battery, signal strength, or anything measured in clear tiers.
+
+Zones are defined by `limit`, `color`, and `label`, and rendered in a radial layout.
+If no custom tick list is provided, it auto-generates ticks from the zone limits.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_gauges_GaugeMultiZoneRadial.jsx.html">components/gauges/GaugeMultiZoneRadial.jsx</a>, <a href="components_gauges_GaugeMultiZoneRadial.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.4.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="global.html#GaugeIdealRadial">GaugeIdealRadial</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Generic React component for rendering radial gauges with discrete threshold zones.
+
+This gauge displays stepped ranges with custom labels, useful for brightness,
+battery, signal strength, or anything measured in clear tiers.
+
+Zones are defined by `limit`, `color`, and `label`, and rendered in a radial layout.
+If no custom tick list is provided, it auto-generates ticks from the zone limits.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            components/gauges/useCommonGaugeTheme.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Shared theme-related hooks for gauge components.
+
+Provides access to CSS custom properties used for pointer styling, text labels, and sizing
+in `react-gauge-component` gauges. It also includes a utility for reading CSS variables dynamically.
+
+These hooks allow all gauge components to adapt to runtime theme changes.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_gauges_useCommonGaugeTheme.js.html">components/gauges/useCommonGaugeTheme.js</a>, <a href="components_gauges_useCommonGaugeTheme.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.4.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="global.html#GaugeIdealRadial">GaugeIdealRadial</a></li>
+        
+            <li><a href="global.html#GaugeMultiZoneRadial">GaugeMultiZoneRadial</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Shared theme-related hooks for gauge components.
+
+Provides access to CSS custom properties used for pointer styling, text labels, and sizing
+in `react-gauge-component` gauges. It also includes a utility for reading CSS variables dynamically.
+
+These hooks allow all gauge components to adapt to runtime theme changes.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            components/gauges/wrappers/GaugeBrightness.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>React wrapper component for displaying brightness levels as a radial gauge.
+
+This wrapper configures `GaugeMultiZoneRadial` with thresholds for dim to overload zones,
+using percentage-based inputs and CSS-driven color theming.
+
+Ideal for monitoring indoor light levels or device brightness feedback.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_gauges_wrappers_GaugeBrightness.jsx.html">components/gauges/wrappers/GaugeBrightness.jsx</a>, <a href="components_gauges_wrappers_GaugeBrightness.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.4.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="global.html#GaugeMultiZoneRadial">GaugeMultiZoneRadial</a></li>
+        
+            <li><a href="global.html#GaugeTemperature">GaugeTemperature</a></li>
+        
+            <li><a href="global.html#GaugeHumidity">GaugeHumidity</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">React wrapper component for displaying brightness levels as a radial gauge.
+
+This wrapper configures `GaugeMultiZoneRadial` with thresholds for dim to overload zones,
+using percentage-based inputs and CSS-driven color theming.
+
+Ideal for monitoring indoor light levels or device brightness feedback.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            components/gauges/wrappers/GaugeHumidity.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>React wrapper component for visualizing relative humidity as a percentage gauge.
+
+Wraps `GaugeIdealBand` with styling and label logic tailored for humidity control.
+Uses `%` as the unit and provides meaningful labels for greenhouse environments.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_gauges_wrappers_GaugeHumidity.jsx.html">components/gauges/wrappers/GaugeHumidity.jsx</a>, <a href="components_gauges_wrappers_GaugeHumidity.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.4.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="global.html#GaugeIdealRadial">GaugeIdealRadial</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">React wrapper component for visualizing relative humidity as a percentage gauge.
+
+Wraps `GaugeIdealBand` with styling and label logic tailored for humidity control.
+Uses `%` as the unit and provides meaningful labels for greenhouse environments.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            components/gauges/wrappers/GaugeTemperature.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>React wrapper component for visualizing temperature data on a semicircular gauge.
+
+This wrapper binds temperature-specific CSS variables and labels to the generic `GaugeIdealBand`
+component, configuring it with standard degrees Celsius display and ideal thermal ranges.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_gauges_wrappers_GaugeTemperature.jsx.html">components/gauges/wrappers/GaugeTemperature.jsx</a>, <a href="components_gauges_wrappers_GaugeTemperature.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.4.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="global.html#GaugeIdealRadial">GaugeIdealRadial</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">React wrapper component for visualizing temperature data on a semicircular gauge.
+
+This wrapper binds temperature-specific CSS variables and labels to the generic `GaugeIdealBand`
+component, configuring it with standard degrees Celsius display and ideal thermal ranges.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            components/gauges/wrappers/index.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Centralized export file for all role-specific gauge components.
+
+These components wrap generic gauge logic (`GaugeIdealBand` and `GaugeMultiZoneRadial`)
+and inject styling, labels, and display logic for specific use cases such as
+- Temperature monitoring
+- Humidity control
+- Brightness feedback
+
+Each wrapper handles value formatting and gauges configuration for its specific domain.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_gauges_wrappers_index.js.html">components/gauges/wrappers/index.js</a>, <a href="components_gauges_wrappers_index.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.4.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="global.html#GaugeTemperature">GaugeTemperature</a></li>
+        
+            <li><a href="global.html#GaugeHumidity">GaugeHumidity</a></li>
+        
+            <li><a href="global.html#GaugeBrightness">GaugeBrightness</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Centralized export file for all role-specific gauge components.
+
+These components wrap generic gauge logic (`GaugeIdealBand` and `GaugeMultiZoneRadial`)
+and inject styling, labels, and display logic for specific use cases such as
+- Temperature monitoring
+- Humidity control
+- Brightness feedback
+
+Each wrapper handles value formatting and gauges configuration for its specific domain.</div>
+            
+
+            
+                <h3>Example</h3>
+                
+    <pre class="prettyprint"><code>import { GaugeTemperature, GaugeHumidity } from '@/components/gauges/wrappers';</code></pre>
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            components/permissions/PermissionPrompt.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>A React modal component rendered via a portal,
+used for requesting permissions, with accessibility and keyboard support.
+
+Styles are handled via an associated CSS module.
+
+Part of the SmartGrow permission system.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_permissions_PermissionPrompt.jsx.html">components/permissions/PermissionPrompt.jsx</a>, <a href="components_permissions_PermissionPrompt.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.6.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">A React modal component rendered via a portal,
+used for requesting permissions, with accessibility and keyboard support.
+
+Styles are handled via an associated CSS module.
+
+Part of the SmartGrow permission system.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            components/permissions/showPushPermissionPrompt.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Provides a standalone, Promise-based utility for requesting user permission via a modal.
+Automatically mounts a `PermissionPrompt` component into a temporary React root,
+and uses a portal to render the modal into the correct DOM target (`#permission-prompt`).
+
+The modal is rendered only when needed and is automatically cleaned up afterward.
+This utility is intended for use without needing to manually include or manage the modal in your component tree.
+
+Part of the SmartGrow permission system.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_permissions_showPushPermissionPrompt.jsx.html">components/permissions/showPushPermissionPrompt.jsx</a>, <a href="components_permissions_showPushPermissionPrompt.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.6.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Provides a standalone, Promise-based utility for requesting user permission via a modal.
+Automatically mounts a `PermissionPrompt` component into a temporary React root,
+and uses a portal to render the modal into the correct DOM target (`#permission-prompt`).
+
+The modal is rendered only when needed and is automatically cleaned up afterward.
+This utility is intended for use without needing to manually include or manage the modal in your component tree.
+
+Part of the SmartGrow permission system.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            context/authContext.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Provides global authentication context and access hooks for the SmartGrow application.
+
+This module defines a React Context used to manage authentication state across the app.
+It includes an `AuthProvider` component to wrap the application and a `useAuth` hook
+for accessing the authentication state and login/logout functions.
+
+The authentication state is backed by `localStorage` via the `accessToken` key.
+If an access token is found on the load, it is used as the initial `user` state.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="context_authContext.jsx.html">context/authContext.jsx</a>, <a href="context_authContext.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.8.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Provides global authentication context and access hooks for the SmartGrow application.
+
+This module defines a React Context used to manage authentication state across the app.
+It includes an `AuthProvider` component to wrap the application and a `useAuth` hook
+for accessing the authentication state and login/logout functions.
+
+The authentication state is backed by `localStorage` via the `accessToken` key.
+If an access token is found on the load, it is used as the initial `user` state.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            hooks/api/useAction.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>React hook for retrieving historical actions performed on a greenhouse.
+Integrates with `ActionAPI` and wraps backend access to the `ActionController`.
+
+Provides a single method:
+- `getPastActions()` — fetches logged greenhouse actions within a specified date range
+
+Shared async state (`isLoading`, `error`) is managed via `useApiUtils()`.
+
+DTOs for request and response are defined in `dtoTypes.js`.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_api_useAction.js.html">hooks/api/useAction.js</a>, <a href="hooks_api_useAction.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">React hook for retrieving historical actions performed on a greenhouse.
+Integrates with `ActionAPI` and wraps backend access to the `ActionController`.
+
+Provides a single method:
+- `getPastActions()` — fetches logged greenhouse actions within a specified date range
+
+Shared async state (`isLoading`, `error`) is managed via `useApiUtils()`.
+
+DTOs for request and response are defined in `dtoTypes.js`.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            hooks/api/useAuth.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>React hook for handling user authentication logic, including login and registration.
+Integrates with `AuthAPI` and manages form state such as loading and errors.
+
+This hook wraps asynchronous calls to the backend via REST and exposes
+a clean interface for components that require authentication workflows.
+
+Includes:
+- Login via `AuthAPI.login()`
+- Registration via `AuthAPI.register()`
+- Token renewal via `AuthAPI.refresh()`
+- Shared `loading` and `error` state
+
+All data structures used in this hook are defined in `dtoTypes.js`.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_api_useAuth.js.html">hooks/api/useAuth.js</a>, <a href="hooks_api_useAuth.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">React hook for handling user authentication logic, including login and registration.
+Integrates with `AuthAPI` and manages form state such as loading and errors.
+
+This hook wraps asynchronous calls to the backend via REST and exposes
+a clean interface for components that require authentication workflows.
+
+Includes:
+- Login via `AuthAPI.login()`
+- Registration via `AuthAPI.register()`
+- Token renewal via `AuthAPI.refresh()`
+- Shared `loading` and `error` state
+
+All data structures used in this hook are defined in `dtoTypes.js`.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            hooks/api/useGreenhouse.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>React hook for managing greenhouse device operations linked to the authenticated user.
+Integrates with `GreenhouseAPI` and wraps core functionality such as pairing,
+unpairing, and renaming greenhouses.
+
+This hook standardizes API access and error/loading management across:
+- `GreenhouseAPI.pair()` for associating a new greenhouse by MAC address
+- `GreenhouseAPI.unpair()` for removing greenhouse ownership
+- `GreenhouseAPI.rename()` to change the greenhouse's display name
+
+Shared async state is managed via `useApiUtils()` and updates per request.
+
+All data structures used are defined in `dtoTypes.js`.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_api_useGreenhouse.js.html">hooks/api/useGreenhouse.js</a>, <a href="hooks_api_useGreenhouse.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov, Alexa Kelemen</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">React hook for managing greenhouse device operations linked to the authenticated user.
+Integrates with `GreenhouseAPI` and wraps core functionality such as pairing,
+unpairing, and renaming greenhouses.
+
+This hook standardizes API access and error/loading management across:
+- `GreenhouseAPI.pair()` for associating a new greenhouse by MAC address
+- `GreenhouseAPI.unpair()` for removing greenhouse ownership
+- `GreenhouseAPI.rename()` to change the greenhouse's display name
+
+Shared async state is managed via `useApiUtils()` and updates per request.
+
+All data structures used are defined in `dtoTypes.js`.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            hooks/api/useHealth.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>React hook for verifying backend service availability.
+Uses `HealthAPI` to query the `HealthCheckController`, which returns a basic health status.
+
+This hook is typically used at app startup or periodically to confirm connectivity.
+Includes:
+- `getStatus()` to check backend health (returns `{ status: string }`)
+- Shared `isLoading` and `error` state via `useApiUtils()`
+
+No authentication is required for this request.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_api_useHealth.js.html">hooks/api/useHealth.js</a>, <a href="hooks_api_useHealth.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">React hook for verifying backend service availability.
+Uses `HealthAPI` to query the `HealthCheckController`, which returns a basic health status.
+
+This hook is typically used at app startup or periodically to confirm connectivity.
+Includes:
+- `getStatus()` to check backend health (returns `{ status: string }`)
+- Shared `isLoading` and `error` state via `useApiUtils()`
+
+No authentication is required for this request.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            hooks/api/useNotification.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>React hook for retrieving historical notification logs for a specific greenhouse.
+Integrates with the backend `NotificationController` via `NotificationAPI`,
+and supports date-filtered queries based on `NotificationQueryDTO`.
+
+This hook provides:
+- `getPastNotifications()` to fetch a greenhouse’s message history
+- Shared `isLoading` and `error` state via `useApiUtils()`
+
+DTOs are defined in `dtoTypes.js` and reflect the backend shape precisely.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_api_useNotification.js.html">hooks/api/useNotification.js</a>, <a href="hooks_api_useNotification.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">React hook for retrieving historical notification logs for a specific greenhouse.
+Integrates with the backend `NotificationController` via `NotificationAPI`,
+and supports date-filtered queries based on `NotificationQueryDTO`.
+
+This hook provides:
+- `getPastNotifications()` to fetch a greenhouse’s message history
+- Shared `isLoading` and `error` state via `useApiUtils()`
+
+DTOs are defined in `dtoTypes.js` and reflect the backend shape precisely.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            hooks/api/usePreset.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>React hook for managing user-defined environmental presets used in greenhouse automation.
+Wraps `PresetAPI` and provides CRUD access to the backend `PresetController`.
+
+Includes:
+- `createPreset()` to add a new preset
+- `getPreset()` to retrieve a preset by ID
+- `updatePreset()` to modify an existing preset
+- `deletePreset()` to permanently remove a preset
+
+Shared async state is handled via `useApiUtils()`.
+
+Preset data structure is assumed to match the backend `Preset` entity.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_api_usePreset.js.html">hooks/api/usePreset.js</a>, <a href="hooks_api_usePreset.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">React hook for managing user-defined environmental presets used in greenhouse automation.
+Wraps `PresetAPI` and provides CRUD access to the backend `PresetController`.
+
+Includes:
+- `createPreset()` to add a new preset
+- `getPreset()` to retrieve a preset by ID
+- `updatePreset()` to modify an existing preset
+- `deletePreset()` to permanently remove a preset
+
+Shared async state is handled via `useApiUtils()`.
+
+Preset data structure is assumed to match the backend `Preset` entity.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            hooks/api/useSensor.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>React hook for accessing greenhouse sensor readings, both current and historical.
+Integrates with `SensorAPI` and manages async state per request.
+
+Provides wrapper functions for:
+- `getCurrentReadings()` — fetches real-time sensor data for a greenhouse
+- `getPastReadings()` — queries historical sensor logs with optional filters
+
+Shared `isLoading` and `error` state is managed automatically via `useApiUtils()`.
+
+All DTO types are defined in `dtoTypes.js` and align with backend expectations.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_api_useSensor.js.html">hooks/api/useSensor.js</a>, <a href="hooks_api_useSensor.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">React hook for accessing greenhouse sensor readings, both current and historical.
+Integrates with `SensorAPI` and manages async state per request.
+
+Provides wrapper functions for:
+- `getCurrentReadings()` — fetches real-time sensor data for a greenhouse
+- `getPastReadings()` — queries historical sensor logs with optional filters
+
+Shared `isLoading` and `error` state is managed automatically via `useApiUtils()`.
+
+All DTO types are defined in `dtoTypes.js` and align with backend expectations.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            hooks/api/useUser.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>React hook for managing authenticated user account actions.
+Encapsulates API access to `UserController`, providing:
+- Account deletion
+- Shared `isLoading` and `error` state
+
+This hook uses `UserAPI` internally and prepares for future expansion
+(e.g., update email, change password, etc.).</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_api_useUser.js.html">hooks/api/useUser.js</a>, <a href="hooks_api_useUser.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov and SophiaJustin</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">React hook for managing authenticated user account actions.
+Encapsulates API access to `UserController`, providing:
+- Account deletion
+- Shared `isLoading` and `error` state
+
+This hook uses `UserAPI` internally and prepares for future expansion
+(e.g., update email, change password, etc.).</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            hooks/index.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Centralized export file for all custom React hooks in the application.
+Provides a single point of access for importing hooks, improving code maintainability and scalability.
+
+Future hooks should be added here to maintain a clean and consistent import structure across the project.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_index.js.html">hooks/index.js</a>, <a href="hooks_index.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>2.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.0.1</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>useSensorReadings</li>
+        
+            <li>useModelPrediction</li>
+        
+            <li>useControlState</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Centralized export file for all custom React hooks in the application.
+Provides a single point of access for importing hooks, improving code maintainability and scalability.
+
+Future hooks should be added here to maintain a clean and consistent import structure across the project.</div>
+            
+
+            
+                <h3>Examples</h3>
+                
+    <pre class="prettyprint"><code>// Instead of:
+import { useAuth } from '@/hooks/api/useAuth';
+import { useSensor } from '@/hooks/api/useSensor';
+
+// You can do:
+import { useAuth, useSensor } from '@/hooks';</code></pre>
+
+    <pre class="prettyprint"><code>// Usage inside a React component:
+import { useUser } from '@/hooks';
+
+function Authentification() {
+  const { login, register, refresh } = useAuth();
+  // ...
+}</code></pre>
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            hooks/push/index.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Export hub for push-notification related custom React hooks.
+
+This module is intended to group logic related to browser/device push subscriptions,
+permission requests, and service worker interactions — separate from typical REST-bound APIs.
+
+Keeps notification delivery and subscription handling modular and clearly scoped.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_push_index.js.html">hooks/push/index.js</a>, <a href="hooks_push_index.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>hooks/push/usePush.js for full hook implementation and logic</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Export hub for push-notification related custom React hooks.
+
+This module is intended to group logic related to browser/device push subscriptions,
+permission requests, and service worker interactions — separate from typical REST-bound APIs.
+
+Keeps notification delivery and subscription handling modular and clearly scoped.</div>
+            
+
+            
+                <h3>Example</h3>
+                
+    <pre class="prettyprint"><code>import { usePush } from '@/hooks/push';
+
+const { requestPermission, subscribe, unsubscribe } = usePush();</code></pre>
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            hooks/push/usePush.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>SmartGrow's push notification hook for managing client-side setup of web push services.
+This includes service worker registration, VAPID key usage, user permission flow,
+push subscription handling, in-memory caching, and reactive integration with React views.
+
+The hook ensures that browser permission is only requested after a custom confirmation
+from the user and abstracts away raw browser API details behind a clean, composable interface.
+
+It is designed to support future extensibility including rotation, reset, and syncing
+logic, while defaulting to session-cached state hydrated from browser-persistent data.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_push_usePush.js.html">hooks/push/usePush.js</a>, <a href="hooks_push_usePush.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.5.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.5.5</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">SmartGrow's push notification hook for managing client-side setup of web push services.
+This includes service worker registration, VAPID key usage, user permission flow,
+push subscription handling, in-memory caching, and reactive integration with React views.
+
+The hook ensures that browser permission is only requested after a custom confirmation
+from the user and abstracts away raw browser API details behind a clean, composable interface.
+
+It is designed to support future extensibility including rotation, reset, and syncing
+logic, while defaulting to session-cached state hydrated from browser-persistent data.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            main.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Entry point for the SmartGrow React application.
+
+Responsible for:
+- Mounting the React app into the root DOM element
+- Initializing the router via <RouterProvider>
+- Applying global styles and themes
+- Wrapping the app in React.StrictMode for dev safety
+
+This is the first code executed when the frontend starts.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="main.jsx.html">main.jsx</a>, <a href="main.jsx.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.0.1</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="router.jsx.html">router.jsx</a></li>
+        
+            <li><a href="App.jsx.html">App.jsx</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Entry point for the SmartGrow React application.
+
+Responsible for:
+- Mounting the React app into the root DOM element
+- Initializing the router via <RouterProvider>
+- Applying global styles and themes
+- Wrapping the app in React.StrictMode for dev safety
+
+This is the first code executed when the frontend starts.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/viewmodels/DateTime.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>* Custom hook to get the real-time date and time.
+Returns a Date object that updates every second.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_viewmodels_DateTime.js.html">pages/viewmodels/DateTime.js</a>, <a href="pages_viewmodels_DateTime.js.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>SophiaJustin</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">* Custom hook to get the real-time date and time.
+Returns a Date object that updates every second.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/viewmodels/Greenhouses.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Data for paired greenhouses. Used to simulate greenhouse readings 
+such as lighting, temperature, and humidity for the dashboard display.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_viewmodels_Greenhouses.js.html">pages/viewmodels/Greenhouses.js</a>, <a href="pages_viewmodels_Greenhouses.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Data for paired greenhouses. Used to simulate greenhouse readings 
+such as lighting, temperature, and humidity for the dashboard display.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/viewmodels/Preset.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>View model file containing static preset data
+for the SmartGrow frontend. Acts as a placeholder until backend
+integration is complete.
+
+Used by the PresetPage view to display preset information visually.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_viewmodels_Preset.js.html">pages/viewmodels/Preset.js</a>, <a href="pages_viewmodels_Preset.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>SophiaJustin</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">View model file containing static preset data
+for the SmartGrow frontend. Acts as a placeholder until backend
+integration is complete.
+
+Used by the PresetPage view to display preset information visually.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/viewmodels/dashboardModel.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Model hook for transforming sensor API data into view-ready gauge props.
+
+Uses `useSensorReadings` to fetch the latest sensor data and safely maps them into value + config
+objects for Temperature, Humidity, and Brightness gauges.
+
+This model currently hardcodes all min/max/ideal bounds until the backend API supports them.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_viewmodels_dashboardModel.js.html">pages/viewmodels/dashboardModel.js</a>, <a href="pages_viewmodels_dashboardModel.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.2.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.5.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov, SophiaJustin</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>useSensorReadings</li>
+        
+            <li>Dashboard.jsx</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Model hook for transforming sensor API data into view-ready gauge props.
+
+Uses `useSensorReadings` to fetch the latest sensor data and safely maps them into value + config
+objects for Temperature, Humidity, and Brightness gauges.
+
+This model currently hardcodes all min/max/ideal bounds until the backend API supports them.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/views/AboutPage.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The about page of the project that displays the logo and some information about the project and the people making it.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_views_AboutPage.jsx.html">pages/views/AboutPage.jsx</a>, <a href="pages_views_AboutPage.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>SophiaJustin</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">The about page of the project that displays the logo and some information about the project and the people making it.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/views/DashboardPage.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>SmartGrow dashboard view displaying sensor gauge data.
+
+Renders temperature, humidity, and brightness gauges in a consistent layout using the
+`dashboardModel` to provide live values.
+Gracefully handles loading and error states.
+
+The view delegates business logic to the ViewModel and displays a clean, reactive UI.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_views_DashboardPage.jsx.html">pages/views/DashboardPage.jsx</a>, <a href="pages_views_DashboardPage.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.5.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>dashboardModel</li>
+        
+            <li><a href="global.html#GaugeTemperature">GaugeTemperature</a></li>
+        
+            <li><a href="global.html#GaugeHumidity">GaugeHumidity</a></li>
+        
+            <li><a href="global.html#GaugeBrightness">GaugeBrightness</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">SmartGrow dashboard view displaying sensor gauge data.
+
+Renders temperature, humidity, and brightness gauges in a consistent layout using the
+`dashboardModel` to provide live values.
+Gracefully handles loading and error states.
+
+The view delegates business logic to the ViewModel and displays a clean, reactive UI.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/views/FertilizationPage.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Fertilization scheduling allowing users to schedule one-time fertilization.
+Displays last fertilization date and time selection with toggle.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_views_FertilizationPage.jsx.html">pages/views/FertilizationPage.jsx</a>, <a href="pages_views_FertilizationPage.jsx.html#line2">line 2</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>SophiaJustin</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Fertilization scheduling allowing users to schedule one-time fertilization.
+Displays last fertilization date and time selection with toggle.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/views/GreenhousePage.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Displays a dashboard of paired greenhouses and their environmental conditions.
+Includes navigation to pair/edit greenhouses.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_views_GreenhousePage.jsx.html">pages/views/GreenhousePage.jsx</a>, <a href="pages_views_GreenhousePage.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Displays a dashboard of paired greenhouses and their environmental conditions.
+Includes navigation to pair/edit greenhouses.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/views/HomePage.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The welcome home page of the project that displays the logo and some details about the smart plant system</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_views_HomePage.jsx.html">pages/views/HomePage.jsx</a>, <a href="pages_views_HomePage.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>SophiaJustin</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">The welcome home page of the project that displays the logo and some details about the smart plant system</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/views/LightingPage.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>A UI page that allows the user to manage lighting settings either automatically or based on a schedule.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_views_LightingPage.jsx.html">pages/views/LightingPage.jsx</a>, <a href="pages_views_LightingPage.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>SophiaJustin</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">A UI page that allows the user to manage lighting settings either automatically or based on a schedule.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/views/LoginPage.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Handles the login and registration activity in the smart grow application.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_views_LoginPage.jsx.html">pages/views/LoginPage.jsx</a>, <a href="pages_views_LoginPage.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>SophiaJustin</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Handles the login and registration activity in the smart grow application.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            pages/views/WateringPage.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Watering scheduling allowing users to schedule when the greenhouse get watered.
+It lets the user manage when watering happens whether it's automatically or scheduled.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pages_views_WateringPage.jsx.html">pages/views/WateringPage.jsx</a>, <a href="pages_views_WateringPage.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>SophiaJustin</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Watering scheduling allowing users to schedule when the greenhouse get watered.
+It lets the user manage when watering happens whether it's automatically or scheduled.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            router.jsx
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Central routing configuration for the SmartGrow application.
+
+Defines all client-side routes using `createHashRouter` from React Router.
+Each route may include custom metadata like `navLabel`, which can be used by other
+components (e.g., navigation headers) for dynamic UI generation.
+
+This file exports both:
+- `router`: The configured router for `RouterProvider`
+- `routes`: The raw route configuration array, useful for sidebar or breadcrumb logic</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="router.jsx.html">router.jsx</a>, <a href="router.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.5.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.0.1</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Header.jsx for usage of `navLabel`</li>
+        
+            <li><a href="https://reactrouter.com/en/main/routers/create-hash-router">https://reactrouter.com/en/main/routers/create-hash-router</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Central routing configuration for the SmartGrow application.
+
+Defines all client-side routes using `createHashRouter` from React Router.
+Each route may include custom metadata like `navLabel`, which can be used by other
+components (e.g., navigation headers) for dynamic UI generation.
+
+This file exports both:
+- `router`: The configured router for `RouterProvider`
+- `routes`: The raw route configuration array, useful for sidebar or breadcrumb logic</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            utils/apiUtils.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Provides a reusable utility hook for handling API requests with built-in `isLoading` and `error` state.
+Intended to be used across all custom data-fetching hooks (e.g., `useAuth`, `useSensor`, `useNotification`).
+
+This hook simplifies API interaction by wrapping asynchronous calls in a shared handler (`handleRequest`),
+while also exposing component-safe `isLoading` and `error` bindings.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_apiUtils.js.html">utils/apiUtils.js</a>, <a href="utils_apiUtils.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.7.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Provides a reusable utility hook for handling API requests with built-in `isLoading` and `error` state.
+Intended to be used across all custom data-fetching hooks (e.g., `useAuth`, `useSensor`, `useNotification`).
+
+This hook simplifies API interaction by wrapping asynchronous calls in a shared handler (`handleRequest`),
+while also exposing component-safe `isLoading` and `error` bindings.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            utils/pushUtils.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Utility functions related to push notification logic.
+Includes helpers for permission checking, VAPID key decoding,
+subscription formatting, and timing control.
+
+This module is used by SmartGrow's frontend to abstract push notification logic
+away from core hooks and components, ensuring consistency and testability.
+
+No external dependencies. All utilities are browser-based.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_pushUtils.js.html">utils/pushUtils.js</a>, <a href="utils_pushUtils.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.5.5</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Taggerkov</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext">Utility functions related to push notification logic.
+Includes helpers for permission checking, VAPID key decoding,
+subscription formatting, and timing control.
+
+This module is used by SmartGrow's frontend to abstract push notification logic
+away from core hooks and components, ensuring consistency and testability.
+
+No external dependencies. All utilities are browser-based.</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon May 26 2025 15:59:56 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
