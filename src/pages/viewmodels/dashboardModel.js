@@ -9,7 +9,7 @@
  *
  * @see useSensorReadings
  * @see Dashboard.jsx
- * @author Taggerkov
+ * @author Taggerkov, SophiaJustin
  * @version 1.2.0
  * @since 0.5.0
  */

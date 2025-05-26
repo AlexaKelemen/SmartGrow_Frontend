@@ -18,7 +18,7 @@
 
 import {useEffect, useState} from 'react';
 import {getPermissionStatus, urlBase64ToUint8Array, getBrowserSubscription, isPushSupported} from '@/utils/pushUtils';
-import {PushAPI} from "@/api/restApi";
+import {NotificationAPI} from "@/api/restApi";
 import {showPushPermissionPrompt} from "@/components/permissions/showPushPermissionPrompt";
 
 /**
@@ -112,7 +112,7 @@ export function usePush() {
             }
             console.log('User accepted permission?', userAccepted);
         }
-        await PushAPI.saveSubscription(await subscribeToPush(await PushAPI.getVapidKey()));
+        await NotificationAPI.saveSubscription(await subscribeToPush(await NotificationAPI.getVapidKey()));
     }
 
     /**
