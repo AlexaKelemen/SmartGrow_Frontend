@@ -32,7 +32,6 @@ yarn-error.log*
 .env.*.local
 
 # Dependency locks (optional, if you want fresh install every time)
-package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
