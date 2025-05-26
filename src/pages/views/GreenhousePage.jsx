@@ -60,14 +60,18 @@ const GreenhousePage = () => {
     setSelectedGreenhouse(null);
   };
     // Actions
-    const handleAssignPreset = (id) => {
-      assignPreset(id, 1); // replace `1` with dynamic value later
-    };
-    const handlePredict = (id) => {
-      predict(id);
-    };
     const handleConfigure = (greenhouseId, configId, payload) => {
       return configure(greenhouseId, configId, payload);
+    };
+    
+    const handleApplyPreset = async (greenhouseId, presetId) => {
+      try {
+        await assignPreset(greenhouseId, presetId);
+        alert(`Preset ${presetId} applied to Greenhouse ${greenhouseId}`);
+      } catch (err) {
+        console.error("Failed to apply preset:", err);
+        alert("Failed to apply preset.");
+      }
     };
 
     return (
@@ -84,7 +88,7 @@ const GreenhousePage = () => {
           {greenhouseList.map((gh) => (
             <div key={gh.id} className="greenhouse-wrapper">
               <GreenhouseCard greenhouse={gh} onUnpair={handleUnpair} onConfigure={handleConfigure}  presets={allPresets}
-  onApplyPreset={(greenhouseId, presetId) => assignPreset(greenhouseId, presetId)}/>
+               onApplyPreset={handleApplyPreset}/>
   
             
             </div>
