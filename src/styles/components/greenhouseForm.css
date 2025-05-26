@@ -5,7 +5,39 @@
     background-color: #fff;
     font-family: Arial, sans-serif;
 }
+.section {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+}
 
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.horizontal-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.vertical-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.info-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem; }
 .pair-greenhouse-page h2 {
     font-size: 2rem;
     color: #2f4f2f;
@@ -43,4 +75,18 @@
     gap: 2rem;
     justify-content: center;
     margin-top: 2rem;
+}
+.button.info {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: default;
+}
+
+.button.info:hover {
+    background-color: #d0f0d4;
 }
