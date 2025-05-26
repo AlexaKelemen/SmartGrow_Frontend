@@ -113,30 +113,7 @@ const routes = [
             },
             {
                 path: 'greenhouses/:if/presets',
-                element: <PresetsPage />,
-              },
-            {
-                path: 'greenhouses/logs/:id',
-                element: <GreenhouseLogs/>,
-                navLabel: 'Greenhouse Logs',
-            },
-            {
-                path: 'dashboard',
-                element: <DashboardPage/>,
-
-                element: <GreenhouseLogs />,
-                navLabel: 'Greenhouse Actions',
-            },
-            {
-                path: 'dashboard/:id',
-                element: <DashboardPage />,
-
-                navLabel: 'Dashboard',
-            },
-            {
-                path: 'presets',
                 element: <PresetsPage/>,
-                navLabel: 'Presets',
             },
             {
                 path: 'presets/create',
@@ -147,35 +124,39 @@ const routes = [
                 element: <EditPresetPage/>,
             },
             {
-                path: 'lighting',
+                path: 'greenhouses/logs/:id',
+                element: <GreenhouseLogs/>,
+            },
+            {
+                path: 'dashboard/:id',
+                element: <DashboardPage/>,
+            },
+            {
+                path: 'greenhouses/:id/lighting',
                 element: <LightingPage/>,
-                navLabel: 'Lighting',
             },
             {
 
-                path: '/greenhouses/:id/soil-humidity',
-                element: <SoilHumidityPage />,
-                navLabel: 'Soil Humidity Levels',
+                path: 'greenhouses/:id/soil-humidity',
+                element: <SoilHumidityPage/>,
             },
             {
-                path: 'fertilization',
+                path: 'greenhouses/:id/fertilization',
                 element: <FertilizationPage/>,
-                navLabel: 'Fertilization',
             },
             {
-                path: 'watering',
+                path: 'greenhouses/:id/watering',
                 element: <WateringPage/>,
-                navLabel: 'Watering',
-            },
-            {
-                path: 'about',
-                element: <AboutPage/>,
-                navLabel: 'About',
             },
             {
                 path: 'user-settings',
                 element: <UserSettingsPage/>,
                 navLabel: 'User Settings',
+            },
+            {
+                path: 'about',
+                element: <AboutPage/>,
+                navLabel: 'About',
             },
         ],
     },
