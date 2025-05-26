@@ -156,18 +156,6 @@ const GreenhouseAPI = {
    */
      getAll: () =>
         API.get(`${greenhousePath}`).then((res) => res.data),
-     /**
- * Assigns a preset to a greenhouse.
- * @param {number} id - Greenhouse ID.
- * @param {number} presetId - ID of the preset to assign.
- * @returns {Promise<string>} Confirmation message.
- */
-     assignPreset: (greenhouseId, presetId) =>
-        API.put(`${greenhousePath}/preset/${greenhouseId}`, presetId, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }).then(res => res.data),
   
 
   /**
