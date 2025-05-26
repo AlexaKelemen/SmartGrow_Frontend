@@ -1,48 +1,57 @@
-/**
- * @file SoilHumidityPage.jsx
- * @description Displays soil humidity levels with a placeholder chart for past and predicted values,
- *  and a reminder box showing the next watering time.
- * @author: SophiaJustin, Alexa Kelemen
- */
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { SensorAPI, GreenhouseAPI } from '@/api/restApi';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  CartesianGrid,
+  ResponsiveContainer,
+} from 'recharts';
+import { useSensor } from '@/hooks/api/useSensor';
+import { useGreenhouse } from '@/hooks/api/useGreenhouse';
 import '@/styles/pages/soilhumidity.css';
-
 
 const SoilHumidityPage = () => {
   const { id } = useParams();
   const greenhouseId = Number(id);
+  const { getPastReadings } = useSensor();
+  const { predict } = useGreenhouse();
+
   const [pastData, setPastData] = useState([]);
   const [predictedData, setPredictedData] = useState([]);
 
   useEffect(() => {
-    // Fetch past sensor data
-    SensorAPI.getPastReadings(greenhouseId, { readingType: 'SoilHumidity' })
-      .then((data) => {
-        const mapped = data.map((item) => ({
-          time: new Date(item.timestamp).toLocaleString(),
-          past: item.value,
+    const fetchData = async () => {
+      try {
+        const past = await getPastReadings(greenhouseId, { readingType: 'SoilHumidity' });
+        const mappedPast = past.map((entry) => ({
+          time: new Date(entry.timestamp).toISOString(),
+          value: entry.value,
         }));
-        setPastData(mapped);
-      })
-      .catch(console.error);
+        setPastData(mappedPast);
+        const response = await predict(greenhouseId);
+        const forecast = response.forecast; 
+        console.log("Forecast returned:", forecast);
+        
+        const now = new Date();
+        const mappedForecast = forecast.map((value, index) => ({
+          time: new Date(now.getTime() + (index + 1) * 60000).toISOString(),
+          value: value,
+        }));
+       
+        setPredictedData(mappedForecast);
+      } catch (err) {
+        console.error('Failed to fetch soil humidity data:', err);
+      }
+    };
 
-    // Fetch prediction
-    GreenhouseAPI.predict(greenhouseId)
-      .then((forecast) => {
-        const mapped = forecast.map((value, index) => ({
-          time: `T+${index}`,
-          predicted: value,
-        }));
-        setPredictedData(mapped);
-      })
-      .catch(console.error);
+    if (!isNaN(greenhouseId)) {
+      fetchData();
+    }
   }, [greenhouseId]);
-
-  const combinedData = [...pastData, ...predictedData];
 
   return (
     <main className="humidity-page">
@@ -50,49 +59,80 @@ const SoilHumidityPage = () => {
 
       <div className="humidity-content">
         <div className="chart-container">
-        <ResponsiveContainer width="100%" height={300}>
-  <LineChart data={[...pastData, ...predictedData]}>
-    <CartesianGrid strokeDasharray="3 3" />
-    <XAxis dataKey="time" tickFormatter={(str) => str.slice(11, 16)} />
-    <YAxis label={{ value: '% Soil Humidity', angle: -90, position: 'insideLeft' }} />
-    <Tooltip />
-    <Legend verticalAlign="top" height={36} />
+          <h3>Past Soil Humidity</h3>
+          {pastData.length > 0 ? (
+            <ResponsiveContainer width="100%" height={280}>
+              <LineChart data={pastData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="time"
+                  tickFormatter={(str) =>
+                    new Date(str).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                  }
+                />
+                <YAxis
+                  domain={[0, 100]}
+                  label={{ value: '%', angle: -90, position: 'insideLeft' }}
+                />
+                <Tooltip
+                  labelFormatter={(value) => new Date(value).toLocaleString()}
+                  formatter={(val) => [`${val.toFixed(1)}%`, 'Soil Humidity']}
+                />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="value"
+                  stroke="#8884d8"
+                  strokeWidth={2}
+                  dot={false}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          ) : (
+            <p>No past data available.</p>
+          )}
+        </div>
 
-    {/* Past Soil Humidity */}
-    <Line
-      type="monotone"
-      dataKey="past"
-      name="Past Soil Humidity"
-      stroke="#8884d8"
-      strokeWidth={2}
-      dot={{ r: 2 }}
-      isAnimationActive={false}
-    />
+        <div className="chart-container">
+          <h3>Predicted Soil Humidity</h3>
+          {predictedData.length > 0 ? (
+            <ResponsiveContainer width="100%" height={280}>
+              <LineChart data={predictedData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="time"
+                  tickFormatter={(str) =>
+                    new Date(str).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                  }
+                />
+                <YAxis
+                  domain={[0, 100]}
+                  label={{ value: '%', angle: -90, position: 'insideLeft' }}
+                />
+                <Tooltip
+                  labelFormatter={(value) => new Date(value).toLocaleString()}
+                  formatter={(val) => [`${val.toFixed(1)}%`, 'Predicted']}
+                />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="value"
+                  stroke="#82ca9d"
+                  strokeWidth={2}
+                  strokeDasharray="4 4"
+                  dot={false}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          ) : (
+            <p>No prediction data available.</p>
+          )}
+        </div>
 
-    {/* Predicted Soil Humidity */}
-    <Line
-      type="monotone"
-      dataKey="predicted"
-      name="Predicted Soil Humidity"
-      stroke="#82ca9d"
-      strokeDasharray="5 5"
-      strokeWidth={2}
-      dot={{ r: 2 }}
-      isAnimationActive={false}
-    />
-
-    {/* Optional: Divider Line (where prediction starts) */}
-    {pastData.length > 0 && (
-      <ReferenceLine
-        x={pastData[pastData.length - 1].time}
-        stroke="gray"
-        strokeDasharray="3 3"
-        label={{ value: "Now", position: "insideTop", fill: "gray" }}
-      />
-    )}
-  </LineChart>
-</ResponsiveContainer>
-</div>
+        <div className="reminder-card">
+          <h4>Next Watering - 2:30 AM</h4>
+          <p>Fill the tank before 2:30 AM to ensure automatic watering succeeds.</p>
+        </div>
       </div>
     </main>
   );
