@@ -23,16 +23,16 @@ import { useCallback } from 'react';
 import { PresetAPI } from '@/api/restApi';
 import { useApiUtils } from '@/utils/apiUtils';
 /**
- * @typedef {import('@/api/dtoTypes').RawPreset}
+ * @typedef {import('@/api/dtoTypes').Preset}
  */
 
 /**
  * Hook for creating, updating, fetching, and deleting environmental presets.
  *
  * @returns {{
- *   createPreset: (preset: RawPreset) => Promise<RawPreset>,
- *   getPreset: (id: number) => Promise<RawPreset>,
- *   updatePreset: (id: number, preset: RawPreset) => Promise<number>,
+ *   createPreset: (preset: Preset) => Promise<Preset>,
+ *   getPreset: (id: number) => Promise<Preset>,
+ *   updatePreset: (id: number, preset: Preset) => Promise<number>,
  *   deletePreset: (id: number) => Promise<number>,
  *   isLoading: boolean,
  *   error: unknown
@@ -52,8 +52,8 @@ export function usePreset() {
     /**
      * Creates a new environmental preset.
      *
-     * @param {RawPreset} preset - Environmental values and name.
-     * @returns {Promise<RawPreset>} The newly created preset object.
+     * @param {Preset} preset - Environmental values and name.
+     * @returns {Promise<Preset>} The newly created preset object.
      */
     const createPreset = useCallback((preset) => handleRequest(() => PresetAPI.createPreset(preset)), [handleRequest]);
 
@@ -61,7 +61,7 @@ export function usePreset() {
      * Retrieves a single preset by its ID.
      *
      * @param {number} id - Preset ID.
-     * @returns {Promise<RawPreset>} The preset object if found.
+     * @returns {Promise<Preset>} The preset object if found.
      */
     const getPreset = useCallback((id) => handleRequest(() => PresetAPI.getPreset(id)), [handleRequest]);
 
@@ -69,7 +69,7 @@ export function usePreset() {
      * Updates an existing preset.
      *
      * @param {number} id - Preset ID.
-     * @param {RawPreset} preset - New preset data.
+     * @param {Preset} preset - New preset data.
      * @returns {Promise<number>} HTTP status code.
      */
     const updatePreset = useCallback((id, preset) => handleRequest(() => PresetAPI.updatePreset(id, preset)), [handleRequest]);
@@ -81,6 +81,11 @@ export function usePreset() {
      * @returns {Promise<number>} HTTP status code.
      */
     const deletePreset = useCallback((id) => handleRequest(() => PresetAPI.deletePreset(id)), [handleRequest]);
+    
+    const getAllPresets = useCallback(
+        () => handleRequest(() => PresetAPI.getAllPresets()),
+        [handleRequest]
+      );
 
-    return {createPreset, getPreset, updatePreset, deletePreset, isLoading, error};
+    return {createPreset, getPreset, updatePreset, deletePreset,getAllPresets,isLoading, error};
 }

@@ -9,13 +9,13 @@ const PresetForm = ({ mode, onSubmit, initialData = {} }) => {
   const isEdit = mode === "edit";
 
  const [name, setName] = useState(initialData.name || "");
-  const [minAirHumidity, setMinAirHumidity] = useState(initialData.minAirHumidity || 0);
-  const [maxAirHumidity, setMaxAirHumidity] = useState(initialData.maxAirHumidity || 0);
-  const [minTemperature, setMinTemperature] = useState(initialData.minTemperature || 0);
-  const [maxTemperature, setMaxTemperature] = useState(initialData.maxTemperature || 0);
-  const [minSoilHumidity, setMinSoilHumidity] = useState(initialData.minSoilHumidity || 0);
-  const [maxSoilHumidity, setMaxSoilHumidity] = useState(initialData.maxSoilHumidity || 0);
-  const [hoursOfLight, setHoursOfLight] = useState(initialData.hoursOfLight || 0);
+  const [minAirHumidity, setMinAirHumidity] = useState(initialData.minAirHumidity  ?? "");
+  const [maxAirHumidity, setMaxAirHumidity] = useState(initialData.maxAirHumidity  ?? "");
+  const [minTemperature, setMinTemperature] = useState(initialData.minTemperature  ?? "");
+  const [maxTemperature, setMaxTemperature] = useState(initialData.maxTemperature  ?? "");
+  const [minSoilHumidity, setMinSoilHumidity] = useState(initialData.minSoilHumidity  ?? "");
+  const [maxSoilHumidity, setMaxSoilHumidity] = useState(initialData.maxSoilHumidity  ?? "");
+  const [hoursOfLight, setHoursOfLight] = useState(initialData.hoursOfLight  ?? "");
 
   const handleSubmit = (e) => {
     e.preventDefault();

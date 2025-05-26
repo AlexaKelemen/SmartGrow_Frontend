@@ -84,10 +84,7 @@
  * @property {string} userEmail - Email of the greenhouse owner.
  * @property {number} [activePresetId] - ID of the currently applied preset (nullable).
  * @property {string} [activePresetName] - Name of the currently applied preset (nullable).
- *
- * @description
- * Represents a greenhouse record returned by the backend (maps to `GreenhouseDto`).
- *
+ * @description Represents a greenhouse record returned by the backend (maps to `GreenhouseDto`).
  * @example
  * const greenhouse = {
  *   id: 1,
@@ -101,6 +98,7 @@
  *   activePresetName: "Tomato Boost"
  * };
  */
+
 /**
  * @typedef {Object} GreenhousePairDTO
  * @property {string} macAddress - MAC address of the greenhouse device.
@@ -123,6 +121,12 @@
  *   id: 3,
  *   name: "West Wing Greenhouse"
  * };
+ */
+
+ /**
+ * @typedef {Object} ConfigurationDTO
+ * @property {string[]} type - List of types being configured.
+ * @property {string[]} method - Corresponding configuration methods.
  */
 
 // ────────────────
@@ -218,31 +222,93 @@
 // ────────────────
 
 /**
- * @typedef {Object} RawPreset
- * @property {number} [id] - Unique preset ID (optional; assigned by backend after creation).
+ * @typedef {Object} Preset
+ * @property {number} [id] - Optional. Unique preset ID assigned by the backend.
  * @property {string} name - Human-readable name for the preset (e.g., "Tomato Grow Profile").
- * @property {number} minTemperature - Minimum target temperature (°C).
- * @property {number} maxTemperature - Maximum target temperature (°C).
- * @property {number} minAirHumidity - Minimum target air humidity (%).
- * @property {number} maxAirHumidity - Maximum target air humidity (%).
- * @property {number} minSoilHumidity - Minimum target soil humidity (%).
- * @property {number} maxSoilHumidity - Maximum target soil humidity (%).
- * @property {number} hoursOfLight - Daily light exposure in hours.
+ * @property {number} minTemperature - Minimum target temperature in °C.
+ * @property {number} maxTemperature - Maximum target temperature in °C.
+ * @property {number} minAirHumidity - Minimum target air humidity in percentage.
+ * @property {number} maxAirHumidity - Maximum target air humidity in percentage.
+ * @property {number} minSoilHumidity - Minimum target soil humidity in percentage.
+ * @property {number} maxSoilHumidity - Maximum target soil humidity in percentage.
+ * @property {number} hoursOfLight - Daily light exposure in hours (e.g., 12 for 12 hours).
+ *
  * @description
- * Represents a user-defined greenhouse environmental configuration.
- * Maps directly to the backend `Preset` entity, excluding internal navigation properties (`Greenhouses`, `SystemPresetId`, `UserPresetId`).
+ * Represents a complete preset configuration for greenhouse automation.
+ * Used in create, read, update, and delete operations for environmental presets.
+ *
  * @example
  * const preset = {
- *   name: "Strawberry Growth Plan",
- *   minTemperature: 18,
- *   maxTemperature: 24,
+ *   name: "Tomato Plan",
+ *   minTemperature: 20,
+ *   maxTemperature: 25,
+ *   minAirHumidity: 50,
+ *   maxAirHumidity: 70,
+ *   minSoilHumidity: 30,
+ *   maxSoilHumidity: 60,
+ *   hoursOfLight: 14
+ * };
+ */
+/**
+ * @typedef {Object} CreatePresetDTO
+ * @property {string} name - Name of the preset (e.g., "Tomato Boost").
+ * @property {number} minTemperature - Minimum temperature in °C.
+ * @property {number} maxTemperature - Maximum temperature in °C.
+ * @property {number} minAirHumidity - Minimum air humidity (%).
+ * @property {number} maxAirHumidity - Maximum air humidity (%).
+ * @property {number} minSoilHumidity - Minimum soil humidity (%).
+ * @property {number} maxSoilHumidity - Maximum soil humidity (%).
+ * @property {number} hoursOfLight - Daily light exposure in hours.
+ * @property {string} userEmail - Email of the user creating the preset.
+ *
+ * @description
+ * DTO used when creating a new environmental preset. Sent to backend via POST request.
+ * All fields are required to define a valid configuration.
+ *
+ * @example
+ * const createDto = {
+ *   name: "Lettuce Profile",
+ *   minTemperature: 16,
+ *   maxTemperature: 22,
  *   minAirHumidity: 60,
+ *   maxAirHumidity: 75,
+ *   minSoilHumidity: 35,
+ *   maxSoilHumidity: 55,
+ *   hoursOfLight: 10,
+ *   userEmail: "user@example.com"
+ * };
+ */
+
+/**
+ * @typedef {Object} UpdatePresetDTO
+ * @property {number} id - Unique ID of the preset to update.
+ * @property {string} name - Updated name for the preset.
+ * @property {number} minTemperature - Updated minimum temperature (°C).
+ * @property {number} maxTemperature - Updated maximum temperature (°C).
+ * @property {number} minAirHumidity - Updated minimum air humidity (%).
+ * @property {number} maxAirHumidity - Updated maximum air humidity (%).
+ * @property {number} [minSoilHumidity] - Optional updated minimum soil humidity (%).
+ * @property {number} [maxSoilHumidity] - Optional updated maximum soil humidity (%).
+ * @property {number} [hoursOfLight] - Optional updated daily light exposure (hours).
+ *
+ * @description
+ * DTO used to update an existing preset. Sent to backend via PUT request.
+ * All required fields must be provided to successfully update the preset.
+ *
+ * @example
+ * const updateDto = {
+ *   id: 5,
+ *   name: "Updated Tomato Boost",
+ *   minTemperature: 18,
+ *   maxTemperature: 25,
+ *   minAirHumidity: 55,
  *   maxAirHumidity: 75,
  *   minSoilHumidity: 40,
  *   maxSoilHumidity: 60,
- *   hoursOfLight: 12
+ *   hoursOfLight: 14
  * };
  */
+
 
 // ────────────────
 // Notification DTOs

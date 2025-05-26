@@ -6,8 +6,21 @@ import "@/styles/pages/greenhouse-logs.css";
 
 const GreenhouseLogs = () => {
   const { id } = useParams();
-  const { getPastActions, isLoading, error } = useAction();
+  const { getPastActions, triggerAction, isLoading, error } = useAction();
   const [logs, setLogs] = useState([]);
+  const [selectedAction, setSelectedAction] = useState("Watering");
+
+
+  const handleTriggerAction = async () => {
+    try {
+      const result = await triggerAction(Number(id), selectedAction);
+      alert(`Triggered: ${result}`);
+      fetchLogs(); 
+    } catch (err) {
+      console.error("Failed to trigger action:", err);
+      alert("Action failed");
+    }
+  }; 
 
   const [dateRange, setDateRange] = useState({
     startDate: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
@@ -53,7 +66,7 @@ const GreenhouseLogs = () => {
     if (!id || isNaN(Number(id))) return;
     fetchLogs();
   }, [dateRange]);
-  
+
   const handleDateChange = (key, value) => {
     setDateRange((prev) => ({ ...prev, [key]: value }));
   };
@@ -62,34 +75,56 @@ const GreenhouseLogs = () => {
 
   return (
     <main className="logs-page">
-      <h2>{greenhouseName}’s Logs</h2>
+    <h2>{greenhouseName}’s Logs</h2>
 
+    <div className="filter-bar">
       <DateRangePicker
         startDate={dateRange.startDate}
         endDate={dateRange.endDate}
         onChange={handleDateChange}
       />
 
-      {isLoading && <p>Loading logs...</p>}
-      {error && <p style={{ color: "red" }}>Error loading logs.</p>}
-
-      <div className="log-list">
-        {logs.length === 0 && !isLoading ? (
-          <p>No logs found for the selected date range.</p>
-        ) : (
-          logs.map((log, index) => (
-            <div key={index} className="log-entry">
-              <div className="log-type">{log.type}</div>
-              <div className="log-desc">Status: {log.status}</div>
-              <div className="log-date">
-                {new Date(log.timestamp).toLocaleString()}
-              </div>
-            </div>
-          ))
-        )}
+      <div className="trigger-section">
+        <label>
+          Action to trigger:
+          <select
+            value={selectedAction}
+            onChange={(e) => setSelectedAction(e.target.value)}
+          >
+            <option value="watering">Watering</option>
+            <option value="fertilizer">Fertilize</option>
+            <option value="light">Lighting</option>
+          </select>
+        </label>
+        <button onClick={handleTriggerAction}>Trigger Action</button>
       </div>
-    </main>
-  );
+    </div>
+
+    {isLoading && <p>Loading logs...</p>}
+    {error && <p style={{ color: "red" }}>Error loading logs.</p>}
+
+    <div className="log-list">
+      <div className="log-header">
+        <span>Action Type</span>
+        <span>Timestamp</span>
+      </div>
+
+      {logs.length === 0 && !isLoading ? (
+        <p>No logs found for the selected date range.</p>
+      ) : (
+        logs.map((log, index) => (
+          <div key={index} className="log-entry">
+            <span className="log-type">{log.type}</span>
+            <span className="log-timestamp">
+              {new Date(log.timestamp).toLocaleString()}
+            </span>
+          </div>
+        ))
+      )}
+    </div>
+  </main>
+);
 };
+    
 
 export default GreenhouseLogs;

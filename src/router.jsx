@@ -13,14 +13,14 @@
  * @see Header.jsx for usage of `navLabel`
  * @see https://reactrouter.com/en/main/routers/create-hash-router
  * @author Taggerkov
- * @version 1.0.0
+ * @version 1.5.0
  * @since 0.0.1
  */
 
-import { createHashRouter } from 'react-router-dom';
-import { element } from 'prop-types';
+import {createHashRouter} from 'react-router-dom';
 import App from '@/App';
 import LoginPage from '@/pages/views/LoginPage';
+import RequireAuth from "@/components/RequireAuth";
 import HomePage from '@/pages/views/HomePage';
 import GreenhousesPage from '@/pages/views/GreenhousePage';
 import PairGreenhousePage from "@/pages/views/PairGreenhousePage";
@@ -29,7 +29,7 @@ import GreenhouseLogs from "@/pages/views/GreenhouseLogs";
 import DashboardPage from '@/pages/views/DashboardPage';
 import PresetsPage from '@/pages/views/PresetPage';
 import CreatePresetForm from '@/pages/views/CreatePresetForm';
-import EditPresetPage from "@/pages/views/EditPresetPage"; 
+import EditPresetPage from "@/pages/views/EditPresetPage";
 import LightingPage from '@/pages/views/LightingPage';
 import SoilHumidityPage from '@/pages/views/SoilHumidityPage';
 import FertilizationPage from '@/pages/views/FertilizationPage';
@@ -87,88 +87,134 @@ import UserSettingsPage from '@/pages/views/UserSettingsPage';
  */
 const routes = [
     {
-        path: '/',
-        element: <App />,
+        path: '/', element: <App/>,
         children: [
             {
                 path: '',
-                element: <LoginPage />,
+                element: <LoginPage/>,
             },
             {
                 path: 'home',
-                element: <HomePage />,
+                element: <HomePage/>,
                 navLabel: 'Home',
             },
             {
                 path: 'greenhouses',
-                element: <GreenhousesPage />,
+                element: <GreenhousesPage/>,
                 navLabel: 'Greenhouses',
             },
             {
                 path: 'pair-greenhouse',
-                element: <PairGreenhousePage />,
+                element: <PairGreenhousePage/>,
             },
             {
                 path: 'edit-greenhouse/:id',
-                element: <EditGreenhousePage />,
+                element: <EditGreenhousePage/>,
             },
             {
+                path: 'greenhouses/:if/presets',
+                element: <PresetsPage />,
+              },
+            {
                 path: 'greenhouses/logs/:id',
-                element: <GreenhouseLogs />,
+                element: <GreenhouseLogs/>,
                 navLabel: 'Greenhouse Logs',
             },
             {
                 path: 'dashboard',
+                element: <DashboardPage/>,
+
+                element: <GreenhouseLogs />,
+                navLabel: 'Greenhouse Actions',
+            },
+            {
+                path: 'dashboard/:id',
                 element: <DashboardPage />,
+
                 navLabel: 'Dashboard',
             },
             {
                 path: 'presets',
-                element: <PresetsPage />,
+                element: <PresetsPage/>,
                 navLabel: 'Presets',
             },
             {
                 path: 'presets/create',
-                element: <CreatePresetForm />,
+                element: <CreatePresetForm/>,
             },
             {
-                path: 'presets/edit',
+                path: 'presets/edit/:id',
                 element: <EditPresetPage/>,
-            }, 
+            },
             {
                 path: 'lighting',
-                element: <LightingPage />,
+                element: <LightingPage/>,
                 navLabel: 'Lighting',
             },
             {
-                path: 'soil-humidity',
+
+                path: '/greenhouses/:id/soil-humidity',
                 element: <SoilHumidityPage />,
                 navLabel: 'Soil Humidity Levels',
             },
             {
                 path: 'fertilization',
-                element: <FertilizationPage />,
+                element: <FertilizationPage/>,
                 navLabel: 'Fertilization',
             },
             {
                 path: 'watering',
-                element: <WateringPage />,
+                element: <WateringPage/>,
                 navLabel: 'Watering',
             },
             {
                 path: 'about',
-                element: <AboutPage />,
+                element: <AboutPage/>,
                 navLabel: 'About',
             },
             {
-  path: 'user-settings',
-  element: <UserSettingsPage />,
-  navLabel: 'User Settings',
-},
-
+                path: 'user-settings',
+                element: <UserSettingsPage/>,
+                navLabel: 'User Settings',
+            },
         ],
     },
 ];
+
+/**
+ * Wraps each child route's element with `<RequireAuth>` unless it is publicly accessible.
+ *
+ * This function is used to enforce authentication across all routes in the application,
+ * except for explicitly defined public ones — currently, only the root path `""` (LoginPage).
+ * It preserves all route metadata and custom tags like `navLabel`, while modifying only
+ * the `element` property to include the authentication requirement.
+ *
+ * @function secureChildren
+ * @param {Array<Object>} children - An array of route configuration objects.
+ * @returns {Array<Object>} The modified route objects with protected elements, except for public routes.
+ *
+ * @example
+ * const protectedRoutes = secureChildren([
+ *   { path: '', element: <LoginPage /> },
+ *   { path: 'dashboard', element: <DashboardPage /> }
+ * ]);
+ * // Result:
+ * // [
+ * //   { path: '', element: <LoginPage /> },
+ * //   { path: 'dashboard', element: <RequireAuth><DashboardPage /></RequireAuth> }
+ * // ]
+ *
+ * @see RequireAuth
+ */
+function secureChildren(children) {
+    return children.map(child => {
+        const isPublic = child.path === '';
+        return {
+            ...child,
+            element: isPublic ? child.element : <RequireAuth>{child.element}</RequireAuth>,
+        };
+    });
+}
 
 /**
  * Application router configuration for SmartGrow.
@@ -184,10 +230,7 @@ const routes = [
 const router = createHashRouter(
     routes.map(route => ({
         ...route,
-        children: route.children?.map(child => ({
-            path: child.path,
-            element: child.element,
-        })),
+        children: route.children ? secureChildren(route.children) : [],
     }))
 );
 

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import PresetCard from '@/components/PresetCard'; // Adjust the path if needed
+import PresetCard from '@/components/PresetCard';
 import { MemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 import React from 'react';
@@ -14,20 +14,19 @@ vi.mock('react-router-dom', async (importActual) => {
   };
 });
 
-//  Sample preset for testing
+// Sample preset for testing
 const mockPreset = {
   id: 1,
   title: 'Tomato Growth',
   name: 'Tomato Growth',
-  type: 'Vegetable',
-  creationDate: '2024-01-01',
-  updateDate: '2024-04-15',
   image: 'https://example.com/tomato.jpg',
-  airHumidity: '70%',
-  soilHumidity: '50%',
-  co2: '350 ppm',
-  temperature: '22°C',
-  brightness: 'Medium',
+  minAirHumidity: 70,
+  maxAirHumidity: 75,
+  minSoilHumidity: 40,
+  maxSoilHumidity: 50,
+  minTemperature: 20,
+  maxTemperature: 25,
+  hoursOfLight: 14,
 };
 
 describe('PresetCard component', () => {
@@ -36,18 +35,12 @@ describe('PresetCard component', () => {
       wrapper: MemoryRouter,
     });
 
-    // Title in header
-    expect(screen.getAllByText('Tomato Growth')[0]).toBeInTheDocument();
-
-    // Static info
+    // Check name and type
     expect(screen.getByText(/Name:/)).toBeInTheDocument();
-    expect(screen.getByText('Vegetable')).toBeInTheDocument();
-    expect(screen.getByText(/2024-01-01 - 2024-04-15/)).toBeInTheDocument();
 
-    // Buttons
+    // Check buttons
     expect(screen.getByText('Delete')).toBeInTheDocument();
     expect(screen.getByText('Edit')).toBeInTheDocument();
-    expect(screen.getByText('Apply')).toBeInTheDocument();
   });
 
   test('calls onDelete when delete button is clicked', () => {
@@ -61,42 +54,25 @@ describe('PresetCard component', () => {
   });
 
   test('navigates to edit when Edit button is clicked', () => {
-    render(<PresetCard preset={mockPreset} onDelete={() => {}} />, {
+    render(<PresetCard preset={mockPreset} />, {
       wrapper: MemoryRouter,
     });
 
     fireEvent.click(screen.getByText('Edit'));
-    expect(mockNavigate).toHaveBeenCalledWith('/presets/edit');
+    expect(mockNavigate).toHaveBeenCalledWith('/presets/edit/1');
   });
 
   test('shows hover details on mouse enter', () => {
-    render(<PresetCard preset={mockPreset} onDelete={() => {}} />, {
+    render(<PresetCard preset={mockPreset} />, {
       wrapper: MemoryRouter,
     });
 
-    // Hover over the outer card div
     const card = screen.getByText('Edit').closest('.preset-card');
     fireEvent.mouseEnter(card);
 
-    // Hover-only content checks (use content matcher to avoid DOM nesting issues)
-    expect(
-      screen.getByText((_, el) => el?.textContent === 'Air humidity: 70%')
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByText((_, el) => el?.textContent === 'Soil Humidity: 50%')
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByText((_, el) => el?.textContent === 'CO₂: 350 ppm')
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByText((_, el) => el?.textContent === 'Temperature: 22°C')
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByText((_, el) => el?.textContent === 'Brightness: Medium')
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Air humidity/i)).toHaveTextContent('70–75%');
+    expect(screen.getByText(/Soil humidity/i)).toHaveTextContent('40–50%');
+    expect(screen.getByText(/Temperature/i)).toHaveTextContent('20–25°C');
+    expect(screen.getByText(/Light/i)).toHaveTextContent('14 hrs');
   });
 });

@@ -41,6 +41,8 @@ import {useApiUtils} from '@/utils/apiUtils';
  *   endDate: '2024-02-01T00:00:00Z'
  * });
  */
+
+  
 export function useAction() {
     const {handleRequest, isLoading, error} = useApiUtils();
 
@@ -58,6 +60,19 @@ export function useAction() {
      * });
      */
     const getPastActions = useCallback((greenhouseId, filters) => handleRequest(() => ActionAPI.getPastActions(greenhouseId, filters)), [handleRequest]);
+   
+    /**
+   * Triggers a new action on a greenhouse.
+   *
+   * @param {number} greenhouseId - ID of the greenhouse.
+   * @param {string} actionType - Type of the action to trigger (e.g., "Irrigation").
+   * @returns {Promise<string>} Server response confirming the action.
+   */
+  const triggerAction = useCallback(
+    (greenhouseId, actionType) =>
+      handleRequest(() => ActionAPI.triggerAction(greenhouseId, actionType)),
+    [handleRequest]
+  );
 
-    return {getPastActions, isLoading, error};
+    return {getPastActions,triggerAction, isLoading, error};
 }

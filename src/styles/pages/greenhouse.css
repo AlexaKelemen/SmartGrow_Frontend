@@ -29,7 +29,13 @@
     flex-wrap: wrap;
     justify-content: center ;
   }
-  
+    .card-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      align-items: center; }
+
   .greenhouse-card {
     width: 100%;
       max-width: 500px;
@@ -42,6 +48,10 @@
       flex-direction: column;
       align-items: center;
   }
+    .greenhouse-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
   
   .image-container {
     position: relative;

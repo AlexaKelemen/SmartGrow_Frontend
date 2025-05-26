@@ -24,7 +24,7 @@ import axios from 'axios';
  * Kept in sync with backend controller route attributes.
  * @type {string}
  */
-const authPath = 'Auth', userPath='User', greenhousePath='Greenhouse', sensorPath = 'SensorReading', actionPath = 'Action', presetPath = 'RawPreset', notificationPath='Notification', healthPath = 'Health';
+const authPath = 'Auth', userPath='User', greenhousePath='Greenhouse', sensorPath = 'SensorReading', actionPath = 'Action', presetPath = 'Preset', notificationPath='Notification', healthPath = 'Health';
 
 /**
  * Axios instance preconfigured with baseURL and JSON content headers.
@@ -96,7 +96,6 @@ API.interceptors.response.use(response => response, async error => {
                 processQueue(refreshErr, null);
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('refreshToken');
-                localStorage.clear();
                 window.location.href = '/';
                 return Promise.reject(refreshErr);
             } finally {
