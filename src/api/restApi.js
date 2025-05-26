@@ -131,11 +131,7 @@ const GreenhouseAPI = {
      */
 
     rename: (payload) => API.put(`${greenhousePath}/rename/${payload.id}`, payload).then(res => res.data),
-    /**
-     * Fetches all greenhouses associated with the authenticated user.
-     * @returns {Promise<GreenhouseDTO[]>} Array of greenhouse objects.
-     */
-    getAll: () => API.get(`${greenhousePath}`).then((res) => res.data),
+
     /**
      * Assigns a preset to a greenhouse.
      * @param {number} id - Greenhouse ID.
@@ -153,14 +149,8 @@ const GreenhouseAPI = {
      * @returns {Promise<string>} Confirmation message.
      */
     configure: (greenhouseId, id, payload) => API.put(`${greenhousePath}/configure/${id}`, payload, {params: {greenhouseId}}),
-    /**
-     * Triggers a prediction for a specific greenhouse.
-     * @param {number} greenhouseId
-     * @returns {Promise<string>} Prediction result or confirmation.
-     */
-    predict: (greenhouseId) => API.post(`${greenhousePath}/predict/${greenhouseId}`).then(res => res.data),
-    rename: (payload) => API.put(`Greenhouse/rename/${payload.id}`, payload).then(res => res.data),
-     /**
+
+/**
    * Fetches all greenhouses associated with the authenticated user.
    * @returns {Promise<GreenhouseDTO[]>} Array of greenhouse objects.
    */
@@ -179,18 +169,7 @@ const GreenhouseAPI = {
           }
         }).then(res => res.data),
   
-/**
- * Sends a configuration POST request for a greenhouse.
- *
- * @param {number} greenhouseId - The greenhouse ID (used in query).
- * @param {number|string} id - The config target ID (used in path).
- * @param {{ type: string, method: string }} payload - Configuration data.
- * @returns {Promise<string>} Confirmation message.
- */
-configure: (greenhouseId, id, payload) =>
-    API.put(`${greenhousePath}/configure/${id}`, payload, {
-      params: { greenhouseId }
-    }),
+
   /**
    * Triggers a prediction for a specific greenhouse.
    * @param {number} greenhouseId
