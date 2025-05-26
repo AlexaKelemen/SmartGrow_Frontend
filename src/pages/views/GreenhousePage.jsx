@@ -86,12 +86,10 @@ const GreenhousePage = () => {
   
         <div className="greenhouse-grid">
           {greenhouseList.map((gh) => (
-            <div key={gh.id} className="greenhouse-wrapper">
-              <GreenhouseCard greenhouse={gh} onUnpair={handleUnpair} onConfigure={handleConfigure}  presets={allPresets}
+            <GreenhouseCard
+            key={gh.id}
+             greenhouse={gh} onUnpair={handleUnpair} onConfigure={handleConfigure}  presets={allPresets}
                onApplyPreset={handleApplyPreset}/>
-  
-            
-            </div>
           ))}
         </div>
   
