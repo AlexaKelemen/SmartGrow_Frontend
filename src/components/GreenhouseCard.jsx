@@ -55,81 +55,58 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
           </Button>
         </div>
       </div>
-
-      <div className="info-cards">
-        <div className="info-box">
-          <span>🌞</span>
-          <span>Lighting</span>
-          <span>{greenhouse.lightingMethod || "N/A"}</span>
-        </div>
-        <div className="info-box">
-          <span>🚿</span>
-          <span>Watering</span>
-          <span>{greenhouse.wateringMethod || "N/A"}</span>
-        </div>
-        <div className="info-box" onClick={() => navigate(`/greenhouses/${greenhouse.id}/soil-humidity`)} style={{ cursor: "pointer" }}>
-         <span>🌱</span>
-        <span>Soil Humidity</span>
-       <span>{greenhouse.soilHumidity != null ? `${greenhouse.soilHumidity}%` : "N/A"}</span>
-       </div>
-      </div>
-      <Button
-  variant="default"
-  size="sm"
-  onClick={() => navigate(`/greenhouses/${greenhouse.id}/presets`)}
->
-  View Presets
-</Button>
-<div className="apply-preset-section">
-  <select
-    value={selectedPresetId}
-    onChange={(e) => setSelectedPresetId(Number(e.target.value))}
-  >
-    <option value="">Choose a preset</option>
-    {presets.map((preset) => (
-      <option key={preset.id} value={preset.id}>
-        {preset.name}
-      </option>
-    ))}
-  </select>
-
-  <Button
-    variant="default"
-    size="sm"
-    onClick={() => {
-      if (selectedPresetId) {
-        onApplyPreset(greenhouse.id, selectedPresetId);
-      }
-    }}
-    disabled={!selectedPresetId}
-  >
-    Apply Preset
+      <div className="info-buttons">
+  <Button variant="info" size="sm"   onClick={() => navigate(`/greenhouses/${greenhouse.id}/lighting`)}>
+    🌞 Lighting: {greenhouse.lightingMethod}
   </Button>
+  <Button variant="info" size="sm"   onClick={() => navigate(`/greenhouses/${greenhouse.id}/watering`)}>
+    🚿 Watering: {greenhouse.wateringMethod }
+  </Button>
+  <Button
+    variant="info"
+    size="sm"
+    onClick={() => navigate(`/greenhouses/${greenhouse.id}/soil-humidity`)}
+    >
+      🌱 Soil Humidity: {greenhouse.soilHumidity}
+    </Button>
 </div>
-      <Button
-        variant="edit"
-        size="sm"
-        onClick={() => navigate(`/edit-greenhouse/${greenhouse.id}`)}
-      >
-        Edit
-      </Button>
-      <Button
-          variant="default"
-          size="sm"
-          onClick={() => navigate(`/greenhouses/logs/${greenhouse.id}`)}
-        >
-          View Logs and action
-        </Button>
-        <Button
-  variant="default"
-  size="sm"
-  onClick={() => navigate(`/dashboard/${greenhouse.id}`)}
->
-  View Dashboard
-</Button>
-         {/* Configuration Form */}
-      <form className="config-form" onSubmit={handleConfigure}>
-        <div className="config-selects">
+
+   
+      {/* PRESETS */}
+      <div className="section presets">
+        <div className="section-header">
+          <h4>Presets</h4>
+          <Button size="sm" onClick={() => navigate(`/greenhouses/${greenhouse.id}/presets`)}>
+            View Presets
+          </Button>
+        </div>
+        <div className="horizontal-row">
+          <select
+            value={selectedPresetId}
+            onChange={(e) => setSelectedPresetId(Number(e.target.value))}
+          >
+            <option value="">Choose a preset</option>
+            {presets.map((preset) => (
+              <option key={preset.id} value={preset.id}>
+                {preset.name}
+              </option>
+            ))}
+          </select>
+          <Button
+            variant="default"
+            size="sm"
+            onClick={() => onApplyPreset(greenhouse.id, selectedPresetId)}
+            disabled={!selectedPresetId}
+          >
+            Apply Preset
+          </Button>
+        </div>
+      </div>
+
+      {/* CONFIGURATION */}
+      <div className="section config">
+        <h4>Configure System</h4>
+        <form className="horizontal-row" onSubmit={handleConfigure}>
           <select value={type} onChange={(e) => setType(e.target.value)} required>
             <option value="lighting">Lighting</option>
             <option value="watering">Watering</option>
@@ -139,11 +116,22 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
           <select value={method} onChange={(e) => setMethod(e.target.value)} required>
             <option value="manual">Manual</option>
           </select>
+
+          <Button type="submit" variant="default" size="sm">
+            Apply Configuration
+          </Button>
+        </form>
+      </div>
+
+      {/* ACTIONS */}
+      <div className="section actions">
+        <h4>Actions</h4>
+        <div className="vertical-buttons">
+          <Button variant="edit" size="sm" onClick={() => navigate(`/edit-greenhouse/${greenhouse.id}`)}>Edit Greenhouse</Button>
+          <Button variant="default" size="sm" onClick={() => navigate(`/greenhouses/logs/${greenhouse.id}`)}>View Logs and Actions</Button>
+          <Button variant="default" size="sm" onClick={() => navigate(`/dashboard/${greenhouse.id}`)}>View Dashboard</Button>
         </div>
-        <Button type="submit" variant="default" size="sm">
-          Apply Configuration
-        </Button>
-      </form>
+      </div>
     </div>
   );
 };
