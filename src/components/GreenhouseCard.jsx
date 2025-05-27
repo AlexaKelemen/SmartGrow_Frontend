@@ -25,7 +25,7 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
   const { getCurrentReadings } = useSensor();
 
   // Fallback to default image if greenhouse.imageUrl is undefined
-  const imageSrc = greenhouse.imageUrl || `https://github.com/AlexaKelemen/SmartGrow_Frontend/blob/main/public/images/greenhouse.png`;
+  const imageSrc = greenhouse.imageUrl || `/images/greenhouse.png`;
 
   const [type, setType] = useState("lighting");
   const [method, setMethod] = useState("manual");
