@@ -104,6 +104,11 @@ const routes = [
                 navLabel: 'Greenhouses',
             },
             {
+                path: "greenhouses/:id/presets",
+                element: <PresetsPage />,
+            },
+
+            {
                 path: 'pair-greenhouse',
                 element: <PairGreenhousePage/>,
             },
@@ -111,6 +116,11 @@ const routes = [
                 path: 'edit-greenhouse/:id',
                 element: <EditGreenhousePage/>,
             },
+            {
+                path: "presets",         
+                element: <PresetsPage />,
+                navLabel: "Presets"
+              },
             {
                 path: 'presets/create',
                 element: <CreatePresetForm/>,
