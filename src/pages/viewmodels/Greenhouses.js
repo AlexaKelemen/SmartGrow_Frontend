@@ -11,7 +11,7 @@ const greenhouse = [
     lighting: "40%",             
     temperature: "24°C",         
     humidity: "60%",             
-    imageUrl: "/images/greenhouse.png", 
+    imageUrl: `./images/greenhouse.png`,
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const greenhouse = [
     lighting: "40%",
     temperature: "24°C",
     humidity: "60%",
-    imageUrl: "/images/greenhouse.png",
+    imageUrl: `./images/greenhouse.png`,
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const greenhouse = [
     lighting: "40%",
     temperature: "24°C",
     humidity: "60%",
-    imageUrl: "/images/greenhouse.png",
+    imageUrl: `./images/greenhouse.png`,
   },
 ];
 
