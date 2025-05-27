@@ -25,7 +25,7 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
   const { getCurrentReadings } = useSensor();
 
   // Fallback to default image if greenhouse.imageUrl is undefined
-  const imageSrc = greenhouse.imageUrl || `${import.meta.env.BASE_URL}images/greenhouse.png`;
+  const imageSrc = greenhouse.imageUrl || `https://github.com/AlexaKelemen/SmartGrow_Frontend/blob/main/public/images/greenhouse.png`;
 
   const [type, setType] = useState("lighting");
   const [method, setMethod] = useState("manual");
@@ -33,7 +33,6 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
 
 
   const handleConfigure = async (e) => {
-    console.log(import.meta.env.BASE_URL)
     e.preventDefault();
     try {
       await onConfigure(greenhouse.id, greenhouse.id, { type, method });

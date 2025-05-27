@@ -11,7 +11,7 @@ const greenhouse = [
     lighting: "40%",             
     temperature: "24°C",         
     humidity: "60%",             
-    imageUrl:`${import.meta.env.BASE_URL}images/greenhouse.png`
+    imageUrl:`https://github.com/AlexaKelemen/SmartGrow_Frontend/blob/main/public/images/greenhouse.png`,
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const greenhouse = [
     lighting: "40%",
     temperature: "24°C",
     humidity: "60%",
-    imageUrl:`${import.meta.env.BASE_URL}images/greenhouse.png`
+    imageUrl:`https://github.com/AlexaKelemen/SmartGrow_Frontend/blob/main/public/images/greenhouse.png`,
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const greenhouse = [
     lighting: "40%",
     temperature: "24°C",
     humidity: "60%",
-    imageUrl: `${import.meta.env.BASE_URL}images/greenhouse.png`
+    imageUrl: `https://github.com/AlexaKelemen/SmartGrow_Frontend/blob/main/public/images/greenhouse.png`,
   },
 ];
 
