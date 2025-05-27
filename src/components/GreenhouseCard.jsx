@@ -24,9 +24,8 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
   const navigate = useNavigate();
   const { getCurrentReadings } = useSensor();
 
-
   // Fallback to default image if greenhouse.imageUrl is undefined
-  const imageSrc = greenhouse.imageUrl || "/images/greenhouse.png";
+  const imageSrc = `/assets/greenhouse.png`;
 
   const [type, setType] = useState("lighting");
   const [method, setMethod] = useState("manual");
@@ -34,6 +33,7 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
 
 
   const handleConfigure = async (e) => {
+    console.log(import.meta.env.BASE_URL)
     e.preventDefault();
     try {
       await onConfigure(greenhouse.id, greenhouse.id, { type, method });
