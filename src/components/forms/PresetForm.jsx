@@ -29,10 +29,10 @@ const PresetForm = ({ mode, onSubmit, initialData = {} }) => {
       minSoilHumidity,
       maxSoilHumidity,
       hoursOfLight,
-      greenhouses: [] // You can handle this later if needed
+      greenhouses: [] 
     };
 
-    onSubmit(formData); // sends data to CreatePresetForm
+    onSubmit(formData); 
   };
 
   return (

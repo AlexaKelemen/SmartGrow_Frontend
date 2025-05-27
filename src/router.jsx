@@ -112,10 +112,6 @@ const routes = [
                 element: <EditGreenhousePage/>,
             },
             {
-                path: 'greenhouses/:if/presets',
-                element: <PresetsPage/>,
-            },
-            {
                 path: 'presets/create',
                 element: <CreatePresetForm/>,
             },
