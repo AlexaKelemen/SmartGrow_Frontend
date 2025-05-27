@@ -84,10 +84,7 @@
  * @property {string} userEmail - Email of the greenhouse owner.
  * @property {number} [activePresetId] - ID of the currently applied preset (nullable).
  * @property {string} [activePresetName] - Name of the currently applied preset (nullable).
- *
- * @description
- * Represents a greenhouse record returned by the backend (maps to `GreenhouseDto`).
- *
+ * @description Represents a greenhouse record returned by the backend (maps to `GreenhouseDto`).
  * @example
  * const greenhouse = {
  *   id: 1,
@@ -101,6 +98,7 @@
  *   activePresetName: "Tomato Boost"
  * };
  */
+
 /**
  * @typedef {Object} GreenhousePairDTO
  * @property {string} macAddress - MAC address of the greenhouse device.
@@ -124,11 +122,13 @@
  *   name: "West Wing Greenhouse"
  * };
  */
+
  /**
  * @typedef {Object} ConfigurationDTO
  * @property {string[]} type - List of types being configured.
  * @property {string[]} method - Corresponding configuration methods.
  */
+
 // ────────────────
 //   Action DTOs
 // ────────────────
@@ -278,6 +278,7 @@
  *   userEmail: "user@example.com"
  * };
  */
+
 /**
  * @typedef {Object} UpdatePresetDTO
  * @property {number} id - Unique ID of the preset to update.
