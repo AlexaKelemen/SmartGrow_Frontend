@@ -56,10 +56,10 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
         </div>
       </div>
       <div className="info-buttons">
-  <Button variant="info" size="sm">
+  <Button variant="info" size="sm"   onClick={() => navigate(`/greenhouses/${greenhouse.id}/lighting`)}>
     🌞 Lighting: {greenhouse.lightingMethod}
   </Button>
-  <Button variant="info" size="sm">
+  <Button variant="info" size="sm"   onClick={() => navigate(`/greenhouses/${greenhouse.id}/watering`)}>
     🚿 Watering: {greenhouse.wateringMethod }
   </Button>
   <Button
