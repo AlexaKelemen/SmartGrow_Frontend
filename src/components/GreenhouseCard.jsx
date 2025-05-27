@@ -56,14 +56,14 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
         </div>
       </div>
       <div className="info-buttons">
-  <Button variant="info" size="sm"   onClick={() => navigate(`/greenhouses/${greenhouse.id}/lighting`)}>
+  <Button variant="default" size="sm"   onClick={() => navigate(`/greenhouses/${greenhouse.id}/lighting`)}>
     🌞 Lighting: {greenhouse.lightingMethod}
   </Button>
-  <Button variant="info" size="sm"   onClick={() => navigate(`/greenhouses/${greenhouse.id}/watering`)}>
+  <Button variant="default" size="sm"   onClick={() => navigate(`/greenhouses/${greenhouse.id}/watering`)}>
     🚿 Watering: {greenhouse.wateringMethod }
   </Button>
   <Button
-    variant="info"
+    variant="default"
     size="sm"
     onClick={() => navigate(`/greenhouses/${greenhouse.id}/soil-humidity`)}
     >
@@ -76,7 +76,7 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
       <div className="section presets">
         <div className="section-header">
           <h4>Presets</h4>
-          <Button size="sm" onClick={() => navigate(`/greenhouses/${greenhouse.id}/presets`)}>
+          <Button variant="default" size="sm" onClick={() => navigate(`/greenhouses/${greenhouse.id}/presets`)}>
             View Presets
           </Button>
         </div>
