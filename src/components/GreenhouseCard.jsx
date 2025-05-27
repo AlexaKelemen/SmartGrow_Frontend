@@ -26,7 +26,7 @@ const GreenhouseCard = ({ greenhouse, onUnpair,onConfigure,presets = [], onApply
 
 
   // Fallback to default image if greenhouse.imageUrl is undefined
-  const imageSrc = greenhouse.imageUrl || "/images/greenhouse.png";
+  const imageSrc = greenhouse.imageUrl || `${import.meta.env.BASE_URL}images/greenhouse.png`;
 
   const [type, setType] = useState("lighting");
   const [method, setMethod] = useState("manual");
