@@ -15,7 +15,6 @@
  */
 
 import {createContext, useContext, useState} from 'react';
-import log from "eslint-plugin-react/lib/util/log";
 
 // Defines the authentication context structure; initialized as null to enforce scoped usage within <AuthProvider>.
 const AuthContext = createContext(null);
@@ -61,7 +60,6 @@ export function AuthProvider({ children }) {
  */
 export function checkAuth() {
     const context = useContext(AuthContext);
-    log(context)
     if (!context) throw new Error('useAuth must be used within an AuthProvider!');
     return context;
 }
