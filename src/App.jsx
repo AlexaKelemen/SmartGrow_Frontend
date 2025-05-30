@@ -20,11 +20,11 @@
  * @author Taggerkov and SophiaJustin
  */
 
-import { Outlet, useLocation } from 'react-router-dom';
+import {Outlet, useLocation} from 'react-router-dom';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { usePush } from "@/hooks/push/usePush";
-import { useEffect } from "react";
+import {usePush} from "@/hooks/push/usePush";
+import {useEffect} from "react";
 
 /**
  * Application layout component.
@@ -36,30 +36,14 @@ import { useEffect } from "react";
  */
 
 function App() {
-    const location = useLocation();
-
-    const isLoggedIn = Boolean(localStorage.getItem("accessToken"));
-    const hideLayout = !isLoggedIn && location.pathname === "/";
-
-    useEffect(() => {
-  const accessToken = localStorage.getItem("accessToken");
-
-  // Optional: if no token but user is on protected page
-  const isProtectedRoute = !["/", "/login", "/register"].includes(location.pathname);
-  if (!accessToken && isProtectedRoute) {
-    localStorage.clear();
-    window.location.href = "/";
-  }
-}, []);
-
 
     return (
         <div className="app">
-            {!hideLayout && <Header />}
+            <Header/>
             <main className="main">
-                <Outlet />
+                <Outlet/>
             </main>
-            {!hideLayout && <Footer />}
+            <Footer/>
         </div>
     );
 }
