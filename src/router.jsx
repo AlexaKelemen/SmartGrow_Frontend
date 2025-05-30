@@ -169,41 +169,6 @@ const routes = [
 ];
 
 /**
- * Wraps each child route's element with `<RequireAuth>` unless it is publicly accessible.
- *
- * This function is used to enforce authentication across all routes in the application,
- * except for explicitly defined public ones — currently, only the root path `""` (LoginPage).
- * It preserves all route metadata and custom tags like `navLabel`, while modifying only
- * the `element` property to include the authentication requirement.
- *
- * @function secureChildren
- * @param {Array<Object>} children - An array of route configuration objects.
- * @returns {Array<Object>} The modified route objects with protected elements, except for public routes.
- *
- * @example
- * const protectedRoutes = secureChildren([
- *   { path: '', element: <LoginPage /> },
- *   { path: 'dashboard', element: <DashboardPage /> }
- * ]);
- * // Result:
- * // [
- * //   { path: '', element: <LoginPage /> },
- * //   { path: 'dashboard', element: <RequireAuth><DashboardPage /></RequireAuth> }
- * // ]
- *
- * @see RequireAuth
- */
-function secureChildren(children) {
-    return children.map(child => {
-        const isPublic = child.path === '';
-        return {
-            ...child,
-            element: isPublic ? child.element : <RequireAuth>{child.element}</RequireAuth>,
-        };
-    });
-}
-
-/**
  * Application router configuration for SmartGrow.
  *
  * This `router` constant defines the routing for the SmartGrow application using a **HashRouter**.
@@ -217,7 +182,7 @@ function secureChildren(children) {
 const router = createHashRouter(
     routes.map(route => ({
         ...route,
-        children: route.children ? secureChildren(route.children) : [],
+        children: route.children,
     }))
 );
 

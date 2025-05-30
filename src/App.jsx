@@ -36,14 +36,6 @@ import { useEffect } from "react";
  */
 
 function App() {
-    const { runPush } = usePush();
-    const location = useLocation();
-
-    useEffect(() => {
-        const setupPush = async () => await runPush();
-        setupPush();
-    }, []);
-
     const isLoggedIn = Boolean(localStorage.getItem("accessToken"));
     const hideLayout = !isLoggedIn && location.pathname === "/";
 

@@ -83,7 +83,6 @@ export default function Dashboard() {
             </div>
         );
     }
-    if (isError) return <div className="dashboard">Error loading sensor data.</div>;
 
     return (
         <div className="dashboard">

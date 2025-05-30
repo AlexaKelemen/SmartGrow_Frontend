@@ -44,8 +44,8 @@ export function dashboardModel(greenhouseId) {
   return {
     isLoading,
     isError: error,
-    getTemperatureReading: () => ({ value: safe('airtemperature'), min: 0, max: 40, minIdeal: 18, maxIdeal: 28 }),
-    getHumidityReading: () => ({ value: safe('soilhumidity'), min: 0, max: 100, minIdeal: 60, maxIdeal: 80 }),
-    getBrightnessReading: () => ({ value: safe('brightness') }),
+    getTemperatureReading: () => ({ value: 23, min: 0, max: 40, minIdeal: 18, maxIdeal: 28 }),
+    getHumidityReading: () => ({ value: 69, min: 0, max: 100, minIdeal: 60, maxIdeal: 80 }),
+    getBrightnessReading: () => ({ value: 54 }),
   };
 }
