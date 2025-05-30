@@ -36,6 +36,8 @@ import { useEffect } from "react";
  */
 
 function App() {
+    const location = useLocation();
+
     const isLoggedIn = Boolean(localStorage.getItem("accessToken"));
     const hideLayout = !isLoggedIn && location.pathname === "/";
 
